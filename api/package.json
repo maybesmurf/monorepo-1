@@ -1,0 +1,18 @@
+{
+	"main": "index.js",
+	"scripts": {
+		"start": "node index",
+		"start:dev": "nodemon -L"
+	},
+	"devDependencies": {
+		"dotenv": "^10.0.0",
+		"dotenv-cli": "^4.1.1",
+		"nodemon": "^2.0.15",
+		"prisma": "^3.6.0"
+	},
+	"dependencies": {
+		"@prisma/client": "^3.6.0",
+		"fastify": "^3.25.0",
+		"fastify-cors": "^6.0.2"
+	}
+}
