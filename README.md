@@ -28,6 +28,11 @@ docker compose up -d
 
 ### To do mobile development (non-docker, just expo):
 
+Mobile is not dockerized - nor does it need to be. These will be built into their binaries and served that way.
+Make sure that you set a `LOCAL_NETWORK_IP` in `.env` for your local development.
+
+This app does not run using docker. Follow the Expo docs.
+
 #### For iOS:
 
 To put the app in a hot-reload environment on your iPhone, cd into `mobile`, then `npm run start`. Take out your iOS device and download the Expo Go app. Once it is done, open the CAMERA APP, and point it at the QR code in the terminal. Tap the "open Expo" thing that shows up. If it gives you some prompts the first time and doesn't open the app. Close Expo Go and scan the QR code again.
@@ -43,7 +48,6 @@ Once you've got Android Studio installed, make sure that you have an emulator de
 ## Ports
 
 Web front-end: 80
-Mobile front-end: ?
 API: 5000
 Postgres: 5432
 pgAdmin: 5050
