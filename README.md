@@ -6,11 +6,16 @@
 - API Server Nodemon works
 - Front-end talks to backend talks to database!
 
+## Active Task
+
+- Firebase...almost works. Current error is: `Error: Cannot start the Authentication Emulator without a project: run 'firebase init' or provide the --project flag`
+
 ## Need to:
 
-- Figure out how different environments work for dev/testing/stage/prod
 - A db seed with Prisma
 - Scripts to make life so easy
+- Figure out how different environments work for dev/testing/stage/prod
+- Figure out k8s
 
 # How to Use
 
@@ -51,3 +56,9 @@ Web front-end: 80
 API: 5000
 Postgres: 5432
 pgAdmin: 5050
+
+Firebase:
+
+- UI: 4000
+- Auth: 4001
+- Storage: 4002

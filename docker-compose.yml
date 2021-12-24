@@ -40,8 +40,21 @@ services:
       - /api/usr/src/app/node_modules
     env_file:
       - .env
-
     command: npm run start:dev
+
+  firebase-emulators:
+    container_name: firebase
+    ports:
+      - "4000:4000"
+      - "4001:4001"
+      - "4002:4002"
+    build:
+      context: .
+      dockerfile: Dockerfile.firebase
+    image: firebase-emulator:firebase-emulator
+    volumes:
+      - .:/src
+    command: firebase emulators:start
 
   postgres:
     container_name: postgres

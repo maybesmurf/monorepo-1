@@ -13,9 +13,5 @@ RUN npm install
 # Copying source files
 COPY . .
 
-# Build the app
-RUN npm run build
-EXPOSE 3000
-
 # Run in dev mode
 CMD [ "npm", "run", "dev" ]
