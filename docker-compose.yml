@@ -1,7 +1,33 @@
 version: "3"
 
 services:
+
+  postgres:
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    image: postgres:alpine
+    env_file:
+      - .env
+    restart: always
+
+  rest_api:
+    container_name: rest_api
+    depends_on: postgres
+    ports:
+      - "5000:5000"
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    volumes:
+      - ./api/:/usr/src/app
+      - /api/usr/src/app/node_modules
+    env_file:
+      - .env
+    command: npm run start:dev
+
   web:
+    depends_on: postgres
     ports:
       - 3000:3000
     build:
@@ -28,20 +54,6 @@ services:
   #     - ./mobile:/usr/src/app
   #     - /mobile/usr/src/app/node_modules
 
-  rest_api:
-    container_name: rest_api
-    ports:
-      - "5000:5000"
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    volumes:
-      - ./api/:/usr/src/app
-      - /api/usr/src/app/node_modules
-    env_file:
-      - .env
-    command: npm run start:dev
-
   firebase-emulators:
     container_name: firebase
     ports:
@@ -55,16 +67,6 @@ services:
     volumes:
       - .:/src
     command: firebase emulators:start
-
-  postgres:
-    container_name: postgres
-    ports:
-      - "5432:5432"
-    image: postgres:alpine
-    env_file:
-      - .env
-
-    restart: always
 
   pgadmin:
     container_name: pgadmin
