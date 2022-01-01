@@ -35,7 +35,8 @@ services:
 
   rest_api:
     container_name: rest_api
-    depends_on: postgres
+    depends_on:
+      - postgres
     ports:
       - "5000:5000"
     build:
@@ -49,7 +50,8 @@ services:
     command: npm run start:dev
 
   web:
-    depends_on: postgres
+    depends_on:
+      - postgres
     ports:
       - 3000:3000
     build:
@@ -59,8 +61,12 @@ services:
       - ./web:/usr/src/app
       - /web/usr/src/app/node_modules
       - /web/usr/src/app/.next
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
+    environment:
+      - NEXT_PUBLIC_ENVIRONMENT=${ENVIRONMENT}
+      - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
+      - NEXT_PUBLIC_SENTRY_DISABLED=${SENTRY_DISABLED}
 
   # expo_app:
   #   container_name: expo_app

@@ -5,7 +5,7 @@ import fetch from "../utils/fetch"
 
 const Home: NextPage = () => {
 	const [name, setName] = useState("")
-	const { data, isFetching, refetch } = useQuery("test", async () => await fetch.get("http://localhost:5000/all"))
+	const { data, isFetching, refetch } = useQuery("test", async () => await fetch.get("http://localhost:5000"))
 	const { mutate, isSuccess } = useMutation(
 		"mutate",
 		async () =>
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
 		<div>
 			<input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name for the DB" />
 			<button onClick={() => mutate()}>Make an update</button>
-			<p>{isFetching ? <p>Loading...</p> : JSON.stringify({ data })}</p>
+			<p>{isFetching ? <>Loading...</> : JSON.stringify({ data })}</p>
 		</div>
 	)
 }

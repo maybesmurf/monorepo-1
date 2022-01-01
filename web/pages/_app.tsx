@@ -26,8 +26,6 @@ const AppWrap = ({ Component, pageProps }: any) => {
 }
 
 const MyApp = ({ Component, pageProps }: any) => {
-	// const dispatch = useDispatch()
-
 	return (
 		<>
 			<GlobalStyles />

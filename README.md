@@ -8,12 +8,11 @@
 
 ## Active Task
 
-- Firebase...almost works. Current error is: `Error: Cannot start the Authentication Emulator without a project: run 'firebase init' or provide the --project flag`
-
 ## Need to:
 
+- Turn the API into Typescript
 - A db seed with Prisma
-- Scripts to make life so easy
+- npm scripts to make life so easy
 - Figure out how different environments work for dev/testing/stage/prod
 - Figure out k8s
 

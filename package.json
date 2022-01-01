@@ -5,6 +5,6 @@
   "scripts": {
     "dev": "docker compose up",
     "dev:build": "docker compose up --build",
-    "dev:end": "docker compose down"
+    "dev:kill": "docker compose down"
   }
 }
