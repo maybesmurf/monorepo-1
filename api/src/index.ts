@@ -3,25 +3,25 @@ dotenv.config()
 const { SENTRY_DISABLED, SENTRY_DSN, ENVIRONMENT } = process.env
 
 import Fastify, { FastifyInstance } from "fastify"
-const server: FastifyInstance = Fastify({ logger: true })
+const server: FastifyInstance = Fastify({ logger: false })
 server.register(require("fastify-cors"), {})
 
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
-// import Sentry from "@sentry/node"
-// Needed for supporting tracing!
+import Sentry from "@sentry/node"
+// Needed for supporting tracing (even if it's not referenced)!
 import Tracing from "@sentry/tracing"
 
 import { initializeFirebase } from "./services/firebase"
 
-// if (!SENTRY_DISABLED) {
-// 	Sentry.init({
-// 		dsn: SENTRY_DSN,
-// 		environment: ENVIRONMENT,
-// 		tracesSampleRate: 1.0
-// 	})
-// }
+if (!SENTRY_DISABLED) {
+	Sentry.init({
+		dsn: SENTRY_DSN,
+		environment: ENVIRONMENT,
+		tracesSampleRate: 1.0
+	})
+}
 
 initializeFirebase()
 
@@ -55,7 +55,8 @@ server.post("/create-new-user", async (req: any, reply: any) => {})
 // Run the server!
 const start = async () => {
 	try {
-		await server.listen(5000, "0.0.0.0")
+		const PORT = 5000
+		server.listen(PORT, "0.0.0.0", () => console.log(`Server Running on port ${PORT}.`))
 	} catch (err) {
 		server.log.error(err)
 		process.exit(1)

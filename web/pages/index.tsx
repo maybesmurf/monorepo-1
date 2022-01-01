@@ -1,13 +1,18 @@
 import Login from "components/Login"
 import type { NextPage } from "next"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useMutation, useQuery } from "react-query"
 import SignUp from "../components/SignUp"
 import fetch from "../utils/fetch"
 
 const Home: NextPage = () => {
 	const [name, setName] = useState("")
-	const { data, isFetching, refetch } = useQuery("test", async () => await fetch.get("/"))
+	const {
+		data: ping,
+		isFetching: pingIsFetching,
+		error: pingError
+	} = useQuery("test", async () => await fetch.get("/"))
+	const { data, isFetching, error, refetch } = useQuery("fetch-all-rows", async () => await fetch.get("/all"))
 	const { mutate, isSuccess } = useMutation(
 		"mutate",
 		async () =>
@@ -16,16 +21,19 @@ const Home: NextPage = () => {
 			})
 	)
 
-	useEffect(() => {
-		if (isSuccess) refetch()
-	}, [isSuccess])
-
 	return (
 		<div>
-			<p style={{ color: "red" }}>Broken for now, need to configure Prisma...</p>
+			<p style={{ marginBottom: "32px" }}>
+				Did we connect to the server?{" "}
+				{pingIsFetching ? <>Loading...</> : pingError ? <>Uh oh, we got problems.</> : <>{ping.message}</>}
+			</p>
 			<input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name for the DB" />
 			<button onClick={() => mutate()}>Make an update</button>
-			<p>{isFetching ? <>Loading...</> : JSON.stringify({ data })}</p>
+			<button style={{ display: "block" }} onClick={() => refetch()}>
+				{" "}
+				Refetch all rows
+			</button>
+			<div>{JSON.stringify(data)}</div>
 			<SignUp />
 			<Login />
 		</div>

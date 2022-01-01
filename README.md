@@ -8,8 +8,6 @@
 
 ## Active Task
 
-- Turn the API into Typescript
-
 ## Need to:
 
 - A db seed with Prisma
