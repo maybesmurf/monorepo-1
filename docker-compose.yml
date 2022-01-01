@@ -54,7 +54,7 @@ services:
     image: firebase-emulator:firebase-emulator
     volumes:
       - .:/src
-    command: firebase emulators:start
+    command: firebase emulators:start --project dev
 
   postgres:
     container_name: postgres
