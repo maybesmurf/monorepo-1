@@ -1,7 +1,6 @@
 version: "3"
 
 services:
-
   postgres:
     container_name: postgres
     ports:
@@ -10,6 +9,29 @@ services:
     env_file:
       - .env
     restart: always
+
+  pgadmin:
+    container_name: pgadmin
+    ports:
+      - "5050:80"
+    image: dpage/pgadmin4:latest
+    restart: always
+    env_file:
+      - .env
+
+  firebase-emulators:
+    container_name: firebase
+    ports:
+      - "4000:4000"
+      - "4001:4001"
+      - "4002:4002"
+    build:
+      context: .
+      dockerfile: Dockerfile.firebase
+    image: firebase-emulator:firebase-emulator
+    volumes:
+      - .:/src
+    command: firebase emulators:start --project dev
 
   rest_api:
     container_name: rest_api
@@ -53,26 +75,3 @@ services:
   #   volumes:
   #     - ./mobile:/usr/src/app
   #     - /mobile/usr/src/app/node_modules
-
-  firebase-emulators:
-    container_name: firebase
-    ports:
-      - "4000:4000"
-      - "4001:4001"
-      - "4002:4002"
-    build:
-      context: .
-      dockerfile: Dockerfile.firebase
-    image: firebase-emulator:firebase-emulator
-    volumes:
-      - .:/src
-    command: firebase emulators:start --project dev
-
-  pgadmin:
-    container_name: pgadmin
-    ports:
-      - "5050:80"
-    image: dpage/pgadmin4:latest
-    restart: always
-    env_file:
-      - .env
