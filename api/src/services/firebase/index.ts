@@ -1,6 +1,6 @@
 import admin from "firebase-admin"
 
-export const initializeFirebase = () => {
+export const initFirebase = () => {
 	if (process.env.ENVIRONMENT !== "production") {
 		admin.initializeApp({
 			projectId: "dev"

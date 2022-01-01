@@ -1,38 +1,38 @@
 import * as dotenv from "dotenv"
 dotenv.config()
-const { SENTRY_DISABLED, SENTRY_DSN, ENVIRONMENT } = process.env
 
-import Fastify, { FastifyInstance } from "fastify"
-const server: FastifyInstance = Fastify({ logger: false })
-server.register(require("fastify-cors"), {})
+import express from "express"
+import cors from "cors"
+const app = express()
+const PORT = 5000
 
+// Prisma
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
-import Sentry from "@sentry/node"
-// Needed for supporting tracing (even if it's not referenced)!
-import Tracing from "@sentry/tracing"
+// Sentry
+import { initSentry } from "./services/sentry/index"
+initSentry()
 
-import { initializeFirebase } from "./services/firebase"
+// Firebase
+import { initFirebase } from "./services/firebase"
+initFirebase()
 
-if (!SENTRY_DISABLED) {
-	Sentry.init({
-		dsn: SENTRY_DSN,
-		environment: ENVIRONMENT,
-		tracesSampleRate: 1.0
-	})
-}
+app.use(cors())
 
-initializeFirebase()
+// Routes
+import auth from "./routes/auth"
+app.use("/auth", auth)
 
-server.get("/", async (req: any, reply: any) => {
-	reply.send({ message: "What up!" })
+// Ping the app
+app.get("/", async (req: any, response: any) => {
+	response.json({ message: "What up!" })
 })
 
 // Write a new row
-server.post("/create", async (req: any, reply: any) => {
+app.post("/create", async (req: any, response: any) => {
 	console.log({ "req.body": req.body })
-	if (!req.body || !req.body.name) return reply.send({ message: "Need to provide a name." })
+	if (!req.body || !req.body.name) return response.json({ message: "Need to provide a name." })
 
 	const resp = await prisma.test.create({
 		data: {
@@ -40,31 +40,19 @@ server.post("/create", async (req: any, reply: any) => {
 		}
 	})
 
-	return reply.send({ [Date.now()]: resp })
+	return response.json({ [Date.now()]: resp })
 })
 
 // Get all rows
-server.get("/all", async (req: any, reply: any) => {
+app.get("/all", async (req: any, response: any) => {
 	const all = await prisma.test.findMany()
 
-	return reply.send({ [Date.now()]: all })
+	return response.json({ [Date.now()]: all })
 })
 
-server.post("/create-new-user", async (req: any, reply: any) => {})
+app.listen(PORT, () => console.log(`Server Running on port ${PORT}.`))
 
-// Run the server!
-const start = async () => {
-	try {
-		const PORT = 5000
-		server.listen(PORT, "0.0.0.0", () => console.log(`Server Running on port ${PORT}.`))
-	} catch (err) {
-		server.log.error(err)
-		process.exit(1)
-	}
-}
-start()
-
-// fastify.get("/error", async (req: any, reply: any) => {
+// app.get("/error", async (req: any, response: any) => {
 // This creates a start time for the op for Sentry to mark as the start of the request.
 // 	const transaction = Sentry.startTransaction({
 // 		op: "test",
@@ -79,7 +67,7 @@ start()
 // 		} finally {
 // This finishes the request from above, creating an interval of time in which this op occurred.
 // 			transaction.finish()
-// 			reply.status(500).send({ message: "We messed up :(" })
+// 			response.status(500).send({ message: "We messed up :(" })
 // 		}
 // 	}, 99)
 // })
