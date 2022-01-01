@@ -9,11 +9,11 @@ server.register(require("fastify-cors"), {})
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
-import Sentry from "@sentry/node"
+// import Sentry from "@sentry/node"
 // Needed for supporting tracing!
 import Tracing from "@sentry/tracing"
 
-// import { initializeFirebase } from "/services/firebase"
+import { initializeFirebase } from "./services/firebase"
 
 // if (!SENTRY_DISABLED) {
 // 	Sentry.init({
@@ -23,7 +23,7 @@ import Tracing from "@sentry/tracing"
 // 	})
 // }
 
-// initializeFirebase()
+initializeFirebase()
 
 server.get("/", async (req: any, reply: any) => {
 	reply.send({ message: "What up!" })

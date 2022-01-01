@@ -1,8 +1,8 @@
 FROM node:16-alpine3.14
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/app
+WORKDIR /usr/app
 
 # Install dependencies
 COPY package*.json .
@@ -13,4 +13,4 @@ COPY . .
 
 # Exports
 EXPOSE 5000
-CMD [ "npm", "run", "start:dev" ]
+CMD ["npm", "run", "dev"]

@@ -1,12 +1,13 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "es6",
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
-		"outDir": "./dist",
+		"rootDir": "./src",
+		"outDir": "./build",
 		"esModuleInterop": true,
 		"module": "commonjs",
 		"moduleResolution": "node",

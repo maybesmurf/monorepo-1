@@ -43,11 +43,10 @@ services:
       context: ./api
       dockerfile: Dockerfile
     volumes:
-      - ./api/:/usr/src/app
-      - /api/usr/src/app/node_modules
+      - ./api:/usr/app
     env_file:
       - .env
-    command: npm run start:dev
+    command: npm run dev
 
   web:
     depends_on:
