@@ -8,11 +8,13 @@
 
 ## Active Task
 
+- Turn the API into Typescript
+
 ## Need to:
 
-- Turn the API into Typescript
 - A db seed with Prisma
 - npm scripts to make life so easy
+- docs aren't dockerized...Do I want to?
 - Figure out how different environments work for dev/testing/stage/prod
 - Figure out k8s
 

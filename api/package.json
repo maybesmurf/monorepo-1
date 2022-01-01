@@ -1,20 +1,22 @@
 {
-	"main": "index.js",
 	"scripts": {
-		"start": "node index",
-		"start:dev": "nodemon -L"
+		"start": "ts-node src/index",
+		"start:dev": "nodemon -L -e ts --exec \"tsc && node ./dist/app.js\""
 	},
 	"devDependencies": {
 		"dotenv": "^10.0.0",
 		"dotenv-cli": "^4.1.1",
 		"nodemon": "^2.0.15",
-		"prisma": "^3.6.0"
+		"prisma": "^3.6.0",
+		"ts-node": "^10.4.0"
 	},
 	"dependencies": {
 		"@prisma/client": "^3.6.0",
 		"@sentry/node": "^6.16.1",
 		"@sentry/tracing": "^6.16.1",
 		"fastify": "^3.25.0",
-		"fastify-cors": "^6.0.2"
+		"fastify-cors": "^6.0.2",
+		"firebase-admin": "^10.0.1",
+		"tslint": "^6.1.3"
 	}
 }
