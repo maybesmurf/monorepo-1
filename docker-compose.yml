@@ -37,6 +37,7 @@ services:
     container_name: rest_api
     depends_on:
       - postgres
+      - firebase-emulators
     ports:
       - "5000:5000"
     build:
@@ -46,11 +47,15 @@ services:
       - ./api:/usr/app
     env_file:
       - .env
+    environment:
+      - FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001
+      - FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002
     command: npm run dev
 
   web:
     depends_on:
       - postgres
+      - firebase-emulators
     ports:
       - 3000:3000
     build:

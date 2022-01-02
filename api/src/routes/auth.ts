@@ -1,8 +1,11 @@
 import express from "express"
 const router = express.Router()
+import { auth } from "../services/firebase/auth"
 
-router.get("/check", (req: any, reply: any) => {
-	reply.send({ message: "Made it to a nested route!" })
+router.get("/user", async (req: any, res: any) => {
+	const user = await auth.getUser(req.query.uid)
+
+	res.json({ user })
 })
 
 export default router

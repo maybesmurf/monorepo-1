@@ -1,20 +1,9 @@
 import { useState } from "react"
-import { useMutation } from "react-query"
-import fetch from "@Utils/fetch"
+import { signUp } from "@Firebase/auth/signUp"
 
 const SignUp = () => {
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
-	const { mutate, data, error, isLoading } = useMutation("create-new-user", async () => {
-		fetch.post("/create-new-user", {
-			username,
-			password
-		})
-	})
-
-	if (isLoading) return <p>Signing you up...</p>
-	if (error) return <p>Something bad happened.</p>
-	if (data) return <p>You're signed up, bruv.</p>
 
 	return (
 		<div style={{ marginTop: "32px" }}>
@@ -29,7 +18,7 @@ const SignUp = () => {
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<button onClick={() => mutate()}>Login</button>
+			<button onClick={() => signUp(username, password)}>Login</button>
 		</div>
 	)
 }
