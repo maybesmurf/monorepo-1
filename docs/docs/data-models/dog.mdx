@@ -1,0 +1,42 @@
+---
+title: Dog
+sidebar_position: 1
+---
+
+# Doggo Likes Dogs
+
+Shocker, software for doggy sports needs to know what a dog even looks like in the first place.
+
+| Property | Data Type | Notes |
+| :--- | :----: | :---- |
+| id | uuid | Primary key for the dog table. |
+| Call Name | string | This is the typical spoken name of the dog. |
+| AKC Breed | enum | AKC official breed of the dog. We will have to get this information from AKC itself. |
+| Dog Sex | enum | `Male` or `Female`. Is there a more appropriate hobbyist's word to use? |
+| Dog Birthdate | date |  |
+| Dog Birthplace | enum | We want to store the dog's birthplace as a country. |
+| AKC Registered Name | string | This is not necessarily the spoken name of the dog but rather a formal name. Kind of like how in Mexican culture people will go by two names but their family name includes like 10 names. |
+| AKC Title Prefix | enum | This is a list that comes from AKC. |
+| AKC Title Suffix | enum | This is a list that comes from AKC. |
+| AKC Registration Type | enum | `AKC Reg Number`, `AKC PAL Number`, `Foreign Reg Number` |
+| Registration Number | string |  |
+| Breeder's Name | string |  |
+| Sire's Name | string |  |
+| Dam's Name | string |  |
+| Primary Owner | id | Foreign key to the owner of the dog |
+| Other Owners | array of ids | List of ids for secondary owners of the dog |
+| AKC Height Card | enum | `None`, `Temporary`, `Permanent` |
+| AKC Measured Height | number | Can only be even numbers between 8 and 24 |
+| Jump Height | number | Can only be even numbers between 8 and 24 |
+| Preferred Classes | boolean | ??? |
+| Most Recent AKC Entry | date | ??? |
+| Most Recent Regular Standard Level | enum | `None`, `Novice A`, `Novice B`, `Open`, `Excellent`, `Master`, |
+| Most Recent Regular Jumpers With Weaves (JWW) Level | enum | `None`, `Novice A`, `Novice B`, `Open`, `Excellent`, `Master`, |
+| Most Recent Regular Time 2 Beat Level (T2B) | enum | `None`, `Novice A`, `Novice B`, `Open`, `Excellent`, `Master`, |
+| Most Recent Regular Fast (FAST) Level | enum | `None`, `Novice A`, `Novice B`, `Open`, `Excellent`, `Master`, |
+| Most Recent Premier Standard (STDP) Level | enum | `None`, `Novice A`, `Novice B`, `Open`, `Excellent`, `Master`, |
+| Most Recent Premier Jumpers With Weaves (JWWP) Level | enum | `None`, `Novice A`, `Novice B`, `Open`, `Excellent`, `Master`, |
+| Most Recent Premier Time to Beat (T2BP) Level | enum | `None`, `Novice A`, `Novice B`, `Open`, `Excellent`, `Master`, |
+| Most Recent Premier Fast (FASTP) Level | enum | `None`, `Novice A`, `Novice B`, `Open`, `Excellent`, `Master`, |
+| Profile Information | markdown | Markdown to create a profile for the dog. This is where someone can write down the dog's bio, favorite treats, etc. |
+|  |  |  |
