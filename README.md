@@ -1,19 +1,14 @@
 # Welcome to Doggo Sports
 
-## Currently working:
-
-- Web HMR works
-- API Server Nodemon works
-- Front-end talks to backend talks to database!
-
 ## Active Task
+
+- Figure out how different environments work for dev/testing/stage/prod
 
 ## Need to:
 
 - A db seed with Prisma
 - npm scripts to make life so easy
 - docs aren't dockerized...Do I want to?
-- Figure out how different environments work for dev/testing/stage/prod
 - Figure out k8s
 
 # How to Use

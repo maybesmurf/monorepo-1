@@ -1,11 +1,8 @@
 // import { Provider } from "react-redux"
 // import { store, useDispatch } from "@Redux/store"
-// import initFirebase from "@Services/firebase/index"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import GlobalStyles from "../styles/globals"
-
-// initFirebase()
 
 const queryClient = new QueryClient({
 	defaultOptions: {
