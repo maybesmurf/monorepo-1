@@ -22,12 +22,7 @@ app()
 
 export const auth = getAuth()
 if (process.env.NEXT_APP_ENVIRONMENT !== "production") {
-	try {
-		connectAuthEmulator(auth, "firebase-emulators:4001")
-	} catch (error) {
-		console.error(error)
-		console.error("The auth emulator didn't connect.")
-	}
+	connectAuthEmulator(auth, "http://localhost:4001")
 }
 
 export default app
