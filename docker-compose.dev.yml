@@ -50,9 +50,6 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile
-      target: development
-      args:
-        - NODE_ENV=development
     volumes:
       - ./web:/app
       - ./web/app/node_modules
