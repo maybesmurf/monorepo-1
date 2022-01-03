@@ -1,38 +1,6 @@
 version: "3"
 
 services:
-  postgres:
-    container_name: postgres
-    ports:
-      - "5432:5432"
-    image: postgres:alpine
-    env_file:
-      - .env
-    restart: always
-
-  pgadmin:
-    container_name: pgadmin
-    ports:
-      - "5050:80"
-    image: dpage/pgadmin4:latest
-    restart: always
-    env_file:
-      - .env
-
-  firebase-emulators:
-    container_name: firebase
-    ports:
-      - "4000:4000"
-      - "4001:4001"
-      - "4002:4002"
-    build:
-      context: .
-      dockerfile: Dockerfile.firebase
-    image: firebase-emulator:firebase-emulator
-    volumes:
-      - .:/src
-    command: firebase emulators:start --project dev
-
   rest_api:
     container_name: rest_api
     depends_on:
@@ -43,30 +11,15 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
-    volumes:
-      - ./api:/usr/app
     env_file:
       - .env
-    environment:
-      - FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001
-      - FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002
-    command: npm run dev
 
   web:
-    depends_on:
-      - postgres
-      - firebase-emulators
     ports:
       - 3000:3000
     build:
       context: ./web
       dockerfile: Dockerfile
-    volumes:
-      - ./web:/usr/src/app
-      - /web/usr/src/app/node_modules
-      - /web/usr/src/app/.next
-    # env_file:
-    #   - .env
     environment:
       - NEXT_PUBLIC_ENVIRONMENT=${ENVIRONMENT}
       - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
