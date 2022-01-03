@@ -50,11 +50,15 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile
+      target: development
+      args:
+        - NODE_ENV=development
     volumes:
-      - ./web:/usr/src/app
-      - /web/usr/src/app/node_modules
-      - /web/usr/src/app/.next
+      - ./web:/app
+      - ./web/app/node_modules
+      - ./web/app/.next
     environment:
+      - NODE_ENV=development
       - NEXT_PUBLIC_ENVIRONMENT=${ENVIRONMENT}
       - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
       - NEXT_PUBLIC_SENTRY_DISABLED=${SENTRY_DISABLED}
