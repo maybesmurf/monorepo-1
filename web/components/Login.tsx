@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { logIn } from "@Firebase/auth/logIn"
+// import { logIn } from "@Firebase/auth/logIn"
 
 const Login = () => {
 	const [username, setUsername] = useState("")
@@ -18,7 +18,7 @@ const Login = () => {
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			<button onClick={() => logIn(username, password)}>Login</button>
+			{/* <button onClick={() => logIn(username, password)}>Login</button> */}
 		</div>
 	)
 }

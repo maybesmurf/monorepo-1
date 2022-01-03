@@ -34,8 +34,8 @@ const Home: NextPage = () => {
 				Refetch all rows
 			</button> */}
 			{/* <div>{JSON.stringify(data)}</div> */}
-			<SignUp />
-			<Login />
+			{/* <SignUp /> */}
+			{/* <Login /> */}
 		</div>
 	)
 }
