@@ -34,6 +34,9 @@ services:
     command: firebase emulators:start --project dev
 
   rest_api:
+    depends_on:
+      - postgres
+      - firebase-emulators
     volumes:
       - ./api:/usr/app
     environment:
@@ -49,11 +52,11 @@ services:
       - 3000:3000
     build:
       context: ./web
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     volumes:
       - ./web:/app
-      - ./web/app/node_modules
-      - ./web/app/.next
+      - /web/app/node_modules
+      - /web/app/.next
     environment:
       - NODE_ENV=development
       - NEXT_PUBLIC_ENVIRONMENT=${ENVIRONMENT}

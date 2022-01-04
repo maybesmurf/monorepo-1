@@ -21,12 +21,12 @@ initFirebase()
 app.use(cors())
 
 // Routes
-import auth from "./routes/auth"
-app.use("/auth", auth)
+// import auth from "./routes/auth"
+// app.use("/auth", auth)
 
 // Ping the app
 app.get("/", async (req: any, response: any) => {
-	response.json({ message: "What up!" })
+	response.json({ message: "What uppppp!" })
 })
 
 // Write a new row

@@ -3,9 +3,6 @@ version: "3"
 services:
   rest_api:
     container_name: rest_api
-    depends_on:
-      - postgres
-      - firebase-emulators
     ports:
       - "5000:5000"
     build:
@@ -15,6 +12,7 @@ services:
       - .env
 
   web:
+    container_name: web
     ports:
       - 3000:3000
     build:
