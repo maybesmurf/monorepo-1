@@ -11,12 +11,12 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 // Sentry
-import { initSentry } from "./services/sentry/index"
-initSentry()
+// import { initSentry } from "./services/sentry/index"
+// initSentry()
 
 // Firebase
-import { initFirebase } from "./services/firebase"
-initFirebase()
+// import { initFirebase } from "./services/firebase"
+// initFirebase()
 
 app.use(cors())
 
@@ -26,7 +26,7 @@ app.use(cors())
 
 // Ping the app
 app.get("/", async (req: any, response: any) => {
-	response.json({ message: "What uppppp!" })
+	response.json({ message: "What up!" })
 })
 
 // Write a new row
