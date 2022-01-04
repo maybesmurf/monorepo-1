@@ -5,11 +5,11 @@ RUN mkdir -p /usr/app
 WORKDIR /usr/app
 
 # Install dependencies
-COPY package*.json .
+COPY package*.json ./
 RUN npm install
 
 # Copying source files
-COPY . .
+COPY . ./
 
 # Exports
 EXPOSE 5000

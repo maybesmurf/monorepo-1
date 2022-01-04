@@ -1,10 +1,13 @@
 version: "3"
 
 services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+
   rest_api:
     container_name: rest_api
-    ports:
-      - "5000:5000"
     build:
       context: ./api
       dockerfile: Dockerfile
@@ -13,8 +16,6 @@ services:
 
   web:
     container_name: web
-    ports:
-      - 3000:3000
     build:
       context: ./web
       dockerfile: Dockerfile.prod
@@ -22,17 +23,3 @@ services:
       - NEXT_PUBLIC_ENVIRONMENT=${ENVIRONMENT}
       - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
       - NEXT_PUBLIC_SENTRY_DISABLED=${SENTRY_DISABLED}
-
-  # expo_app:
-  #   container_name: expo_app
-  #   build: ./mobile
-  #   ports:
-  #     - 19000:19000
-  #     - 19001:19001
-  #     - 19002:19002
-  #   environment:
-  #     - EXPO_DEVTOOLS_LISTEN_ADDRESS=0.0.0.0
-  #     - CHOKIDAR_USEPOLLING=true
-  #   volumes:
-  #     - ./mobile:/usr/src/app
-  #     - /mobile/usr/src/app/node_modules
