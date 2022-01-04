@@ -17,7 +17,7 @@ services:
       - 3000:3000
     build:
       context: ./web
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     environment:
       - NEXT_PUBLIC_ENVIRONMENT=${ENVIRONMENT}
       - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
