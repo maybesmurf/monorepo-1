@@ -27,6 +27,7 @@ const Home: NextPage = () => {
 				Did we connect to the server?{" "}
 				{/* {pingIsFetching ? <>Loading...</> : pingError ? <>Uh oh, we got problems.</> : <>{ping.message}</>} */}
 			</p>
+			<p>Just a test update.</p>
 			<input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name for the DB" />
 			<button onClick={() => mutate()}>Make an update</button>
 			{/* <button style={{ display: "block" }} onClick={() => refetch()}> */}
