@@ -1,4 +1,6 @@
-const baseUri = "http://localhost/api"
+console.log({ APIPATH: process.env.NEXT_PUBLIC_API_PATH })
+
+const baseUri = process.env.NEXT_PUBLIC_API_PATH
 
 const get = async (url: string) => {
 	const requestOptions = {

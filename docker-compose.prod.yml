@@ -5,3 +5,7 @@ services:
     build: ./nginx
     ports:
       - 80:80
+
+  web:
+    env_file:
+      - .env.production

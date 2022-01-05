@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "author": "Anthony Shew",
   "scripts": {
-    "dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up",
-    "dev:build": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
-    "dev:kill": "docker compose down",
-    "prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build"
+    "dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
+    "dev:build": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
+    "dev:kill": "docker-compose down",
+    "prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build"
   }
 }

@@ -8,8 +8,7 @@
 
 - A db seed with Prisma
 - npm scripts to make life so easy
-- docs aren't dockerized...Do I want to?
-- Figure out k8s
+- Docs need dockerization
 
 # How to Use
 
@@ -56,3 +55,7 @@ Firebase:
 - UI: 4000
 - Auth: 4001
 - Storage: 4002
+
+## Notes
+
+- Right now, we aren't set up to use next.js API endpoints at all. If this ends up being desired, some adjustments will have to be made.
