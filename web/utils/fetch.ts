@@ -1,4 +1,4 @@
-const baseUri = "http://localhost:5000"
+const baseUri = "http://localhost/api"
 
 const get = async (url: string) => {
 	const requestOptions = {
@@ -49,9 +49,11 @@ const handleResponse = (response: any) => {
 	})
 }
 
-export default {
+const handler = {
 	get,
 	post,
 	put,
 	delete: _delete
 }
+
+export default handler
