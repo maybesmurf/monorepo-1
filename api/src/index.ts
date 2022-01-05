@@ -19,6 +19,7 @@ const prisma = new PrismaClient()
 // initFirebase()
 
 app.use(cors())
+app.use(express.json())
 
 // Routes
 // import auth from "./routes/auth"
@@ -26,13 +27,12 @@ app.use(cors())
 
 // Ping the app
 app.get("/", async (req: any, response: any) => {
-	response.json({ message: "What up!" })
+	response.json({ message: "Yes, what up!" })
 })
 
 // Write a new row
 app.post("/create", async (req: any, response: any) => {
-	console.log({ "req.body": req.body })
-	if (!req.body || !req.body.name) return response.json({ message: "Need to provide a name." })
+	if (!req.body || !req.body.name) return response.status(400).json({ message: "Need to provide a name." })
 
 	const resp = await prisma.test.create({
 		data: {
