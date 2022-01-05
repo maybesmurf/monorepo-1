@@ -8,7 +8,6 @@
 
 - A db seed with Prisma
 - npm scripts to make life so easy
-- Docs need dockerization
 
 # How to Use
 
@@ -49,6 +48,7 @@ Web front-end: 80
 API: 5000
 Postgres: 5432
 pgAdmin: 5050
+Docs (Are not dockerized!): 8000
 
 Firebase:
 
