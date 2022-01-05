@@ -1,38 +1,39 @@
 console.log({ APIPATH: process.env.NEXT_PUBLIC_API_PATH })
 
-const baseUri = process.env.NEXT_PUBLIC_API_PATH
+// const baseUri = process.env.NEXT_PUBLIC_API_PATH
+const baseUri = "/api"
 
-const get = (url: string) => {
+const get = async (url: string) => {
 	const requestOptions = {
 		method: "GET"
 	}
-	return fetch(baseUri + url, requestOptions).then(handleResponse)
+	return await fetch(baseUri + url, requestOptions).then(handleResponse)
 }
 
-const post = (url: string, body: any) => {
+const post = async (url: string, body: any) => {
 	const requestOptions = {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(body)
 	}
-	return fetch(baseUri + url, requestOptions).then(handleResponse)
+	return await fetch(baseUri + url, requestOptions).then(handleResponse)
 }
 
-const put = (url: string, body: any) => {
+const put = async (url: string, body: any) => {
 	const requestOptions = {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(body)
 	}
-	return fetch(baseUri + url, requestOptions).then(handleResponse)
+	return await fetch(baseUri + url, requestOptions).then(handleResponse)
 }
 
 // prefixed with underscored because delete is a reserved word in javascript
-const _delete = (url: string) => {
+const _delete = async (url: string) => {
 	const requestOptions = {
 		method: "DELETE"
 	}
-	return fetch(baseUri + url, requestOptions).then(handleResponse)
+	return await fetch(baseUri + url, requestOptions).then(handleResponse)
 }
 
 // helper functions
