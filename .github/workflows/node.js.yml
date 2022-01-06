@@ -16,8 +16,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build the hello-world Docker image
+      - name: Build the api Docker image
         run: |
-          docker build . --tag ghcr.io/kittrgg/hello-docker:latest
-          docker run ghcr.io/kittrgg/hello-docker:latest
-          docker push ghcr.io/kittrgg/hello-docker:latest
+          cd api
+          docker build . --tag ghcr.io/doggo-sports/api:latest
+          docker run ghcr.io/doggo-sports/api:latest
+          docker push ghcr.io/doggo-sports/api:latest
