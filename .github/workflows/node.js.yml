@@ -30,14 +30,5 @@ jobs:
           SENTRY_AUTH_TOKEN: ${{SECRETS.SENTRY_AUTH_TOKEN}}
         run: |
           cd web
-          docker build . --tag ghcr.io/doggo-sports/web:latest
+          docker build --build-arg SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}} . --tag ghcr.io/doggo-sports/web:latest
           docker push ghcr.io/doggo-sports/web:latest
-
-      - name: Sentry Release
-        uses: getsentry/action-release@v1.0.0
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-        with:
-          environment: production
