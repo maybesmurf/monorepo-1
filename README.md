@@ -58,4 +58,5 @@ Firebase:
 
 ## Notes
 
-- Right now, we aren't set up to use next.js API endpoints at all. If this ends up being desired, some adjustments will have to be made.
+- Right now, we aren't set up to use next.js API endpoints at all. If this ends up being desired, some adjustments will have to be made with nginx.
+- Right now, the environment variables need to be set both at the top of the project like .env.example shows. ALSO, you need to include .env.production inside of the web folder like you see in the .env.example in that directory.
