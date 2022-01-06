@@ -1,15 +1,9 @@
-name: E2E Testing
+name: publish
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: [push]
 
 jobs:
-  build:
+  publish-hello-world-image:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,8 +16,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push to container registry
-      run: |
-        docker build . --tag ghcr.io/jonashackt/hello-docker:latest
-        docker run ghcr.io/jonashackt/hello-docker:latest
-        docker push ghcr.io/jonashackt/hello-docker:latest
+      - name: Build the hello-world Docker image
+        run: |
+          docker build . --tag ghcr.io/kittrgg/hello-docker:latest
+          docker run ghcr.io/kittrgg/hello-docker:latest
+          docker push ghcr.io/kittrgg/hello-docker:latest
