@@ -15,4 +15,3 @@ ENV DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-
 
 # Exports
 EXPOSE 5000
-CMD ["npm", "run", "start"]
