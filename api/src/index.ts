@@ -1,6 +1,3 @@
-import * as dotenv from "dotenv"
-dotenv.config()
-
 import express from "express"
 import cors from "cors"
 const app = express()
@@ -26,7 +23,7 @@ app.use(express.json())
 // import auth from "./routes/auth"
 // app.use("/auth", auth)
 
-// Just ping the server
+// Just ping the server, that's it.
 app.get("/", async (req: any, response: any) => {
 	response.json({ message: "The server...she lives!!!" })
 })
@@ -46,7 +43,7 @@ router.post("/create", async (req: any, response: any) => {
 
 	const resp = await prisma.test.create({
 		data: {
-			email: req.body.email,
+			// email: req.body.email,
 			name: req.body.name
 		}
 	})

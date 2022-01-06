@@ -60,5 +60,4 @@ services:
       - /web/app/node_modules
       - /web/app/.next
     environment:
-      - NODE_ENV=${ENVIRONMENT}
       - NEXT_PUBLIC_API_PATH=http://localhost:5000

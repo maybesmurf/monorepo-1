@@ -1,7 +1,6 @@
 console.log({ APIPATH: process.env.NEXT_PUBLIC_API_PATH })
 
-// const baseUri = process.env.NEXT_PUBLIC_API_PATH
-const baseUri = "/api"
+const baseUri = process.env.NEXT_PUBLIC_API_PATH
 
 const get = async (url: string) => {
 	const requestOptions = {
