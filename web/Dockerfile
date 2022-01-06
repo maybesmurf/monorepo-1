@@ -8,6 +8,10 @@ FROM node:16-alpine AS builder
 WORKDIR /app
 COPY . ./
 COPY --from=deps /app/node_modules ./node_modules
+
+# We hate these.
+ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+
 RUN npm run build && npm ci --only=production
 
 FROM node:16-alpine AS runner
@@ -19,7 +23,7 @@ RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
 COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/.env.production ./
+# COPY --from=builder /app/.env.production ./
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules

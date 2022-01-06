@@ -24,12 +24,12 @@ jobs:
           docker build . --tag ghcr.io/doggo-sports/api:latest
           docker push ghcr.io/doggo-sports/api:latest
 
-      - name: Setup Sentry CLI
-        uses: mathieu-bour/setup-sentry-cli@main
-        with:
-          token: ${{SECRETS.SENTRY_TOKEN}}
-          organization: inthezone
-          project: doggo-sports
+      # - name: Setup Sentry CLI
+      #   uses: mathieu-bour/setup-sentry-cli@main
+      #   with:
+      #     SENTRY_AUTH_TOKEN: ${{SECRETS.SENTRY_AUTH_TOKEN}}
+      #     organization: inthezone
+      #     project: doggo-sports
 
       - name: Build the web Docker image
         env:
