@@ -31,6 +31,7 @@ const Home: NextPage = () => {
 
 	return (
 		<div>
+			<p>Test environment var: {process.env.TEST}</p>
 			<p style={{ marginBottom: "32px" }}>
 				Did we connect to the server?{" "}
 				{pingIsFetching ? <>Loading...</> : pingError ? <>Uh oh, we got problems.</> : <>{ping.message}</>}
