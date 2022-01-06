@@ -34,6 +34,7 @@ jobs:
       - name: Build the web Docker image
         env:
           TEST: i am just a little testerman
+          SENTRY_AUTH_TOKEN: ${{SECRETS.SENTRY_AUTH_TOKEN}}
         run: |
           cd web
           docker build . --tag ghcr.io/doggo-sports/web:latest
