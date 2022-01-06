@@ -28,6 +28,6 @@ jobs:
         env:
           TEST: i am just a little testerman
         run: |
-          cd api
+          cd web
           docker build . --tag ghcr.io/doggo-sports/web:latest
           docker push ghcr.io/doggo-sports/web:latest
