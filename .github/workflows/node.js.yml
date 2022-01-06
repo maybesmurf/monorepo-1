@@ -21,6 +21,6 @@ jobs:
           DATABASE_URL: postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
         run: |
           cd api
-          docker build . --tag ghcr.io/doggo-sports/api:latest
+          docker build -e DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma . --tag ghcr.io/doggo-sports/api:latest
           docker run ghcr.io/doggo-sports/api:latest
           docker push ghcr.io/doggo-sports/api:latest
