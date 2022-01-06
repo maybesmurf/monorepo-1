@@ -17,6 +17,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build the api Docker image
+        with:
+          DATABASE_URL: postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
         run: |
           cd api
           docker build . --tag ghcr.io/doggo-sports/api:latest
