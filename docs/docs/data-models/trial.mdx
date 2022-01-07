@@ -7,6 +7,35 @@ sidebar_position: 2
 
 Could someone come handle these beasts?!
 
-| Property | Data Type | Notes |
-| :--- | :----: | :---- |
-|  |  |  |
+| Property                      |   Data Type    | Notes                                                                                                                                                                       |
+| :---------------------------- | :------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hosting Club's Name           |     string     |                                                                                                                                                                             |
+| AKC Event Number              |     string     | number provided by AKC to trial secretary when they tell them they're gonna put on an event                                                                                 |
+| Venue of Trial                |     string     | Name of the building or venue where the trial is being hosted                                                                                                               |
+| Venue Street Address          |     String     |                                                                                                                                                                             |
+| Venue City                    |     String     |                                                                                                                                                                             |
+| Venue State                   |     String     |                                                                                                                                                                             |
+| Venue Zip                     |     String     |                                                                                                                                                                             |
+| Type of Venue                 |     String     | This is a text input where the trial secretary can describe what kind of surface the dogs will be running on. Examples might be 'outdoor on grass' , 'Indoor on Turf', etc. |
+| Opening Date and Time         |      Date      | This is the date when users can offically sign up for a trial                                                                                                               |
+| Closing Date and Time         |      Date      | This is the date when no more users can sign up for the trial                                                                                                               |
+| Method of Acceptance          |      enum      | `Random Draw`, `First Received`                                                                                                                                             |
+| Trial Secretary               | trialSecretary |                                                                                                                                                                             |
+| Checks Payable To             |     String     | For the grannies who still want to pay with a damn check in the mail                                                                                                        |
+| Trial Chairman Name           |     String     | Trail chairman is not a user we need to make, but for some reason, we need to be able to list this person's info                                                            |
+| Trial Chairman Email          |     String     |                                                                                                                                                                             |
+| Trial Chairman Street Address |     String     |                                                                                                                                                                             |
+| Trail Chairman City           |     String     |                                                                                                                                                                             |
+| Trial Chairman State          |     String     |                                                                                                                                                                             |
+| Trial Chairman Zip            |     String     |                                                                                                                                                                             |
+| Trial Chairman Phone          |     String     |                                                                                                                                                                             |
+| Judges                        |  array of ids  |                                                                                                                                                                             |
+| Cost for first entry          |     string     | Cost for the first run a dog does for the day. Ex: $22                                                                                                                      |
+| Cost for second entry         |     string     | Cost for second run a dog does for the day. Ex: $18                                                                                                                         |
+| Cost for third entry          |     string     | Cost for third run a dog does for the day. Ex: $16                                                                                                                          |
+| Cost for fourth entry         |     string     | Cost for fourth run a dog does for the day. Ex: $16                                                                                                                         |
+| Catalogue fee                 |     string     | I think this is some type of brocure that they print out with every participant's info. Might not need this                                                                 |
+| Junior handler discount       |     string     | Sometimes a club putting on a trial will offer a discount, but most times it's zero                                                                                         |
+| Other discounts               |     string     | Percentage                                                                                                                                                                  |
+| Confirmation letter           |     string     | This is a long string that's a message to an entrant saying 'Thank you, here are some more details' etc                                                                     |
+| Days of Trial                 |    trialDay    |                                                                                                                                                                             |
