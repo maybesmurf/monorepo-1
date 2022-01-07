@@ -9,7 +9,6 @@ WORKDIR /app
 COPY . ./
 COPY --from=deps /app/node_modules ./node_modules
 ARG SENTRY_AUTH_TOKEN
-RUN echo ${SENTRY_AUTH_TOKEN}
 ENV SENTRY_AUTH_TOKEN ${SENTRY_AUTH_TOKEN}
 RUN npm run build && npm ci --only=production
 
