@@ -1,5 +1,5 @@
 import { useState } from "react"
-// import { signUp } from "@Firebase/auth/signUp"
+import { signUp } from "@Firebase/auth/signUp"
 
 const SignUp = () => {
 	const [username, setUsername] = useState("")
@@ -18,7 +18,7 @@ const SignUp = () => {
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
-			{/* <button onClick={() => signUp(username, password)}>Login</button> */}
+			<button onClick={() => signUp(username, password)}>Login</button>
 		</div>
 	)
 }

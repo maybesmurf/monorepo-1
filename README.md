@@ -1,4 +1,4 @@
-# Welcome to Doggo Sports
+# Welcome to Doggo Sportss
 
 ## Active Task
 
@@ -8,8 +8,6 @@
 
 - A db seed with Prisma
 - npm scripts to make life so easy
-- docs aren't dockerized...Do I want to?
-- Figure out k8s
 
 # How to Use
 
@@ -50,9 +48,15 @@ Web front-end: 80
 API: 5000
 Postgres: 5432
 pgAdmin: 5050
+Docs (Are not dockerized!): 8000
 
 Firebase:
 
 - UI: 4000
 - Auth: 4001
 - Storage: 4002
+
+## Notes
+
+- Right now, we aren't set up to use next.js API endpoints at all. If this ends up being desired, some adjustments will have to be made with nginx.
+- Right now, the environment variables need to be set both at the top of the project like .env.example shows. ALSO, you need to include .env.production inside of the web folder like you see in the .env.example in that directory.

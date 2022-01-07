@@ -1,4 +1,6 @@
-const baseUri = "http://localhost:5000"
+console.log({ APIPATH: process.env.NEXT_PUBLIC_API_PATH })
+
+const baseUri = process.env.NEXT_PUBLIC_API_PATH
 
 const get = async (url: string) => {
 	const requestOptions = {
@@ -41,7 +43,7 @@ const handleResponse = (response: any) => {
 		const data = text && JSON.parse(text)
 
 		if (!response.ok) {
-			const error = (data && data.message) || response.statusText
+			const error = data || response.statusText
 			return Promise.reject(error)
 		}
 
@@ -49,9 +51,11 @@ const handleResponse = (response: any) => {
 	})
 }
 
-export default {
+const handler = {
 	get,
 	post,
 	put,
 	delete: _delete
 }
+
+export default handler

@@ -37,6 +37,8 @@ services:
     depends_on:
       - postgres
       - firebase-emulators
+    ports:
+      - 5000:5000
     volumes:
       - ./api:/usr/app
     environment:
@@ -58,7 +60,4 @@ services:
       - /web/app/node_modules
       - /web/app/.next
     environment:
-      - NODE_ENV=development
-      - NEXT_PUBLIC_ENVIRONMENT=${ENVIRONMENT}
-      - NEXT_PUBLIC_SENTRY_DSN=${SENTRY_DSN}
-      - NEXT_PUBLIC_SENTRY_DISABLED=${SENTRY_DISABLED}
+      - NEXT_PUBLIC_API_PATH=http://localhost:5000

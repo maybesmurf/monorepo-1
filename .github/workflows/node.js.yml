@@ -1,0 +1,34 @@
+name: publish
+
+on: [push]
+
+jobs:
+  publish-hello-world-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build the api Docker image
+        env:
+          DATABASE_URL: postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
+        run: |
+          cd api
+          docker build . --tag ghcr.io/doggo-sports/api:latest
+          docker push ghcr.io/doggo-sports/api:latest
+
+      - name: Build the web Docker image
+        env:
+          TEST: i am just a little testerman
+          SENTRY_AUTH_TOKEN: ${{SECRETS.SENTRY_AUTH_TOKEN}}
+        run: |
+          cd web
+          docker build --build-arg SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}} . --tag ghcr.io/doggo-sports/web:latest
+          docker push ghcr.io/doggo-sports/web:latest

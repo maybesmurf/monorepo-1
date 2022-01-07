@@ -1,9 +1,7 @@
-import * as dotenv from "dotenv"
-dotenv.config()
-
 import express from "express"
 import cors from "cors"
 const app = express()
+const router = express.Router()
 const PORT = 5000
 
 // Prisma
@@ -19,23 +17,33 @@ const prisma = new PrismaClient()
 // initFirebase()
 
 app.use(cors())
+app.use(express.json())
 
 // Routes
 // import auth from "./routes/auth"
 // app.use("/auth", auth)
 
-// Ping the app
+// Just ping the server, that's it.
 app.get("/", async (req: any, response: any) => {
-	response.json({ message: "What up!" })
+	response.json({ message: "The server...she lives!!!" })
+})
+
+// Ping the app
+router.get("/", async (req: any, response: any) => {
+	response.json({ message: "Yes, what up!" })
+})
+
+router.get("/some/nested/route", async (req: any, response: any) => {
+	response.json({ message: "You've peeled back the onion, lad!" })
 })
 
 // Write a new row
-app.post("/create", async (req: any, response: any) => {
-	console.log({ "req.body": req.body })
-	if (!req.body || !req.body.name) return response.json({ message: "Need to provide a name." })
+router.post("/create", async (req: any, response: any) => {
+	if (!req.body || !req.body.name) return response.status(400).json({ message: "Need to provide a name." })
 
 	const resp = await prisma.test.create({
 		data: {
+			// email: req.body.email,
 			name: req.body.name
 		}
 	})
@@ -44,11 +52,13 @@ app.post("/create", async (req: any, response: any) => {
 })
 
 // Get all rows
-app.get("/all", async (req: any, response: any) => {
+router.get("/all", async (req: any, response: any) => {
 	const all = await prisma.test.findMany()
 
 	return response.json({ [Date.now()]: all })
 })
+
+app.use("/v1", router)
 
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}.`))
 
