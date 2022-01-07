@@ -30,5 +30,5 @@ jobs:
           SENTRY_AUTH_TOKEN: ${{SECRETS.SENTRY_AUTH_TOKEN}}
         run: |
           cd web
-          docker build --build-arg SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}} --build-arg NEXT_PUBLIC_TEST=somedealio . --tag ghcr.io/doggo-sports/web:latest
+          docker build --build-arg SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}} --build-arg NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}} . --tag ghcr.io/doggo-sports/web:latest
           docker push ghcr.io/doggo-sports/web:latest
