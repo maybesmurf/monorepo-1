@@ -1,8 +1,8 @@
-import Login from "components/Login"
+// import Login from "components/Login"
 import type { NextPage } from "next"
 import { useState } from "react"
 import { useMutation, useQuery } from "react-query"
-import SignUp from "../components/SignUp"
+// import SignUp from "../components/SignUp"
 import fetch from "../utils/fetch"
 
 const Home: NextPage = () => {
@@ -49,8 +49,8 @@ const Home: NextPage = () => {
 				Refetch all rows
 			</button> */}
 			{/* <div>{JSON.stringify(data)}</div> */}
-			<SignUp />
-			<Login />
+			{/* <SignUp /> */}
+			{/* <Login /> */}
 		</div>
 	)
 }
