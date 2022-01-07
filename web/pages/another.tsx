@@ -14,7 +14,7 @@ export default Home
 export const getStaticProps = async () => {
 	return {
 		props: {
-			theTestVar: process.env.NEXT_PUBLIC_TEST
+			theTestVar: process.env.NEXT_PUBLIC_TEST || ""
 		}
 	}
 }
