@@ -35,10 +35,10 @@ jobs:
           context: ./web
           push: true
           tags: ghcr.io/d${{github.actor}}/web:latest
-          build-args:
-            NEXT_PUBLIC_API_PATH: ${{SECRETS.NEXT_PUBLIC_API_PATH}}
-            SENTRY_AUTH_TOKEN: ${{SECRETS.SENTRY_AUTH_TOKEN}}
-            NEXT_PUBLIC_TEST: ${{SECRETS.NEXT_PUBLIC_TEST}}
+          build-args: |
+            NEXT_PUBLIC_API_PATH=${{SECRETS.NEXT_PUBLIC_API_PATH}}
+            SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
+            NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
 
       # - name: Build the api Docker image
       #   env:
