@@ -23,6 +23,7 @@ jobs:
           cd api
           docker build . --tag ghcr.io/doggo-sports/api:latest
           docker push ghcr.io/doggo-sports/api:latest
+          echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doggo-sports/api:latest)" >> $GITHUB_ENV \
 
       - name: Build the web Docker image
         env:
@@ -35,7 +36,6 @@ jobs:
             --build-arg NEXT_PUBLIC_TEST="${{SECRETS.NEXT_PUBLIC_TEST}}" \
             . --tag ghcr.io/doggo-sports/web:latest
             docker push ghcr.io/doggo-sports/web:latest
-            echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doggo-sports/api:latest)" >> $GITHUB_ENV \
             echo "WEB_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doggo-sports/web:latest)" >> $GITHUB_ENV
 
       - name: Trigger dokku deployment
