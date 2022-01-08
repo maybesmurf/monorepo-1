@@ -25,6 +25,7 @@ jobs:
       - name: Build and push api Docker Image
         uses: docker/build-push-action@v2
         with:
+          context: ./api
           push: true
           tags: ${{github.actor}}/api:latest
 
