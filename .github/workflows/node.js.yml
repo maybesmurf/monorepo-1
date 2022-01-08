@@ -38,9 +38,9 @@ jobs:
 
       - name: Get SHA's for new images
         run: |
-          echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/user/api:latest)" \
-          echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/user/api:latest)" >> $GITHUB_ENV \
-          echo "WEB_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/user/web:latest)" >> $GITHUB_ENV
+          echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doggo-sports/api:latest)" \
+          echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doggo-sports/api:latest)" >> $GITHUB_ENV \
+          echo "WEB_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doggo-sports/web:latest)" >> $GITHUB_ENV
 
       - name: Trigger dokku deployment
         uses: appleboy/ssh-action@master
