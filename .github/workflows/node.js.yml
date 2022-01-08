@@ -42,7 +42,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: 143.198.146.197
-          username: anthony
+          username: ${{secrets.DOKKU_SSH_USER}}
+          password: ${{secrets.DOKKU_SSH_USER_PASSWORD}}
           key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
           port: 22
           script: |
