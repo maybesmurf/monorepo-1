@@ -38,7 +38,7 @@ jobs:
 
       - name: Get SHA's for new images
         run: |
-          echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.com/user/api:latest)"
+          echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.com/user/api:latest)" \
           echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.com/user/api:latest)" >> $GITHUB_ENV \
           echo "WEB_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.com/user/web:latest)" >> $GITHUB_ENV
 
