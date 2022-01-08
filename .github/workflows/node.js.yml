@@ -26,7 +26,6 @@ jobs:
 
       - name: Build the web Docker image
         env:
-          TEST: i am just a little testerman
           SENTRY_AUTH_TOKEN: ${{SECRETS.SENTRY_AUTH_TOKEN}}
         run: |
           cd web
@@ -36,3 +35,18 @@ jobs:
             --build-arg NEXT_PUBLIC_TEST="${{SECRETS.NEXT_PUBLIC_TEST}}" \
             . --tag ghcr.io/doggo-sports/web:latest
           docker push ghcr.io/doggo-sports/web:latest
+
+      - name: Get SHA's for new images
+        run: |
+        echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.com/user/api:latest)" >> $GITHUB_ENV
+        echo "WEB_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.com/user/web:latest)" >> $GITHUB_ENV
+
+      - name: Trigger dokku deployment
+        uses: appleboy/ssh-action@master
+        with:
+          host: 143.198.146.197
+          username: anthony
+          key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            dokku git:from-image web ${{ env.IMAGE_DIGEST_WEB }}
