@@ -27,7 +27,7 @@ jobs:
         with:
           context: ./api
           push: true
-          tags: ${{github.actor}}/api:latest
+          tags: ghcr.io/doggo-sports/api:latest
 
       # - name: Build the api Docker image
       #   env:
