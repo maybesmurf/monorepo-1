@@ -30,33 +30,33 @@ jobs:
           push: true
           tags: ghcr.io/${{github.repository}}/api:${{github.sha}}
 
-      - name: Build and push web Docker Image
-        id: web_deploy
-        uses: docker/build-push-action@v2
-        with:
-          context: ./web
-          push: true
-          tags: ghcr.io/${{github.repository}}/web:${{github.sha}}
-          build-args: |
-            NEXT_PUBLIC_API_PATH=${{SECRETS.NEXT_PUBLIC_API_PATH}}
-            SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
-            NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
+      # - name: Build and push web Docker Image
+      #   id: web_deploy
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: ./web
+      #     push: true
+      #     tags: ghcr.io/${{github.repository}}/web:${{github.sha}}
+      #     build-args: |
+      #       NEXT_PUBLIC_API_PATH=${{SECRETS.NEXT_PUBLIC_API_PATH}}
+      #       SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
+      #       NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
 
       - name: Push api to dokku
         uses: dokku/github-action@master
         with:
-          git_remote_url: "ssh://143.198.146.197:22/appname"
+          git_remote_url: "ssh://143.198.146.197:22/api"
           ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
           git_push_flags: "--force"
           ci_commit: ${{ steps.api_deploy.outputs.commit_sha }}
 
-      - name: Push web to dokku
-        uses: dokku/github-action@master
-        with:
-          git_remote_url: "ssh://143.198.146.197:22/appname"
-          ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
-          git_push_flags: "--force"
-          ci_commit: ${{ steps.web_deploy.outputs.commit_sha }}
+      # - name: Push web to dokku
+      #   uses: dokku/github-action@master
+      #   with:
+      #     git_remote_url: "ssh://143.198.146.197:22/appname"
+      #     ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+      #     git_push_flags: "--force"
+      #     ci_commit: ${{ steps.web_deploy.outputs.commit_sha }}
 
       # Couldn't get this to authenticate
       # - name: Trigger dokku deployment
@@ -79,11 +79,11 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           min-versions-to-keep: 3
 
-      - name: Delete old web images
-        uses: actions/delete-package-versions@v2
-        with:
-          owner: "doggo-sports"
-          repo: "services"
-          package-name: "web"
-          token: ${{secrets.GITHUB_TOKEN}}
-          min-versions-to-keep: 3
+      # - name: Delete old web images
+      #   uses: actions/delete-package-versions@v2
+      #   with:
+      #     owner: "doggo-sports"
+      #     repo: "services"
+      #     package-name: "web"
+      #     token: ${{secrets.GITHUB_TOKEN}}
+      #     min-versions-to-keep: 3
