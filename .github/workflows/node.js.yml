@@ -65,8 +65,8 @@ jobs:
           key: "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}"
           debug: true
           script: |
-            dokku git:from-image api ${{ env.API_IMAGE_DIGEST }}
-            dokku git:from-image web ${{ env.WEB_IMAGE_DIGEST }}
+            dokku git:from-image api ghcr.io/${{github.repository}}/api:${{github.sha}}
+            dokku git:from-image web ghcr.io/${{github.repository}}/web:${{github.sha}}
 
       - name: Delete old api images
         uses: actions/delete-package-versions@v2
