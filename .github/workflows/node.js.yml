@@ -23,6 +23,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push api Docker Image
+        id: api_deploy
         uses: docker/build-push-action@v2
         with:
           context: ./api
@@ -30,6 +31,7 @@ jobs:
           tags: ghcr.io/${{github.repository}}/api:${{github.sha}}
 
       - name: Build and push web Docker Image
+        id: web_deploy
         uses: docker/build-push-action@v2
         with:
           context: ./web
@@ -40,16 +42,33 @@ jobs:
             SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
             NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
 
-      - name: Trigger dokku deployment
-        uses: appleboy/ssh-action@master
+      - name: Push api to dokku
+        uses: dokku/github-action@master
         with:
-          host: 143.198.146.197
-          username: ${{secrets.DOKKU_SSH_USER}}
-          key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            dokku git:from-image api ${{ env.API_IMAGE_DIGEST }}
-            dokku git:from-image web ${{ env.WEB_IMAGE_DIGEST }}
+          git_remote_url: "ssh://143.198.146.197:22/appname"
+          ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+          git_push_flags: "--force"
+          ci_commit: ${{ steps.api_deploy.outputs.commit_sha }}
+
+      - name: Push web to dokku
+        uses: dokku/github-action@master
+        with:
+          git_remote_url: "ssh://143.198.146.197:22/appname"
+          ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+          git_push_flags: "--force"
+          ci_commit: ${{ steps.web_deploy.outputs.commit_sha }}
+
+      # Couldn't get this to authenticate
+      # - name: Trigger dokku deployment
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: 143.198.146.197
+      #     username: ${{secrets.DOKKU_SSH_USER}}
+      #     key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+      #     port: 22
+      #     script: |
+      #       dokku git:from-image api ${{ env.API_IMAGE_DIGEST }}
+      #       dokku git:from-image web ${{ env.WEB_IMAGE_DIGEST }}
 
       - name: Delete old api images
         uses: actions/delete-package-versions@v2
