@@ -40,16 +40,16 @@ jobs:
             SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
             NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
 
-      # - name: Trigger dokku deployment
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: 143.198.146.197
-      #     username: ${{secrets.DOKKU_SSH_USER}}
-      #     key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
-      #     port: 22
-      #     script: |
-      #       dokku git:from-image api ${{ env.API_IMAGE_DIGEST }}
-      #       dokku git:from-image web ${{ env.WEB_IMAGE_DIGEST }}
+      - name: Trigger dokku deployment
+        uses: appleboy/ssh-action@master
+        with:
+          host: 143.198.146.197
+          username: ${{secrets.DOKKU_SSH_USER}}
+          key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            dokku git:from-image api ${{ env.API_IMAGE_DIGEST }}
+            dokku git:from-image web ${{ env.WEB_IMAGE_DIGEST }}
 
       - name: Delete old api images
         uses: actions/delete-package-versions@v2
