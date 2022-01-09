@@ -35,7 +35,7 @@ const Home: NextPage = () => {
 				Did we connect to the server?{" "}
 				{pingIsFetching ? <>Loading...</> : pingError ? <>Uh oh, we got problems.</> : <>{ping.message}</>}
 			</p>
-			<p>This is an auto-deploy from the action!</p>
+			<p>This is an auto-deploy from the action using private packages!</p>
 			<p style={{ marginBottom: "32px" }}>
 				Did we connect to the server?{" "}
 				{nestedIsFetching ? <>Loading...</> : nestedError ? <>Uh oh, we got problems.</> : <>{nested.message}</>}
