@@ -42,8 +42,6 @@ jobs:
           host: 143.198.146.197
           username: ${{secrets.DOKKU_SSH_USER}}
           key: "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}"
-          # Please note that you MUST deploy web before api!
-          # Deploying in the opposite order causes nginx to take down the api sub-domain for some reason.
           script: |
             dokku git:from-image web ghcr.io/${{github.repository}}/web:${{github.sha}}
             dokku git:from-image api ghcr.io/${{github.repository}}/api:${{github.sha}}
