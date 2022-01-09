@@ -9,11 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+      # - name: Set up QEMU
+      #   uses: docker/setup-qemu-action@v1
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v1
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -22,25 +22,25 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Build and push api Docker Image
-      #   id: api_deploy
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: ./api
-      #     push: true
-      #     tags: ghcr.io/${{github.repository}}/api:${{github.sha}}
+      - name: Build and push api Docker Image
+        id: api_deploy
+        uses: docker/build-push-action@v2
+        with:
+          context: ./api
+          push: true
+          tags: ghcr.io/${{github.repository}}/api:${{github.sha}}
 
-      # - name: Build and push web Docker Image
-      #   id: web_deploy
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: ./web
-      #     push: true
-      #     tags: ghcr.io/${{github.repository}}/web:${{github.sha}}
-      #     build-args: |
-      #       NEXT_PUBLIC_API_PATH=${{SECRETS.NEXT_PUBLIC_API_PATH}}
-      #       SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
-      #       NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
+      - name: Build and push web Docker Image
+        id: web_deploy
+        uses: docker/build-push-action@v2
+        with:
+          context: ./web
+          push: true
+          tags: ghcr.io/${{github.repository}}/web:${{github.sha}}
+          build-args: |
+            NEXT_PUBLIC_API_PATH=${{SECRETS.NEXT_PUBLIC_API_PATH}}
+            SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
+            NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
 
       # - name: Push api to dokku
       #   uses: dokku/github-action@master
@@ -62,7 +62,7 @@ jobs:
         with:
           host: 143.198.146.197
           username: ${{secrets.DOKKU_SSH_USER}}
-          key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+          key: "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}"
           port: 22
           script: |
             dokku git:from-image api ${{ env.API_IMAGE_DIGEST }}
@@ -77,11 +77,11 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           min-versions-to-keep: 3
 
-      # - name: Delete old web images
-      #   uses: actions/delete-package-versions@v2
-      #   with:
-      #     owner: "doggo-sports"
-      #     repo: "services"
-      #     package-name: "web"
-      #     token: ${{secrets.GITHUB_TOKEN}}
-      #     min-versions-to-keep: 3
+      - name: Delete old web images
+        uses: actions/delete-package-versions@v2
+        with:
+          owner: "doggo-sports"
+          repo: "services"
+          package-name: "web"
+          token: ${{secrets.GITHUB_TOKEN}}
+          min-versions-to-keep: 3
