@@ -49,13 +49,17 @@ jobs:
       - name: Delete old api images
         uses: actions/delete-package-versions@v2
         with:
-          package-name: "api:93b7facc4e1f9856b16a0cd554ece13ea9ba634f"
+          owner: "doggo-sports/services"
+          repo: ""
+          package-name: "api"
           token: ${{secrets.GITHUB_TOKEN}}
           min-versions-to-keep: 3
 
       - name: Delete old web images
         uses: actions/delete-package-versions@v2
         with:
+          owner: "doggo-sports"
+          repo: "api-service"
           package-name: "web"
           token: ${{secrets.GITHUB_TOKEN}}
           min-versions-to-keep: 3
