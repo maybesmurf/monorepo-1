@@ -43,11 +43,10 @@ jobs:
       #       NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
 
       - name: Push api to dokku
-        uses: idoberko2/dokku-deploy-github-action@v1
+        uses: dokku/github-action@master
         with:
-          git_remote_url: 143.198.146.197
+          git_remote_url: 143.198.146.197:22
           ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
-          git_push_flags: "--force"
 
       # - name: Push web to dokku
       #   uses: dokku/github-action@master
