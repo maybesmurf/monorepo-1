@@ -40,36 +40,31 @@ jobs:
             SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
             NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
 
-      # - name: Build the api Docker image
-      #   env:
-      #     DATABASE_URL: postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
-      #   run: |
-      #     cd api
-      #     docker build . --tag ghcr.io/doggo-sports/api:latest
-      #     docker push ghcr.io/doggo-sports/api:latest
-      #     echo "API_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doggo-sports/api:latest)" >> $GITHUB_ENV \
-
-      # - name: Build the web Docker image
-      #   env:
-      #     SENTRY_AUTH_TOKEN: ${{SECRETS.SENTRY_AUTH_TOKEN}}
-      #   run: |
-      #     cd web
-      #     docker build \
-      #       --build-arg NEXT_PUBLIC_API_PATH="${{SECRETS.NEXT_PUBLIC_API_PATH}}" \
-      #       --build-arg SENTRY_AUTH_TOKEN="${{SECRETS.SENTRY_AUTH_TOKEN}}" \
-      #       --build-arg NEXT_PUBLIC_TEST="${{SECRETS.NEXT_PUBLIC_TEST}}" \
-      #       . --tag ghcr.io/doggo-sports/web:latest
-      #       docker push ghcr.io/doggo-sports/web:latest
-      #       echo "WEB_IMAGE_DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/doggo-sports/web:latest)" >> $GITHUB_ENV
-
       # - name: Trigger dokku deployment
       #   uses: appleboy/ssh-action@master
       #   with:
       #     host: 143.198.146.197
       #     username: ${{secrets.DOKKU_SSH_USER}}
-      #     password: ${{secrets.DOKKU_SSH_USER_PASSWORD}}
       #     key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
       #     port: 22
       #     script: |
       #       dokku git:from-image api ${{ env.API_IMAGE_DIGEST }}
       #       dokku git:from-image web ${{ env.WEB_IMAGE_DIGEST }}
+
+      - name: Delete old api images
+        uses: actions/delete-package-versions@v2
+        with:
+          owner: "doggo-sports"
+          repo: "services"
+          package-name: "api"
+          token: ${{secrets.GITHUB_TOKEN}}
+          min-versions-to-keep: 3
+
+      - name: Delete old web images
+        uses: actions/delete-package-versions@v2
+        with:
+          owner: "doggo-sports"
+          repo: "services"
+          package-name: "web"
+          token: ${{secrets.GITHUB_TOKEN}}
+          min-versions-to-keep: 3
