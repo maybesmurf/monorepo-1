@@ -3,17 +3,11 @@ name: publish
 on: [push]
 
 jobs:
-  publish-hello-world-image:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v1
-
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v1
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -42,21 +36,6 @@ jobs:
             SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
             NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
 
-      # - name: Push api to dokku
-      #   uses: dokku/github-action@master
-      #   with:
-      #     git_remote_url: ssh://dokku@143.198.146.197:22/api
-      #     ssh_private_key: "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}"
-
-      # - name: Push web to dokku
-      #   uses: dokku/github-action@master
-      #   with:
-      #     git_remote_url: "ssh://143.198.146.197:22/appname"
-      #     ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
-      #     git_push_flags: "--force"
-      #     ci_commit: ${{ steps.web_deploy.outputs.commit_sha }}
-
-      # Couldn't get this to authenticate
       - name: Trigger dokku deployment
         uses: appleboy/ssh-action@master
         with:
@@ -71,8 +50,6 @@ jobs:
       - name: Delete old api images
         uses: actions/delete-package-versions@v2
         with:
-          owner: "doggo-sports"
-          repo: "services"
           package-name: "api"
           token: ${{secrets.GITHUB_TOKEN}}
           min-versions-to-keep: 3
@@ -80,8 +57,6 @@ jobs:
       - name: Delete old web images
         uses: actions/delete-package-versions@v2
         with:
-          owner: "doggo-sports"
-          repo: "services"
           package-name: "web"
           token: ${{secrets.GITHUB_TOKEN}}
           min-versions-to-keep: 3
