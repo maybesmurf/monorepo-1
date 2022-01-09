@@ -43,8 +43,8 @@ jobs:
           username: ${{secrets.DOKKU_SSH_USER}}
           key: "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}"
           script: |
-            dokku git:from-image api ghcr.io/${{github.repository}}/api:${{github.sha}}
             dokku git:from-image web ghcr.io/${{github.repository}}/web:${{github.sha}}
+            dokku git:from-image api ghcr.io/${{github.repository}}/api:${{github.sha}}
 
       # Just could not get these to work.
       # - name: Delete old api images
