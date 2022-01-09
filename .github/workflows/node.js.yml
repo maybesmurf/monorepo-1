@@ -63,7 +63,7 @@ jobs:
           host: 143.198.146.197
           username: ${{secrets.DOKKU_SSH_USER}}
           key: "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}"
-          port: 22
+          debug: true
           script: |
             dokku git:from-image api ${{ env.API_IMAGE_DIGEST }}
             dokku git:from-image web ${{ env.WEB_IMAGE_DIGEST }}
