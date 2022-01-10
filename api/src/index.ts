@@ -1,12 +1,9 @@
 import express from "express"
 import cors from "cors"
 const app = express()
-const router = express.Router()
 const PORT = 5000
 
-// Prisma
-import { PrismaClient } from "@prisma/client"
-const prisma = new PrismaClient()
+import v1 from "./routes/v1"
 
 // Sentry
 // import { initSentry } from "./services/sentry/index"
@@ -28,36 +25,7 @@ app.get("/", async (req: any, response: any) => {
 	response.json({ message: "The server...she lives!" })
 })
 
-// Ping v1
-router.get("/", async (req: any, response: any) => {
-	response.json({ message: "Yes, what up!" })
-})
-
-router.get("/some/nested/route", async (req: any, response: any) => {
-	response.json({ message: "You've peeled back the onion, lad!" })
-})
-
-// Write a new row
-router.post("/create", async (req: any, response: any) => {
-	if (!req.body || !req.body.name) return response.status(400).json({ message: "Need to provide a name." })
-
-	const resp = await prisma.test.create({
-		data: {
-			name: req.body.name
-		}
-	})
-
-	return response.json({ [Date.now()]: resp })
-})
-
-// Get all rows
-router.get("/all", async (req: any, response: any) => {
-	const all = await prisma.test.findMany()
-
-	return response.json({ [Date.now()]: all })
-})
-
-app.use("/v1", router)
+app.use("/v1", v1)
 
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}.`))
 

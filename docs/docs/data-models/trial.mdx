@@ -9,6 +9,7 @@ Welcome to the big leagues, ya four legged fellow.
 
 | Property                      |   Data Type    | Notes                                                                                                                      |
 | :---------------------------- | :------------: | :------------------------------------------------------------------------------------------------------------------------- |
+| id                            |       id       |                                                                                                                            |
 | Hosting Club                  |       id       | A trial is always held by a club.                                                                                          |
 | AKC Event Number              |     string     | AKC generated number provided by AKC to trial secretary                                                                    |
 | Venue                         |     string     | Name of the building park or other location where the trial is being hosted                                                |
@@ -30,11 +31,11 @@ Welcome to the big leagues, ya four legged fellow.
 | Trial Chairman Zip            |     string     |                                                                                                                            |
 | Trial Chairman Phone          |     string     |                                                                                                                            |
 | Judges                        |  array of ids  | The ids here are the user's id in the application. Judges do need to have accounts in Doggo.                               |
-| Cost for first entry          |     string     | Cost for the first run a dog does for the day. Ex: $22                                                                     |
-| Cost for second entry         |     string     | Cost for second run a dog does for the day. Ex: $18                                                                        |
-| Cost for third entry          |     string     | Cost for third run a dog does for the day. Ex: $16                                                                         |
-| Cost for fourth entry         |     string     | Cost for fourth run a dog does for the day. Ex: $16                                                                        |
-| Catalogue fee                 |     string     | Some type of brochure that they print out with every participant's info. (We are currently uncertain that this is needed.) |
+| Cost for first entry          |     number     | Cost for the first run a dog does for the day. Ex: $22                                                                     |
+| Cost for second entry         |     number     | Cost for second run a dog does for the day. Ex: $18                                                                        |
+| Cost for third entry          |     number     | Cost for third run a dog does for the day. Ex: $16                                                                         |
+| Cost for fourth entry         |     number     | Cost for fourth run a dog does for the day. Ex: $16                                                                        |
+| Catalogue fee                 |     number     | Some type of brochure that they print out with every participant's info. (We are currently uncertain that this is needed.) |
 | Junior Handler Discount       |     string     | Sometimes a club putting on a trial will offer a discount but most times it's zero.                                        |
 | Other Discounts               |     number     | Percentage                                                                                                                 |
 | Confirmation Letter           |    markdown    | Message to an entrant saying 'Thank you, here are some more details about the trial.' etc                                  |

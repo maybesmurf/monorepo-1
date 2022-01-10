@@ -7,7 +7,220 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Test {
-  id   Int    @id @default(autoincrement())
+model Dog {
+  id                   String @id @default(uuid())
+  callName             String
+  akcBreed             String
+  sex                  DogSex
+  birthdate            DateTime?
+  birthplace           String?
+  akcRegisteredName    String?
+  akcTitlePrefix       String?
+  akcTitleSuffix       String?
+  akcRegistrationType  AkcRegistrationType?
+  akcHeightCard        AkcHeightCard @default(NONE)
+  akcMeasuredHeight    Int?
+  registrationNumber   String?
+  breederName          String?
+  sireName             String?
+  damName              String?
+  primaryOwnerId       String
+  handler              String?
+  isOfficiallyMeasured Boolean @default(false)
+  jumpHeight           Int?
+  preferredClasses     Boolean?
+  owners               User[]
+}
+
+model User {
+  id String @id @unique
+  dogs Dog[]
+  firstName String
+  lastName String
+  streetAddress String
+  city String
+  state State
+  postalCode String
+  phone String?
+  email String
+  emergencyContactName String?
+  emergencyContactPhone String?
+  akcLicense String?
+  akcJudgeId String?
+  akcSecretaryId String?
+  secretaryTrials Trial[] @relation("Trial_User_Secretary")
+  judgeTrials Trial[] @relation("Trial_User_Judge")
+  // dogOwnerTrials Trial[] @relation("dogOwner")
+
+}
+
+model Trial {
+  id String @id @default(uuid())
+  hostingClubId String
+  hostingClub Club @relation(fields: [hostingClubId], references: [id])
+  akcEventNumber String
+  venue String
+  venueStreetAddress String
+  venueCity String
+  venueState String
+  venuePostalCode String
+  type String
+  signUpOpenDatetime DateTime
+  signUpCloseDateTime DateTime
+  acceptanceMethod AcceptanceMethod
+  checksPayableTo String?
+  secretaryId String
+  secretary User @relation("Trial_User_Secretary", fields: [secretaryId], references: [id])
+  judges User[] @relation("Trial_User_Judge", fields: [secretaryId], references: [id])
+  trialChairmanName String
+  trialChairmanEmail String
+  trialChairmanStreetAddress String
+  trialChairmanCity String
+  trialChairmanState String
+  trialChairmanPostalCode String
+  trialChairmanPhone String?
+  costFirstEntry Int
+  costSecondEntry Int
+  costThirdEntry Int
+  costFourthEntry Int
+  catalogFee Int
+  juniorHandlerDiscount Int?
+  confirmationLetter String
+  trialDays TrialDay[]
+}
+
+model TrialDay {
+  id String @id @default(uuid())
+  trialId String
+  trial Trial @relation(fields: [trialId], references: [id])
+  date DateTime
+  akcId String
+  entryLimit Int
+  mixedBreeds Boolean
+  rings Ring[]
+}
+
+model Ring {
+  id String @id @default(uuid())
+  trialDayId String
+  trialDay TrialDay @relation(fields: [trialDayId], references: [id])
+
+}
+
+model Club {
+  id String @id @default(uuid())
+  trials Trial[]
   name String
+}
+
+model ClassType {
+  id String @id @default(uuid())
+  name String
+  classTypesByLevel ClassTypeByLevel[]
+}
+
+model Level {
+  id String @id @default(uuid())
+  name String
+  classTypesByLevel ClassTypeByLevel[]
+}
+
+model Height {
+  id String @id @default(uuid())
+  height Int
+}
+
+// Might only be useful for the UI
+// For fetching a certain list of levels for a certain class
+model ClassTypeByLevel {
+  classId String
+  levelId String
+  classType ClassType @relation(fields: [classId], references: [id])
+  level Level @relation(fields: [levelId], references: [id])
+
+  @@id([classId, levelId])
+}
+
+enum AcceptanceMethod {
+  RANDOMDRAW
+  FIRSTRECEIVED
+}
+
+enum State {
+  AL
+  AK
+  AS
+  AZ
+  AR
+  CA
+  CO
+  CT
+  DE
+  DC
+  FM
+  FL
+  GA
+  GU
+  HI
+  ID
+  IL
+  IN
+  IA
+  KS
+  KY
+  LA
+  ME
+  MH
+  MD
+  MA
+  MI
+  MN
+  MS
+  MO
+  MT
+  NE
+  NV
+  NH
+  NJ
+  NM
+  NY
+  NC
+  ND
+  MP
+  OH
+  OK
+  OR
+  PW
+  PA
+  PR
+  RI
+  SC
+  SD
+  TN
+  TX
+  UT
+  VT
+  VI
+  VA
+  WA
+  WV
+  WI
+  WY
+}
+
+enum DogSex {
+  MALE
+  FEMALE
+}
+
+enum AkcRegistrationType {
+  AKCREGNUMBER
+  AKCPALNUMBER
+  FOREIGNREGNUMBER
+}
+
+enum AkcHeightCard {
+  NONE
+  TEMP
+  PERM
 }

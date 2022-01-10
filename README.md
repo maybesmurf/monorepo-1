@@ -63,3 +63,4 @@ Firebase:
 - Right now, the environment variables need to be set both at the top of the project like .env.example shows. ALSO, you need to include .env.local inside of the web folder like you see in the .env.example in that directory.
 - To seed the database, you must attach a shell to the rest_api and then run `npx prisma db seed`.
 - To clear the database, open Prisma Studio and multi-select the rows and delete them.
+- When you do a Prisma migration, you may need to restart the TS server in VSCode for the Prisma Client to use the new types.

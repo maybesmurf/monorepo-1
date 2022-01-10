@@ -15,7 +15,7 @@ const items = [
 
 const main = async () => {
 	items.forEach(async (item) => {
-		await prisma.test.create({
+		await prisma.dog.create({
 			data: item
 		})
 	})
