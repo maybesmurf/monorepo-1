@@ -28,14 +28,8 @@ jobs:
             echo "$file was changed"
           done
 
-      - name: List all changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.changed_files }}; do
-            echo "$file was changed"
-          done
-
       - name: Build and push api Docker Image
-        if: contains(steps.changed-files.outputs.changed_files, 'api')
+        if: contains(steps.changed-files.outputs.all_changed_files, 'api')
         uses: docker/build-push-action@v2
         with:
           context: ./api
@@ -43,7 +37,7 @@ jobs:
           tags: ghcr.io/${{github.repository}}/api:${{github.sha}}
 
       - name: Build and push web Docker Image
-        if: contains(steps.changed-files.outputs.changed_files, 'web')
+        if: contains(steps.changed-files.outputs.all_changed_files, 'web')
         uses: docker/build-push-action@v2
         with:
           context: ./web
@@ -55,7 +49,7 @@ jobs:
             NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
 
       - name: Trigger api deployment to Digital Ocean
-        if: contains(steps.changed-files.outputs.changed_files, 'api')
+        if: contains(steps.changed-files.outputs.all_changed_files, 'api')
         uses: appleboy/ssh-action@master
         with:
           host: 143.198.146.197
@@ -65,7 +59,7 @@ jobs:
             dokku git:from-image api ghcr.io/${{github.repository}}/api:${{github.sha}}
 
       - name: Trigger web deployment to Digital Ocean
-        if: contains(steps.changed-files.outputs.changed_files, 'web')
+        if: contains(steps.changed-files.outputs.all_changed_files, 'web')
         uses: appleboy/ssh-action@master
         with:
           host: 143.198.146.197
