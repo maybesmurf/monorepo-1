@@ -18,6 +18,7 @@ jobs:
       - name: Build docs page
         working-directory: docs
         run: |
+          cd docs
           npm ci
           npm run build
 
