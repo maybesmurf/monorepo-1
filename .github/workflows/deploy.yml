@@ -25,20 +25,20 @@ jobs:
           files: |
             \api$
 
-      - name: Find Web Changed files
-        uses: tj-actions/changed-files@v13.1
-        id: web-changes
-        with:
-          files: |
-            \web$
+      # - name: Find Web Changed files
+      #   uses: tj-actions/changed-files@v13.1
+      #   id: web-changes
+      #   with:
+      #     files: |
+      #       \web$
 
       - name: List api outputs
         run: |
           echo ${{ steps.api-changes.outputs.all_changed_files }}
 
-      - name: List web outputs
-        run: |
-          echo ${{ steps.web-changes.outputs.all_changed_files }}
+      # - name: List web outputs
+      #   run: |
+      #     echo ${{ steps.web-changes.outputs.all_changed_files }}
 
       - name: List all changed files
         run: |
