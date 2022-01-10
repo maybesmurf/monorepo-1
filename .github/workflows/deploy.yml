@@ -22,15 +22,15 @@ jobs:
         uses: tj-actions/changed-files@v13.1
         id: api-changes
         with:
-          files:
-            - /api$
+          files: |
+            /api$
 
       - name: Find Web Changed files
         uses: tj-actions/changed-files@v13.1
         id: web-changes
         with:
-          files:
-            - /web$
+          files: |
+            /web$
 
       - name: List api outputs
         run: |
