@@ -9,7 +9,7 @@ const config = {
   title: "Doggo Sports",
   tagline: "Your dog's sporting event, simplified.",
   url: "https://doggo-sports.github.io",
-  baseUrl: "/",
+  baseUrl: "/services",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
