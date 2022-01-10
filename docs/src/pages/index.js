@@ -22,7 +22,7 @@ function HomepageHeader() {
           </Link>
         </div>
       </div>
-      {/* test */}
+      test
     </header>
   );
 }
