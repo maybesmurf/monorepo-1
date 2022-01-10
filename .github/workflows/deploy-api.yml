@@ -1,0 +1,47 @@
+name: Publish Doggo API
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - api/**
+      - !web/**
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push api Docker Image
+        id: api_deploy
+        uses: docker/build-push-action@v2
+        with:
+          context: ./api
+          push: true
+          tags: ghcr.io/${{github.repository}}/api:${{github.sha}}
+
+      - name: Trigger deployment to Digital Ocean
+        uses: appleboy/ssh-action@master
+        with:
+          host: 143.198.146.197
+          username: ${{secrets.DOKKU_SSH_USER}}
+          key: "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}"
+          script: |
+            dokku git:from-image api ghcr.io/${{github.repository}}/api:${{github.sha}}
+
+      # Just could not get this to work.
+      # - name: Delete old api images
+      #   uses: actions/delete-package-versions@v2
+      #   with:
+      #     package-name: "api"
+      #     token: ${{secrets.GITHUB_TOKEN}}
+      #     min-versions-to-keep: 3
