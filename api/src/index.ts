@@ -43,7 +43,6 @@ router.post("/create", async (req: any, response: any) => {
 
 	const resp = await prisma.test.create({
 		data: {
-			// email: req.body.email,
 			name: req.body.name
 		}
 	})

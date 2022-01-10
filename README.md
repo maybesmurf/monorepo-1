@@ -2,15 +2,13 @@
 
 ## Active Task
 
-- Unleash the powers of Prisma
-- A db seed with Prisma
-
 ## Need to:
 
 - Testing
 - Deploying to stage rather than live
 - API Dockerfile has the database string hardcoded into it. How do I fix that?
 - Scripts to make life easy in development
+- Bring Prisma to production
 
 # How to Use
 
@@ -50,7 +48,8 @@ Once you've got Android Studio installed, make sure that you have an emulator de
 Web front-end: 80
 API: 5000
 Postgres: 5432
-pgAdmin: 5050
+pgAdmin: 5050 (Is commented out currently in favor of Prisma Studio)
+Prisma Studio: 5555
 Docs (Are not dockerized! You will need cd into folder and do `npm run start` manually): 8000
 
 Firebase:
@@ -62,3 +61,5 @@ Firebase:
 ## Developer Notes
 
 - Right now, the environment variables need to be set both at the top of the project like .env.example shows. ALSO, you need to include .env.local inside of the web folder like you see in the .env.example in that directory.
+- To seed the database, you must attach a shell to the rest_api and then run `npx prisma db seed`.
+- To clear the database, open Prisma Studio and multi-select the rows and delete them.

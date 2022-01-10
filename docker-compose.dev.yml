@@ -10,14 +10,14 @@ services:
       - .env
     restart: always
 
-  pgadmin:
-    container_name: pgadmin
-    ports:
-      - "5050:80"
-    image: dpage/pgadmin4:latest
-    restart: always
-    env_file:
-      - .env
+  # pgadmin:
+  #   container_name: pgadmin
+  #   ports:
+  #     - "5050:80"
+  #   image: dpage/pgadmin4:latest
+  #   restart: always
+  #   env_file:
+  #     - .env
 
   firebase-emulators:
     container_name: firebase
@@ -39,6 +39,7 @@ services:
       - firebase-emulators
     ports:
       - 5000:5000
+      - 5555:5555
     volumes:
       - ./api:/usr/app
     environment:
