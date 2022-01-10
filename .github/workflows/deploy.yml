@@ -21,7 +21,7 @@ jobs:
         id: changed-files
 
       - name: Echo Changes
-        run: echo ${{steps.verify-changed-files.outputs.changed_files}}
+        run: echo ${{steps.changed-files.outputs.changed_files}}
 
       - name: Build and push api Docker Image
         if: contains(steps.verify-changed-files.outputs.changed_files, 'api')
