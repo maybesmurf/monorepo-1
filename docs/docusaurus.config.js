@@ -14,7 +14,7 @@ const config = {
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   organizationName: "doggo-sports", // Usually your GitHub org/user name.
-  projectName: "docs", // Usually your repo name.
+  projectName: "doggo-sports.github.io", // Usually your repo name.
 
   presets: [
     [
