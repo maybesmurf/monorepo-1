@@ -1,11 +1,11 @@
-name: Publish Doggo
+name: Publish Doggo Web
 
 on:
   push:
     branches: [master]
-        paths:
-      - web/**
-      - !api/**
+    paths:
+      - "web/**"
+      - "!api/**"
 
 jobs:
   deploy:
