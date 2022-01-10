@@ -22,6 +22,18 @@ jobs:
         uses: tj-actions/changed-files@v13.1
         id: changed-files
 
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.changed_files }}; do
+            echo "$file was changed"
+          done
+
       - name: Build and push api Docker Image
         if: contains(steps.changed-files.outputs.changed_files, 'api')
         uses: docker/build-push-action@v2
