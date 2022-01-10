@@ -6,7 +6,7 @@ import { createApiHandler } from "../../utils/createApiHandler"
 
 const handler = async (req: any, res: any) => {
 	console.log("Testing an action here.")
-	throw new Error("API throw error test")
+	throw new Error("API throw error test.")
 	res.status(200).json({ name: "John Doe" })
 }
 

@@ -23,14 +23,14 @@ jobs:
         id: api-changes
         with:
           files: |
-            /api$
+            \api$
 
       - name: Find Web Changed files
         uses: tj-actions/changed-files@v13.1
         id: web-changes
         with:
           files: |
-            /web$
+            \web$
 
       - name: List api outputs
         run: |
