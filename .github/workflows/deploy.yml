@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -18,13 +18,27 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Find Changed files
+      - name: Find API Changed files
         uses: tj-actions/changed-files@v13.1
-        id: changed-files
+        id: api-changes
+        with:
+          files:
+            - /api$
 
-      - name: List outputs
+      - name: Find Web Changed files
+        uses: tj-actions/changed-files@v13.1
+        id: web-changes
+        with:
+          files:
+            - /web$
+
+      - name: List api outputs
         run: |
-          echo ${{ steps.changed-files.outputs }}
+          echo ${{ steps.api-changes.outputs.all_changed_files }}
+
+      - name: List web outputs
+        run: |
+          echo ${{ steps.web-changes.outputs.all_changed_files }}
 
       - name: List all changed files
         run: |

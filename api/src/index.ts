@@ -25,7 +25,7 @@ app.use(express.json())
 
 // Just ping the server, that's it.
 app.get("/", async (req: any, response: any) => {
-	response.json({ message: "The server...she lives!" })
+	response.json({ message: "The server...she lives!!!!!!" })
 })
 
 // Ping the app
