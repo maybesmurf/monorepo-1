@@ -28,7 +28,7 @@ app.get("/", async (req: any, response: any) => {
 	response.json({ message: "The server...she lives!" })
 })
 
-// Ping the app
+// Ping v1
 router.get("/", async (req: any, response: any) => {
 	response.json({ message: "Yes, what up!" })
 })

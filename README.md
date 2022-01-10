@@ -2,12 +2,15 @@
 
 ## Active Task
 
-- Figure out how different environments work for dev/testing/stage/prod
+- Unleash the powers of Prisma
+- A db seed with Prisma
 
 ## Need to:
 
-- A db seed with Prisma
-- npm scripts to make life so easy
+- Testing
+- Deploying to stage rather than live
+- API Dockerfile has the database string hardcoded into it. How do I fix that?
+- Scripts to make life easy in development
 
 # How to Use
 
@@ -48,7 +51,7 @@ Web front-end: 80
 API: 5000
 Postgres: 5432
 pgAdmin: 5050
-Docs (Are not dockerized!): 8000
+Docs (Are not dockerized! You will need cd into folder and do `npm run start` manually): 8000
 
 Firebase:
 
@@ -56,7 +59,6 @@ Firebase:
 - Auth: 4001
 - Storage: 4002
 
-## Notes
+## Developer Notes
 
-- Right now, we aren't set up to use next.js API endpoints at all. If this ends up being desired, some adjustments will have to be made with nginx.
-- Right now, the environment variables need to be set both at the top of the project like .env.example shows. ALSO, you need to include .env.production inside of the web folder like you see in the .env.example in that directory.
+- Right now, the environment variables need to be set both at the top of the project like .env.example shows. ALSO, you need to include .env.local inside of the web folder like you see in the .env.example in that directory.
