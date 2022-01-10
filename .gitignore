@@ -7,4 +7,4 @@ ui-debug.log
 # Going to handle the docs using a simple github page
 # Don't want them as part of this repository
 
-/docs
+docs
