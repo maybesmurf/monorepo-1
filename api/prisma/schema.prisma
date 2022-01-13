@@ -30,6 +30,9 @@ model Dog {
   jumpHeight           Int?
   preferredClasses     Boolean?
   owners               User[]
+  scores Run[]
+  trialEntries TrialEntry[]
+
 }
 
 model User {
@@ -50,8 +53,8 @@ model User {
   akcSecretaryId String?
   secretaryTrials Trial[] @relation("Trial_User_Secretary")
   judgeTrials Trial[] @relation("Trial_User_Judge")
-  // dogOwnerTrials Trial[] @relation("dogOwner")
-
+  runs Run[]
+  trialEntries TrialEntry[]
 }
 
 model Trial {
@@ -86,7 +89,10 @@ model Trial {
   catalogFee Int
   juniorHandlerDiscount Int?
   confirmationLetter String
+  classesAvailable ClassTypeLevelsByTrials[]
+  classesEntries ClassEntriesByTrials[]
   trialDays TrialDay[]
+  trialEntries TrialEntry[]
 }
 
 model TrialDay {
@@ -98,13 +104,14 @@ model TrialDay {
   entryLimit Int
   mixedBreeds Boolean
   rings Ring[]
+  run Run[]
+  trialEntries TrialEntriesByTrialDays[]
 }
 
 model Ring {
   id String @id @default(uuid())
   trialDayId String
   trialDay TrialDay @relation(fields: [trialDayId], references: [id])
-
 }
 
 model Club {
@@ -117,17 +124,29 @@ model ClassType {
   id String @id @default(uuid())
   name String
   classTypesByLevel ClassTypeByLevel[]
+  runs Run[]
+
+}
+
+model ClassTypeLevelsByTrials {
+  classId String
+  trialId String
+  trial Trial @relation(fields: [trialId], references: [id])
+
+  @@id([classId, trialId])
 }
 
 model Level {
   id String @id @default(uuid())
   name String
   classTypesByLevel ClassTypeByLevel[]
+  runs Run[]
 }
 
 model Height {
   id String @id @default(uuid())
   height Int
+  runs Run[]
 }
 
 // Might only be useful for the UI
@@ -139,6 +158,56 @@ model ClassTypeByLevel {
   level Level @relation(fields: [levelId], references: [id])
 
   @@id([classId, levelId])
+}
+
+model Run {
+  id String @id @default(uuid())
+  dogId String
+  dog Dog @relation(fields: [dogId], references: [id])
+  scoreKeeperId String
+  scorekeeper User @relation(fields: [scoreKeeperId], references: [id])
+  classTypeId String
+  classType ClassType @relation(fields: [classTypeId], references: [id])
+  levelId String
+  level Level @relation(fields: [levelId], references: [id])
+  heightId String
+  height Height @relation(fields: [heightId], references: [id])
+  trialDayId String
+  trialDay TrialDay @relation(fields: [trialDayId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model TrialEntry {
+  id String @id @default(uuid())
+  dogId String
+  dog Dog @relation(fields: [dogId], references: [id])
+  trialId String
+  trial Trial @relation(fields: [trialId], references: [id])
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  juniorHandler Boolean @default(false)
+  isPreferred Boolean @default(false)
+  classesEnteredIds ClassEntriesByTrials[]
+
+  trialDays TrialEntriesByTrialDays[]
+}
+
+model ClassEntriesByTrials {
+  trialEntryId String
+  trialId String
+  trialEntry TrialEntry @relation(fields: [trialEntryId], references: [id])
+  trial Trial @relation(fields: [trialId], references: [id])
+
+  @@id([trialEntryId, trialId])
+}
+
+model TrialEntriesByTrialDays {
+  trialEntryId String
+  trialDayId String
+  trialEntry TrialEntry @relation(fields: [trialEntryId], references: [id])
+  trialDay TrialDay @relation(fields: [trialDayId], references: [id])
+
+  @@id([trialEntryId, trialDayId])
 }
 
 enum AcceptanceMethod {
