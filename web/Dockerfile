@@ -8,12 +8,16 @@ FROM node:16-alpine AS builder
 WORKDIR /app
 COPY . ./
 COPY --from=deps /app/node_modules ./node_modules
+
 ARG SENTRY_AUTH_TOKEN
 ENV SENTRY_AUTH_TOKEN ${SENTRY_AUTH_TOKEN}
+
 ARG NEXT_PUBLIC_TEST
 ENV NEXT_PUBLIC_TEST ${NEXT_PUBLIC_TEST}
+
 ARG NEXT_PUBLIC_API_PATH
 ENV NEXT_PUBLIC_API_PATH ${NEXT_PUBLIC_API_PATH}
+
 RUN npm run build && npm ci --only=production
 
 FROM node:16-alpine AS runner

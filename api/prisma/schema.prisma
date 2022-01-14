@@ -28,16 +28,14 @@ model Dog {
   handler              String?
   isOfficiallyMeasured Boolean @default(false)
   jumpHeight           Int?
-  preferredClasses     Boolean?
+  preferredClasses     Boolean @default(false)
   owners               User[]
   scores Run[]
   trialEntries TrialEntry[]
-
 }
 
 model User {
   id String @id @unique
-  dogs Dog[]
   firstName String
   lastName String
   streetAddress String
@@ -51,10 +49,11 @@ model User {
   akcLicense String?
   akcJudgeId String?
   akcSecretaryId String?
-  secretaryTrials Trial[] @relation("Trial_User_Secretary")
-  judgeTrials Trial[] @relation("Trial_User_Judge")
+  dogs Dog[]
   runs Run[]
   trialEntries TrialEntry[]
+  trialsAsJudge JudgesByTrials[]
+  trialsAsSecretary Trial[]
 }
 
 model Trial {
@@ -73,8 +72,8 @@ model Trial {
   acceptanceMethod AcceptanceMethod
   checksPayableTo String?
   secretaryId String
-  secretary User @relation("Trial_User_Secretary", fields: [secretaryId], references: [id])
-  judges User[] @relation("Trial_User_Judge", fields: [secretaryId], references: [id])
+  secretary User @relation(fields: [secretaryId], references: [id])
+  judges JudgesByTrials[]
   trialChairmanName String
   trialChairmanEmail String
   trialChairmanStreetAddress String
@@ -93,6 +92,15 @@ model Trial {
   classesEntries ClassEntriesByTrials[]
   trialDays TrialDay[]
   trialEntries TrialEntry[]
+}
+
+model JudgesByTrials {
+  judgeId String
+  trialId String
+  judge User @relation(fields: [judgeId], references: [id])
+  trial Trial @relation(fields: [trialId], references: [id])
+
+  @@id([judgeId, trialId])
 }
 
 model TrialDay {
@@ -125,12 +133,13 @@ model ClassType {
   name String
   classTypesByLevel ClassTypeByLevel[]
   runs Run[]
-
+  classTypeLevelsByTrials ClassTypeLevelsByTrials[]
 }
 
 model ClassTypeLevelsByTrials {
   classId String
   trialId String
+  classType ClassType @relation(fields: [classId], references: [id])
   trial Trial @relation(fields: [trialId], references: [id])
 
   @@id([classId, trialId])
@@ -188,7 +197,6 @@ model TrialEntry {
   juniorHandler Boolean @default(false)
   isPreferred Boolean @default(false)
   classesEnteredIds ClassEntriesByTrials[]
-
   trialDays TrialEntriesByTrialDays[]
 }
 

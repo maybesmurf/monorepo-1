@@ -6,7 +6,7 @@
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
-		"rootDir": "./src",
+		"rootDir": "./",
 		"outDir": "./build",
 		"esModuleInterop": true,
 		"module": "commonjs",
@@ -15,8 +15,8 @@
 		"isolatedModules": false,
 		"jsx": "preserve",
 		"incremental": true,
-		"baseUrl": "./src"
+		"baseUrl": "./"
 	},
-	"include": ["./src/**/*"],
+	"include": ["./**/*"],
 	"exclude": ["node_modules"]
 }

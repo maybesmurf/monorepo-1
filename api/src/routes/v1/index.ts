@@ -1,7 +1,6 @@
 import express from "express"
 
 import { prisma } from "../../services/prisma"
-const { dog } = prisma
 
 const router = express.Router()
 
