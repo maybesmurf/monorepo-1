@@ -4,60 +4,51 @@ const app = express()
 const PORT = 5000
 
 import v1 from "./routes/v1"
+import { errorHandler, successHandler } from "./utils/responseHandlers"
 
 // Sentry
-// import { initSentry } from "./services/sentry/index"
-// initSentry()
+import Sentry, { initSentry } from "./services/sentry"
+initSentry()
 
 // Firebase
 // import { initFirebase } from "./services/firebase"
 // initFirebase()
 
+// Sentry request handler must be first handler on app
+app.use(Sentry.Handlers.requestHandler())
 app.use(cors())
 app.use(express.json())
 
-//Error handler
-// TODO: NOT CURRENTLY WORKING
-app.use((err: any, req: any, res: any, next: any) => {
-	return res.status(500).json({
-		ok: false,
-		error: err.toString()
-	})
-})
+app.use(successHandler)
 
 // Routes
 // import auth from "./routes/auth"
 // app.use("/auth", auth)
 
-// Just ping the server, that's it.
-app.get("/", async (req: any, res: any) => {
-	res.json({ message: "The server...she lives!" })
-})
-
-app.get("/error", (req, res) => {
-	throw new Error("Oh no, a bad thing happened!")
-})
-
 app.use("/v1", v1)
 
+// Just ping the server, that's it.
+app.get("/", async (req: any, res: any) => {
+	const messages = [
+		"Go, dog, go.",
+		"See Spot run.",
+		"What kind of dog likes taking a bath every day? A shampoo-dle.",
+		"What do you get when you cross a dog and a computer? A megabyte."
+	]
+
+	res.json({ message: messages[Math.floor(Math.random() * messages.length)] })
+})
+
+// Force an error
+// Please only use this route for development and testing purposes.
+app.get("/error", (req, res) => {
+	throw new Error("This is a test error from the API!")
+})
+
+//Error handlers
+// Must come after ALL other middlewares and routes!
+// Sentry error handler must be first error handler
+app.use(Sentry.Handlers.errorHandler())
+app.use(errorHandler)
+
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}.`))
-
-// app.get("/error", async (req: any, res: any) => {
-// This creates a start time for the op for Sentry to mark as the start of the request.
-// 	const transaction = Sentry.startTransaction({
-// 		op: "test",
-// 		name: "My First Test Transaction"
-// 	})
-
-// 	setTimeout(() => {
-// 		try {
-// 			foo() // Is undefined so we get a throw
-// 		} catch (e) {
-// 			Sentry.captureException(e)
-// 		} finally {
-// This finishes the request from above, creating an interval of time in which this op occurred.
-// 			transaction.finish()
-// 			res.status(500).send({ message: "We messed up :(" })
-// 		}
-// 	}, 99)
-// })
