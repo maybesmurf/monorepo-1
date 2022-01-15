@@ -1,8 +1,9 @@
 // import { Provider } from "react-redux"
-// import { store, useDispatch } from "@Redux/store"
+// import { store } from "@Redux/store"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
-import GlobalStyles from "../styles/globals"
+import { MantineProvider } from "@mantine/core"
+import Head from "next/head"
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -12,6 +13,29 @@ const queryClient = new QueryClient({
 	}
 })
 
+const MyApp = ({ Component, pageProps }: any) => {
+	return (
+		<>
+			<Head>
+				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+			</Head>
+			<MantineProvider
+				withGlobalStyles
+				withNormalizeCSS
+				theme={{
+					/** Put your mantine theme override here */
+					colorScheme: "light",
+					fontFamilyMonospace: "Monaco, Courier, monospace",
+					fontFamily: "Josefin Sans"
+				}}
+			>
+				<Component {...pageProps} />
+				<ReactQueryDevtools />
+			</MantineProvider>
+		</>
+	)
+}
+
 const AppWrap = ({ Component, pageProps }: any) => {
 	return (
 		<QueryClientProvider client={queryClient}>
@@ -19,16 +43,6 @@ const AppWrap = ({ Component, pageProps }: any) => {
 			<MyApp Component={Component} pageProps={pageProps} />
 			{/* </Provider> */}
 		</QueryClientProvider>
-	)
-}
-
-const MyApp = ({ Component, pageProps }: any) => {
-	return (
-		<>
-			<GlobalStyles />
-			<Component {...pageProps} />
-			<ReactQueryDevtools />
-		</>
 	)
 }
 
