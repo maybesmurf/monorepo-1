@@ -8,6 +8,7 @@ import { errorHandler, successHandler } from "./utils/responseHandlers"
 
 // Sentry
 import Sentry, { initSentry } from "./services/sentry"
+import { getRandomValueFromArray } from "src/utils/randomFromArray"
 initSentry()
 
 // Firebase
@@ -36,7 +37,7 @@ app.get("/", async (req: any, res: any) => {
 		"What do you get when you cross a dog and a computer? A megabyte."
 	]
 
-	res.json({ message: messages[Math.floor(Math.random() * messages.length)] })
+	res.json({ message: getRandomValueFromArray(messages) })
 })
 
 // Force an error

@@ -158,7 +158,7 @@ model Height {
   runs Run[]
 }
 
-// Might only be useful for the UI
+// Might only be useful for the UI?
 // For fetching a certain list of levels for a certain class
 model ClassTypeByLevel {
   classId String
