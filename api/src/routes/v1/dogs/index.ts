@@ -1,12 +1,14 @@
 import express from "express"
 const router = express.Router()
+// @ts-ignore
 import faker from "@faker-js/faker"
 import { DogSex } from "@prisma/client"
 import { prisma } from "../../../services/prisma"
-import { getRandomValueFromArray } from "src/utils/randomFromArray"
+import { getRandomValueFromArray } from "../../../utils/randomFromArray"
+import { formatSuccess } from "../../../utils/responseHandlers"
 
 // Write a new row
-router.post("/", async (req: any, response: any) => {
+router.post("/", async (req, response) => {
 	const resp = await prisma.dog.create({
 		data: {
 			callName: faker.name.firstName(),
@@ -27,25 +29,25 @@ router.post("/", async (req: any, response: any) => {
 		}
 	})
 
-	return response.json({ [Date.now()]: resp })
+	return response.status(200).json(formatSuccess({ [Date.now()]: resp }))
 })
 
 // Get all rows
-router.get("/", async (req: any, response: any) => {
+router.get("/", async (req, response) => {
 	const all = await prisma.dog.findMany()
-	return response.json({ [Date.now()]: all })
+	return response.status(200).json(formatSuccess({ [Date.now()]: all }))
 })
 
 router.put("/", async (req, res) => {
 	const { id, ...dog } = req.body
 	const update = await prisma.dog.update({ where: { id }, data: dog })
-	return res.json({ message: update })
+	return res.status(200).json(formatSuccess({ message: update }))
 })
 
 router.delete("/", async (req, res) => {
 	const { id } = req.body
 	const update = await prisma.dog.delete({ where: { id } })
-	return res.json({ message: update })
+	return res.status(200).json(formatSuccess({ message: update }))
 })
 
 export default router

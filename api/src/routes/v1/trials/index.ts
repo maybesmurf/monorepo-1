@@ -1,12 +1,14 @@
 import express from "express"
 const router = express.Router()
+// @ts-ignore
 import faker from "@faker-js/faker"
 import { prisma } from "../../../services/prisma"
-import { getRandomValueFromArray } from "src/utils/randomFromArray"
+import { getRandomValueFromArray } from "../../../utils/randomFromArray"
 import { AcceptanceMethod } from "@prisma/client"
+import { formatSuccess } from "../../../utils/responseHandlers"
 
 // Write a new row
-router.post("/", async (req: any, response: any) => {
+router.post("/", async (req, response) => {
 	const resp = await prisma.trial.create({
 		data: {
 			hostingClubId: faker.datatype.uuid(),
@@ -37,13 +39,12 @@ router.post("/", async (req: any, response: any) => {
 		}
 	})
 
-	return response.json({ [Date.now()]: resp })
+	return response.status(200).json(formatSuccess({ [Date.now()]: resp }))
 })
 
-// Get all rows
-router.get("/", async (req: any, response: any) => {
+router.get("/", async (req, response) => {
 	const all = await prisma.trial.findMany()
-	return response.json({ [Date.now()]: all })
+	return response.status(200).json(formatSuccess({ [Date.now()]: all }))
 })
 
 router.put("/", async (req, res) => {

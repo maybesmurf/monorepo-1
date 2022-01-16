@@ -4,11 +4,11 @@ const app = express()
 const PORT = 5000
 
 import v1 from "./routes/v1"
-import { errorHandler, successHandler } from "./utils/responseHandlers"
+import { errorHandler, formatSuccess } from "./utils/responseHandlers"
 
 // Sentry
 import Sentry, { initSentry } from "./services/sentry"
-import { getRandomValueFromArray } from "src/utils/randomFromArray"
+import { getRandomValueFromArray } from "./utils/randomFromArray"
 initSentry()
 
 // Firebase
@@ -20,7 +20,7 @@ app.use(Sentry.Handlers.requestHandler())
 app.use(cors())
 app.use(express.json())
 
-app.use(successHandler)
+// app.use(successHandler)
 
 // Routes
 // import auth from "./routes/auth"
@@ -37,7 +37,7 @@ app.get("/", async (req: any, res: any) => {
 		"What do you get when you cross a dog and a computer? A megabyte."
 	]
 
-	res.json({ message: getRandomValueFromArray(messages) })
+	res.status(200).json(formatSuccess({ message: getRandomValueFromArray(messages) }))
 })
 
 // Force an error

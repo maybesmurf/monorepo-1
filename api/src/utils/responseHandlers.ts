@@ -1,16 +1,8 @@
-export const successHandler = (req: any, res: any, next: any) => {
-	// Avoiding a "double-send"
-	let oldSend = res.send
-	res.send = (data: any) => {
-		let newData = {
-			ok: true,
-			data: JSON.parse(data)
-		}
-
-		res.send = oldSend // Set function back to avoid a "double-send"
-		return res.send(newData)
+export const formatSuccess = (data: any) => {
+	return {
+		ok: true,
+		data
 	}
-	next()
 }
 
 // This handler does not need to include Sentry.
