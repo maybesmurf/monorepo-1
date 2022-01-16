@@ -16,7 +16,7 @@ router.post("/", async (req, response) => {
 			sex: getRandomValueFromArray<DogSex>(["MALE", "FEMALE"]),
 			birthdate: faker.date.past(),
 			birthplace: faker.address.countryCode(),
-			akcRegisteredName: faker.name.title + "" + faker.name.firstName() + " of " + faker.address.city,
+			akcRegisteredName: faker.name.title() + " " + faker.name.firstName() + " of " + faker.address.city(),
 			akcTitlePrefix: "AKC",
 			akcTitleSuffix: "AKC",
 			akcMeasuredHeight: Math.floor(Math.random()) * (24 - 12 + 1) + 12,
@@ -29,13 +29,13 @@ router.post("/", async (req, response) => {
 		}
 	})
 
-	return response.status(200).json(formatSuccess({ [Date.now()]: resp }))
+	return response.status(200).json(formatSuccess(resp))
 })
 
 // Get all rows
 router.get("/", async (req, response) => {
 	const all = await prisma.dog.findMany()
-	return response.status(200).json(formatSuccess({ [Date.now()]: all }))
+	return response.status(200).json(formatSuccess(all))
 })
 
 router.put("/", async (req, res) => {

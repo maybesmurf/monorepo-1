@@ -37,7 +37,7 @@ app.get("/", async (req: any, res: any) => {
 		"What do you get when you cross a dog and a computer? A megabyte."
 	]
 
-	res.status(200).json(formatSuccess({ message: getRandomValueFromArray(messages) }))
+	return res.status(200).json(formatSuccess({ message: getRandomValueFromArray(messages) }))
 })
 
 // Force an error
