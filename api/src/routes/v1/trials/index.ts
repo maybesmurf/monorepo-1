@@ -9,9 +9,11 @@ import { formatSuccess } from "../../../utils/responseHandlers"
 
 // Write a new row
 router.post("/", async (req, response) => {
+	const { hostingClubId, secretaryId } = req.body
+
 	const resp = await prisma.trial.create({
 		data: {
-			hostingClubId: faker.datatype.uuid(),
+			hostingClubId,
 			akcEventNumber: faker.datatype.uuid(),
 			venue: faker.address.cardinalDirection() + "" + faker.address.streetName() + "Park",
 			venueStreetAddress: faker.address.streetAddress(),
@@ -23,7 +25,7 @@ router.post("/", async (req, response) => {
 			signUpCloseDateTime: faker.date.soon(),
 			acceptanceMethod: getRandomValueFromArray<AcceptanceMethod>(["RANDOMDRAW", "FIRSTRECEIVED"]),
 			checksPayableTo: faker.company.companyName(),
-			secretaryId: faker.datatype.uuid(),
+			secretaryId,
 			trialChairmanName: faker.name.firstName() + " " + faker.name.lastName(),
 			trialChairmanEmail: faker.internet.exampleEmail(),
 			trialChairmanStreetAddress: faker.address.streetAddress(),
@@ -39,12 +41,12 @@ router.post("/", async (req, response) => {
 		}
 	})
 
-	return response.status(200).json(formatSuccess({ [Date.now()]: resp }))
+	return response.status(200).json(formatSuccess(resp))
 })
 
 router.get("/", async (req, response) => {
 	const all = await prisma.trial.findMany()
-	return response.status(200).json(formatSuccess({ [Date.now()]: all }))
+	return response.status(200).json(formatSuccess(all))
 })
 
 router.put("/", async (req, res) => {

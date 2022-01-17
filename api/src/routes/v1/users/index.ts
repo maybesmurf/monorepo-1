@@ -4,12 +4,21 @@ const router = express.Router()
 import faker from "@faker-js/faker"
 import { prisma } from "../../../services/prisma"
 import { formatSuccess } from "../../../utils/responseHandlers"
+import { State } from "@prisma/client"
 
 // Write a new row
 router.post("/", async (req, response) => {
-	const resp = await prisma.club.create({
+	const resp = await prisma.user.create({
 		data: {
-			name: faker.name.lastName() + "'s " + faker.company.companyName() + " Club"
+			id: faker.datatype.uuid(),
+			firstName: faker.name.firstName(),
+			lastName: faker.name.lastName(),
+			streetAddress: faker.address.streetAddress(),
+			city: faker.address.city(),
+			state: faker.address.stateAbbr() as State,
+			postalCode: faker.address.zipCode(),
+			phone: faker.phone.phoneNumber(),
+			email: faker.internet.email()
 		}
 	})
 
@@ -18,19 +27,19 @@ router.post("/", async (req, response) => {
 
 // Get all rows
 router.get("/", async (req, response) => {
-	const all = await prisma.club.findMany()
+	const all = await prisma.user.findMany()
 	return response.status(200).json(formatSuccess(all))
 })
 
 router.put("/", async (req, res) => {
-	const { id, ...club } = req.body
-	const update = await prisma.club.update({ where: { id }, data: club })
+	const { id, ...user } = req.body
+	const update = await prisma.user.update({ where: { id }, data: user })
 	return res.status(200).json(formatSuccess({ message: update }))
 })
 
 router.delete("/", async (req, res) => {
 	const { id } = req.body
-	const update = await prisma.club.delete({ where: { id } })
+	const update = await prisma.user.delete({ where: { id } })
 	return res.status(200).json(formatSuccess({ message: update }))
 })
 
