@@ -19,7 +19,9 @@ const Home = () => {
 				}}
 			>
 				<div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-					<Image src="/logo-with-text.png" alt="Doggo Logo" width={136} height={52} />
+					<div style={{ position: "relative", zIndex: 1 }}>
+						<Image src="/logo-with-text.png" alt="Doggo Logo" width={136} height={52} />
+					</div>
 					{/* <MediaQuery largerThan={100000000000000} styles={{ display: "none" }}>
 							<Burger
 								opened={opened}
@@ -32,7 +34,7 @@ const Home = () => {
 				</div>
 			</Header>
 			<Blob />
-			<Container fluid style={{ position: "relative", zIndex: "10", height: "100%", padding: "25% 10% 0" }}>
+			<Container fluid style={{ position: "relative", zIndex: "10", height: "100%", padding: "10% 10% 0" }}>
 				<Title sx={{ fontSize: "32px", fontWeight: 600, color: theme.colors.blue[9] }} order={1}>
 					Your dog's sporting event, simplified.
 				</Title>
