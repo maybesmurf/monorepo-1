@@ -50,4 +50,10 @@ router.delete("/", async (req, res) => {
 	return res.status(200).json(formatSuccess({ message: update }))
 })
 
+router.get("/primaryOwner/:primaryOwnerId", async (req, res) => {
+	const { primaryOwnerId } = req.params
+	const dogs = await prisma.dog.findMany({ where: { primaryOwnerId } })
+	return res.status(200).json(formatSuccess({ count: dogs.length, dogs }))
+})
+
 export default router
