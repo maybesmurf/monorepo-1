@@ -4,7 +4,7 @@
 import faker from "@faker-js/faker"
 import { State } from "@prisma/client"
 
-export const users = [...Array(10)].map(() => ({
+export const users = [...Array(5)].map(() => ({
 	id: faker.datatype.uuid(),
 	firstName: faker.name.firstName(),
 	lastName: faker.name.lastName(),
@@ -15,6 +15,3 @@ export const users = [...Array(10)].map(() => ({
 	phone: faker.phone.phoneNumber(),
 	email: faker.internet.email()
 }))
-
-export const user1 = users[0]
-export const user2 = users[1]

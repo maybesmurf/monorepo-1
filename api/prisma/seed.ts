@@ -4,7 +4,15 @@
 import { PrismaClient } from "@prisma/client"
 import { users } from "./seeds/users"
 import { dogs } from "./seeds/dogs"
+import { clubs } from "./seeds/clubs"
+import { createTrials } from "./seeds/trials"
+import { createTrialDays } from "./seeds/trialDays"
 const prisma = new PrismaClient()
+
+const generateEntitySeedWithForeignKeys = (records: any, entityCreator: any): [] => {
+	const ids = records.map((record: any) => record.id)
+	return entityCreator(ids)
+}
 
 const main = async () => {
 	users.forEach(async (item) => {
@@ -15,6 +23,26 @@ const main = async () => {
 
 	dogs.forEach(async (item) => {
 		await prisma.dog.create({
+			data: item
+		})
+	})
+
+	clubs.forEach(async (item) => {
+		await prisma.club.create({
+			data: item
+		})
+	})
+
+	const trials = generateEntitySeedWithForeignKeys(await prisma.club.findMany(), createTrials)
+	trials.forEach(async (item) => {
+		await prisma.trial.create({
+			data: item
+		})
+	})
+
+	const trialDays = generateEntitySeedWithForeignKeys(await prisma.trial.findMany(), createTrialDays)
+	trialDays.forEach(async (item) => {
+		await prisma.trialDay.create({
 			data: item
 		})
 	})

@@ -3,10 +3,10 @@
 // @ts-ignore
 import faker from "@faker-js/faker"
 import { DogSex } from "@prisma/client"
-import { user1, user2 } from "./users"
+import { users } from "./users"
 import { getRandomValueFromArray } from "../../src/utils/randomFromArray"
 
-export const dogs = [...Array(5)].map(() => ({
+export const dogs = [...Array(10)].map(() => ({
 	callName: faker.name.firstName(),
 	akcBreed: faker.animal.dog(),
 	sex: "MALE" as DogSex,
@@ -20,6 +20,6 @@ export const dogs = [...Array(5)].map(() => ({
 	breederName: faker.name.firstName() + " " + faker.name.lastName(),
 	sireName: faker.name.firstName(),
 	damName: faker.name.firstName(),
-	primaryOwnerId: getRandomValueFromArray([user1.id, user2.id]),
+	primaryOwnerId: getRandomValueFromArray(users.map((user) => user.id)),
 	jumpHeight: Math.floor(Math.random()) * (24 - 12 + 1) + 12
 }))

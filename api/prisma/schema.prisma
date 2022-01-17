@@ -59,7 +59,7 @@ model User {
 model Trial {
   id String @id @default(uuid())
   hostingClubId String
-  hostingClub Club @relation(fields: [hostingClubId], references: [id])
+  hostingClub Club? @relation(fields: [hostingClubId], references: [id])
   akcEventNumber String
   venue String
   venueStreetAddress String
@@ -72,7 +72,7 @@ model Trial {
   acceptanceMethod AcceptanceMethod
   checksPayableTo String?
   secretaryId String
-  secretary User @relation(fields: [secretaryId], references: [id])
+  secretary User? @relation(fields: [secretaryId], references: [id])
   judges JudgesByTrials[]
   trialChairmanName String
   trialChairmanEmail String
