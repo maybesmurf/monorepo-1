@@ -19,9 +19,7 @@ const Home = () => {
 				}}
 			>
 				<div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-					<div style={{ position: "relative", zIndex: 1 }}>
-						<Image src="/logo-with-text.png" alt="Doggo Logo" width={136} height={52} />
-					</div>
+					<Image src="/logo-with-text.png" alt="Doggo Logo" width={136} height={52} />
 					{/* <MediaQuery largerThan={100000000000000} styles={{ display: "none" }}>
 							<Burger
 								opened={opened}
