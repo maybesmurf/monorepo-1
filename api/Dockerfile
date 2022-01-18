@@ -8,7 +8,8 @@ WORKDIR /usr/app
 COPY package*.json ./
 RUN npm install
 
-RUN npm install -g @prisma/cli
+RUN sudo chown -R $(whoami) ~/.npm
+RUN npm install -g prisma
 
 # Copying source files
 COPY . ./
