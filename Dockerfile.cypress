@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY ./cypress ./cypress
 COPY ./cypress.json ./cypress.json
-COPY ./package*.json ./package*.json
+COPY ./package*.json ./
 
 CMD npm i && npx cypress run
