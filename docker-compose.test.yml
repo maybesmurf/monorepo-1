@@ -53,6 +53,6 @@ services:
       context: ./web
       dockerfile: Dockerfile
       args:
-        SENTRY_AUTH_TOKEN: 3549cd30af0e44d4af6a44e7946d89fb24098230fa6245c782e74951be7d83a7
+        SENTRY_AUTH_TOKEN: $SENTRY_AUTH_TOKEN
     env_file:
       - .env

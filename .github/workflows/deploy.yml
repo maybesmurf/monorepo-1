@@ -20,6 +20,25 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Create a testing .env
+        run: |
+          touch .env
+          ENVIRONMENT=development
+          POSTGRES_USER=yourUser
+          POSTGRES_PASSWORD=changeit
+          POSTGRES_DB=prisma
+          DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
+          PGADMIN_DEFAULT_EMAIL=your@email.com
+          PGADMIN_DEFAULT_PASSWORD=changeit
+          SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}}
+          NEXT_PUBLIC_API_PATH=http://localhost:5000
+          FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001
+          FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002
+
+      - name: Run Cypress
+        run: |
+          npm run test:build
+
       - name: Find Changed files
         uses: tj-actions/changed-files@v13.1
         id: changed-files
@@ -46,9 +65,9 @@ jobs:
           push: true
           tags: ghcr.io/${{github.repository}}/web:${{github.sha}}
           build-args: |
-            NEXT_PUBLIC_API_PATH=${{SECRETS.NEXT_PUBLIC_API_PATH}}
-            SENTRY_AUTH_TOKEN=${{SECRETS.SENTRY_AUTH_TOKEN}}
-            NEXT_PUBLIC_TEST=${{SECRETS.NEXT_PUBLIC_TEST}}
+            NEXT_PUBLIC_API_PATH=${{secrets.NEXT_PUBLIC_API_PATH}}
+            SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}}
+            NEXT_PUBLIC_TEST=${{secrets.NEXT_PUBLIC_TEST}}
 
       - name: Trigger api deployment to Digital Ocean
         if: contains(steps.changed-files.outputs.all_changed_files, 'api')
