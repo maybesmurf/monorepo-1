@@ -20,6 +20,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # This is needed for the compose to pick up a .env file
       - name: Create a testing .env
         run: |
           touch .env
@@ -36,18 +37,19 @@ jobs:
           FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002
 
       - name: Run Cypress
+        # These env vars are needed so that the builds can happen
         env:
-          ENVIRONMENT: development
-          POSTGRES_USER: yourUser
-          POSTGRES_PASSWORD: changeit
-          POSTGRES_DB: prisma
-          DATABASE_URL: postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
-          PGADMIN_DEFAULT_EMAIL: your@email.com
-          PGADMIN_DEFAULT_PASSWORD: changeit
-          SENTRY_AUTH_TOKEN: ${{secrets.SENTRY_AUTH_TOKEN}}
-          NEXT_PUBLIC_API_PATH: http://localhost:5000
-          FIREBASE_AUTH_EMULATOR_HOST: firebase-emulators:4001
-          FIREBASE_STORAGE_EMULATOR_HOST: firebase-emulators:4002
+          CYPRESS_ENVIRONMENT: development
+          CYPRESS_POSTGRES_USER: yourUser
+          CYPRESS_POSTGRES_PASSWORD: changeit
+          CYPRESS_POSTGRES_DB: prisma
+          CYPRESS_DATABASE_URL: postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
+          CYPRESS_PGADMIN_DEFAULT_EMAIL: your@email.com
+          CYPRESS_PGADMIN_DEFAULT_PASSWORD: changeit
+          CYPRESS_SENTRY_AUTH_TOKEN: ${{secrets.SENTRY_AUTH_TOKEN}}
+          CYPRESS_NEXT_PUBLIC_API_PATH: http://localhost:5000
+          CYPRESS_FIREBASE_AUTH_EMULATOR_HOST: firebase-emulators:4001
+          CYPRESS_FIREBASE_STORAGE_EMULATOR_HOST: firebase-emulators:4002
         run: |
           npm run test:build
 
