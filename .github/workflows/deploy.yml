@@ -24,17 +24,18 @@ jobs:
       - name: Create a testing .env
         run: |
           touch .env
-          ENVIRONMENT=development >> .env
-          POSTGRES_USER=yourUser >> .env
-          POSTGRES_PASSWORD=changeit >> .env
-          POSTGRES_DB=prisma >> .env
-          DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma >> .env
-          PGADMIN_DEFAULT_EMAIL=your@email.com >> .env
-          PGADMIN_DEFAULT_PASSWORD=changeit >> .env
-          SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}} >> .env
-          NEXT_PUBLIC_API_PATH=http://localhost:5000 >> .env
-          FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001 >> .env
-          FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002 >> .env
+          echo ENVIRONMENT=development >> .env
+          echo POSTGRES_USER=yourUser >> .env
+          echo POSTGRES_PASSWORD=changeit >> .env
+          echo POSTGRES_DB=prisma >> .env
+          echo DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma >> .env
+          echo PGADMIN_DEFAULT_EMAIL=your@email.com >> .env
+          echo PGADMIN_DEFAULT_PASSWORD=changeit >> .env
+          echo SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}} >> .env
+          echo NEXT_PUBLIC_API_PATH=http://localhost:5000 >> .env
+          echo FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001 >> .env
+          echo FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002 >> .env
+          cat .env
 
       - name: Run Cypress
         # These env vars are needed so that the builds can happen
