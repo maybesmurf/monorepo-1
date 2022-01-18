@@ -8,7 +8,7 @@
     "dev:kill": "docker-compose down",
     "prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build",
     "test": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up",
-    "test:build": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up --build",
+    "test:build": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up --build --exit-code-from cypress",
     "ci": "cd web && npm run build && npm run serve && cd .. && cd api && npm run start",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
