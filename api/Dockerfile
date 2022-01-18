@@ -8,6 +8,8 @@ WORKDIR /usr/app
 COPY package*.json ./
 RUN npm install
 
+RUN npm install -g prisma
+
 # Copying source files
 COPY . ./
 
