@@ -6,11 +6,18 @@
     "dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
     "dev:build": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
     "dev:kill": "docker-compose down",
-    "prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build"
+    "prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build",
+    "test": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up",
+    "test:build": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up --build",
+    "ci": "cd web && npm run build && npm run serve && cd .. && cd api && npm run start",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "devDependencies": {
     "@types/node": "^17.0.8",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.4"
-  }
+    "typescript": "^4.5.4",
+    "cypress": "^9.2.1"
+  },
+  "dependencies": {}
 }

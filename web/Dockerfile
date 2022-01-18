@@ -44,4 +44,4 @@ ENV PORT 3000
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD ["node_modules/.bin/next", "start"]
+CMD [ "node_modules/.bin/next", "start" ]

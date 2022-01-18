@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  cypress:
+    container_name: cypress
+    depends_on:
+      - web
+    build:
+      context: .
+      dockerfile: Dockerfile.cypress
+
+  postgres:
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    image: postgres:alpine
+    env_file:
+      - .env
+    restart: always
+
+  firebase-emulators:
+    container_name: firebase-emulators
+    ports:
+      - "4000:4000"
+      - "4001:4001"
+      - "4002:4002"
+    build:
+      context: .
+      dockerfile: Dockerfile.firebase
+    image: firebase-emulator:firebase-emulator
+    volumes:
+      - .:/src
+    command: firebase emulators:start --project dev
+
+  rest_api:
+    depends_on:
+      - postgres
+      - firebase-emulators
+    ports:
+      - 5000:5000
+      - 5555:5555
+    volumes:
+      - ./api:/usr/app
+    command: npm run start
+
+  web:
+    depends_on:
+      - postgres
+      - firebase-emulators
+    ports:
+      - 3000:3000
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        SENTRY_AUTH_TOKEN: 3549cd30af0e44d4af6a44e7946d89fb24098230fa6245c782e74951be7d83a7
+    env_file:
+      - .env
