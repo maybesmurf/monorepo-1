@@ -20,20 +20,20 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Create a testing .env
-      #   run: |
-      #     touch .env
-      #     ENVIRONMENT=development
-      #     POSTGRES_USER=yourUser
-      #     POSTGRES_PASSWORD=changeit
-      #     POSTGRES_DB=prisma
-      #     DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
-      #     PGADMIN_DEFAULT_EMAIL=your@email.com
-      #     PGADMIN_DEFAULT_PASSWORD=changeit
-      #     SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}}
-      #     NEXT_PUBLIC_API_PATH=http://localhost:5000
-      #     FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001
-      #     FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002
+      - name: Create a testing .env
+        run: |
+          touch .env
+          ENVIRONMENT=development
+          POSTGRES_USER=yourUser
+          POSTGRES_PASSWORD=changeit
+          POSTGRES_DB=prisma
+          DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
+          PGADMIN_DEFAULT_EMAIL=your@email.com
+          PGADMIN_DEFAULT_PASSWORD=changeit
+          SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}}
+          NEXT_PUBLIC_API_PATH=http://localhost:5000
+          FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001
+          FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002
 
       - name: Run Cypress
         env:
