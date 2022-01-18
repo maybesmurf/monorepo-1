@@ -13,6 +13,10 @@ COPY . ./
 
 ENV DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
 
+RUN adduser -S runner -u 1001
+
+USER runner
+
 # Exports
 EXPOSE 5000
 CMD ["npm", "run", "start"]
