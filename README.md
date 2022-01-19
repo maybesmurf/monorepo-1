@@ -1,5 +1,7 @@
 # Welcome to Doggo Sportss
 
+[![Deploy Testing Environment](https://github.com/doggo-sports/services/actions/workflows/retry.yml/badge.svg?branch=testing)](https://github.com/doggo-sports/services/actions/workflows/retry.yml)
+
 ## Active Task
 
 ## Need to:

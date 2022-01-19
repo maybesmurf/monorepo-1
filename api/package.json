@@ -1,8 +1,8 @@
 {
 	"scripts": {
 		"start": "ts-node src/index",
-		"start:with-prisma": "npx prisma generate && ts-node src/index",
-		"dev": "npx prisma migrate dev && nodemon -L src/index.ts & prisma studio"
+		"start:with-prisma": "prisma generate && ts-node src/index",
+		"dev": "prisma migrate dev && nodemon -L src/index.ts & prisma studio"
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^5.5.3",
