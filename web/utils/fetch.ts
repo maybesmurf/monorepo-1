@@ -1,13 +1,13 @@
 const baseUri = process.env.NEXT_PUBLIC_API_PATH
 
-const get = async (url: string) => {
+const get = async <T>(url: string): Promise<T> => {
 	const requestOptions = {
 		method: "GET"
 	}
 	return await fetch(baseUri + url, requestOptions).then(handleResponse)
 }
 
-const post = async (url: string, body: any) => {
+const post = async <T>(url: string, body: any): Promise<T> => {
 	const requestOptions = {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -16,7 +16,7 @@ const post = async (url: string, body: any) => {
 	return await fetch(baseUri + url, requestOptions).then(handleResponse)
 }
 
-const put = async (url: string, body: any) => {
+const put = async <T>(url: string, body: any): Promise<T> => {
 	const requestOptions = {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
@@ -26,7 +26,7 @@ const put = async (url: string, body: any) => {
 }
 
 // prefixed with underscored because delete is a reserved word in javascript
-const _delete = async (url: string) => {
+const _delete = async <T>(url: string): Promise<T> => {
 	const requestOptions = {
 		method: "DELETE"
 	}

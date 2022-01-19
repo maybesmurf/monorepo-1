@@ -8,7 +8,8 @@ import Head from "next/head"
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
-			retry: 0
+			retry: 0,
+			refetchOnWindowFocus: false
 		}
 	}
 })

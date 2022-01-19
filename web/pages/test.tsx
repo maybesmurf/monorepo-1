@@ -6,19 +6,21 @@ import { useQuery } from "react-query"
 import fetch from "../utils/fetch"
 
 const Home: NextPage = () => {
-	const { data, isLoading, error } = useQuery("test", async () => await fetch.get("/v1/dogs"))
+	const { data, isLoading, error } = useQuery("getAllDogs", async () => await fetch.get<Dog[]>("/v1/dogs"))
 
 	if (isLoading) return <p>Fetching your pupperoonis...</p>
 	if (error) return <p>Uh oh, a problem occurred.</p>
 
-	const rows = data.map((dog: Dog) => (
-		<tr key={dog.id}>
-			<td>{dog.callName}</td>
-			<td>{dog.akcBreed}</td>
-			<td>{dog.isOfficiallyMeasured}</td>
-			<td>{dog.akcMeasuredHeight}</td>
-		</tr>
-	))
+	const rows =
+		data &&
+		data.map((dog) => (
+			<tr key={dog.id}>
+				<td>{dog.callName}</td>
+				<td>{dog.akcBreed}</td>
+				<td>{dog.isOfficiallyMeasured}</td>
+				<td>{dog.akcMeasuredHeight}</td>
+			</tr>
+		))
 
 	return (
 		<div>
