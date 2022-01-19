@@ -9,7 +9,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.cypress
-    restart: on-failure
 
   postgres:
     container_name: postgres
