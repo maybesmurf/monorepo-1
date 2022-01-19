@@ -25,13 +25,14 @@ model Dog {
   sireName             String?
   damName              String?
   primaryOwnerId       String
+  primaryOwner         User @relation("primaryOwnerRelation", fields: [primaryOwnerId], references: [id])
   handler              String?
   isOfficiallyMeasured Boolean @default(false)
   jumpHeight           Int?
   preferredClasses     Boolean @default(false)
   owners               User[]
-  scores Run[]
-  trialEntries TrialEntry[]
+  scores               Run[]
+  trialEntries         TrialEntry[]
 }
 
 model User {
@@ -49,6 +50,7 @@ model User {
   akcLicense String?
   akcJudgeId String?
   akcSecretaryId String?
+  primaryOwnerDogs Dog[] @relation("primaryOwnerRelation")
   dogs Dog[]
   runs Run[]
   trialEntries TrialEntry[]
