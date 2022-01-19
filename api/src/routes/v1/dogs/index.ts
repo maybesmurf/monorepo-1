@@ -5,7 +5,6 @@ import faker from "@faker-js/faker"
 import { DogSex } from "@prisma/client"
 import { prisma } from "../../../services/prisma"
 import { getRandomValueFromArray } from "../../../utils/randomFromArray"
-import { formatSuccess } from "../../../utils/responseHandlers"
 
 // Write a new row
 router.post("/", async (req, response) => {
@@ -29,31 +28,31 @@ router.post("/", async (req, response) => {
 		}
 	})
 
-	return response.status(200).json(formatSuccess(resp))
+	return response.status(200).json(resp)
 })
 
 // Get all rows
 router.get("/", async (req, response) => {
 	const all = await prisma.dog.findMany()
-	return response.status(200).json(formatSuccess(all))
+	return response.status(200).json(all)
 })
 
 router.put("/", async (req, res) => {
 	const { id, ...dog } = req.body
 	const update = await prisma.dog.update({ where: { id }, data: dog })
-	return res.status(200).json(formatSuccess({ message: update }))
+	return res.status(200).json({ message: update })
 })
 
 router.delete("/", async (req, res) => {
 	const { id } = req.body
 	const update = await prisma.dog.delete({ where: { id } })
-	return res.status(200).json(formatSuccess({ message: update }))
+	return res.status(200).json({ message: update })
 })
 
 router.get("/primaryOwner/:primaryOwnerId", async (req, res) => {
 	const { primaryOwnerId } = req.params
 	const dogs = await prisma.dog.findMany({ where: { primaryOwnerId } })
-	return res.status(200).json(formatSuccess({ count: dogs.length, dogs }))
+	return res.status(200).json({ count: dogs.length, dogs })
 })
 
 export default router

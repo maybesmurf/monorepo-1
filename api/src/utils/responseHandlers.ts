@@ -1,7 +1,6 @@
-export const formatSuccess = (data: any) => {
-	return {
-		ok: true,
-		data
+export class ResponseError extends Error {
+	constructor(message: string, public readonly responseInfo: { statusCode: number; info?: any }) {
+		super(message)
 	}
 }
 
@@ -10,8 +9,14 @@ export const formatSuccess = (data: any) => {
 export const errorHandler = (err: any, req: any, res: any, next: any) => {
 	console.error(err)
 
-	return res.status(500).json({
-		ok: false,
-		error: err.toString()
-	})
+	if (err instanceof ResponseError) {
+		const { responseInfo, message } = err
+		const { statusCode, info } = responseInfo
+		return res.status(statusCode).json({
+			error: message,
+			errorInfo: info
+		})
+	}
+
+	return res.status(500).json({ error: err.message })
 }

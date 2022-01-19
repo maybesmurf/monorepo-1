@@ -34,13 +34,13 @@ const _delete = async (url: string) => {
 }
 
 // helper functions
-
 const handleResponse = (response: any) => {
 	// Uses .text() so that there is no error for an empty response
 	return response.text().then((text: any) => {
 		const data = text && JSON.parse(text)
 
-		if (!response.ok) {
+		// Status codes in the 400s and 500s are errors
+		if (response.status > 399) {
 			const error = data || response.statusText
 			return Promise.reject(error)
 		}

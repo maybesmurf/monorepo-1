@@ -1,5 +1,4 @@
 import express from "express"
-import { formatSuccess } from "../../utils/responseHandlers"
 const router = express.Router()
 
 import clubs from "./clubs"
@@ -14,7 +13,7 @@ router.use("/users", users)
 
 // Ping v1
 router.get("/", async (req, response) => {
-	response.status(200).json(formatSuccess({ message: "Yes, what up!" }))
+	response.status(200).json({ message: "Yes, what up!" })
 })
 
 export default router

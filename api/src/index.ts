@@ -4,7 +4,7 @@ const app = express()
 const PORT = 5000
 
 import v1 from "./routes/v1"
-import { errorHandler, formatSuccess } from "./utils/responseHandlers"
+import { ResponseError, errorHandler } from "./utils/responseHandlers"
 
 // Sentry
 import Sentry, { initSentry } from "./services/sentry"
@@ -37,13 +37,13 @@ app.get("/", async (req: any, res: any) => {
 		"What do you get when you cross a dog and a computer? A megabyte."
 	]
 
-	return res.status(200).json(formatSuccess({ message: getRandomValueFromArray(messages) }))
+	return res.status(200).json({ message: getRandomValueFromArray(messages) })
 })
 
 // Force an error
 // Please only use this route for development and testing purposes.
 app.get("/error", (req, res) => {
-	throw new Error("This is a test error from the API!")
+	throw new ResponseError("Some Test Error", { statusCode: 400 })
 })
 
 //Error handlers
