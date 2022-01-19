@@ -7,23 +7,16 @@ import fetch from "../utils/fetch"
 
 const Home: NextPage = () => {
 	const { data, isLoading, error } = useQuery("test", async () => await fetch.get("/v1/dogs"))
-	const {
-		data: shouldntGetAny,
-		isLoading: loadingtheErr,
-		error: err
-	} = useQuery("err", async () => await fetch.get("/native-error"))
-
-	if (err) return <p>Err: {JSON.stringify(err)}</p>
 
 	if (isLoading) return <p>Fetching your pupperoonis...</p>
 	if (error) return <p>Uh oh, a problem occurred.</p>
 
-	const rows = data.map((dog: any) => (
+	const rows = data.map((dog: Dog) => (
 		<tr key={dog.id}>
-			<td>{dog.position}</td>
 			<td>{dog.callName}</td>
-			<td>{dog.symbol}</td>
-			<td>{dog.mass}</td>
+			<td>{dog.akcBreed}</td>
+			<td>{dog.isOfficiallyMeasured}</td>
+			<td>{dog.akcMeasuredHeight}</td>
 		</tr>
 	))
 
@@ -33,10 +26,10 @@ const Home: NextPage = () => {
 			<Table>
 				<thead>
 					<tr>
-						<th>Element position</th>
-						<th>Element name</th>
-						<th>Symbol</th>
-						<th>Atomic mass</th>
+						<th>Call Name</th>
+						<th>AKC Breed</th>
+						<th>Officially Measured?</th>
+						<th>AKC Measured Height</th>
 					</tr>
 				</thead>
 				<tbody>{rows}</tbody>
