@@ -1,7 +1,6 @@
 {
 	"scripts": {
-		"start": "ts-node src/index",
-		"start:with-prisma": "prisma generate && ts-node src/index",
+		"start": "prisma generate && ts-node src/index",
 		"dev": "prisma migrate dev && nodemon -L src/index.ts & prisma studio"
 	},
 	"devDependencies": {
