@@ -6,4 +6,7 @@ COPY ./cypress ./cypress
 COPY ./cypress.json ./cypress.json
 COPY ./package*.json ./
 
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD curl -v -f http://rest_api:5000 || exit 1
+
 CMD npm i && npx cypress run
