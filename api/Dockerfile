@@ -1,11 +1,12 @@
 FROM node:16-alpine3.14
 
-RUN adduser -S runner -u 1001
-USER runner
 
 # Create app directory
 RUN mkdir -p /usr/app
 WORKDIR /usr/app
+
+RUN adduser -S runner -u 1001
+USER runner
 
 # Install dependencies
 COPY package*.json ./
