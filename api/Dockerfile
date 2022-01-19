@@ -5,8 +5,6 @@ FROM node:16-alpine3.14
 RUN mkdir -p /usr/app
 WORKDIR /usr/app
 
-RUN adduser -S runner -u 1001
-USER runner
 
 # Install dependencies
 COPY package*.json ./
@@ -15,8 +13,8 @@ RUN npm install
 # Copying source files
 COPY . ./
 
-ENV DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
-
+# RUN adduser -S runner -u 1001
+# USER runner
 
 # Exports
 EXPOSE 5000
