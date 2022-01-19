@@ -1,12 +1,12 @@
 describe("The Home Page", () => {
   it("renders", () => {
-    cy.visit("http://web:3000");
+    cy.visit("https://test-web.doggosports.com");
     cy.contains("Your dog's sporting event, simplified.");
   });
 });
 
 describe("The API", () => {
-  it("pings http://rest_api:5000", () => {
-    cy.request("http://rest_api:5000");
+  it("pings https://test-api.doggosports.com", () => {
+    cy.request("https://test-api.doggosports.com");
   });
 });

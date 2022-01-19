@@ -58,6 +58,13 @@ jobs:
           script: |
             dokku git:from-image test-web ghcr.io/${{github.repository}}/web:${{github.sha}}
 
+  e2e:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Cypress E2E Tests
+        run: npm run cypress:run
+
       # Just could not get these to work.
       # - name: Delete old api images
       #   uses: actions/delete-package-versions@v2
