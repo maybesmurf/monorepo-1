@@ -1,5 +1,4 @@
 import express from "express"
-import { formatSuccess } from "../../utils/responseHandlers"
 const router = express.Router()
 
 import clubs from "./clubs"
@@ -13,8 +12,8 @@ router.use("/trials", trials)
 router.use("/users", users)
 
 // Ping v1
-router.get("/", async (req, response) => {
-	response.status(200).json(formatSuccess({ message: "Yes, what up!" }))
+router.get("/", async (req, res) => {
+	res.status(200).json({ message: "v1 of the API is up and running!" })
 })
 
 export default router

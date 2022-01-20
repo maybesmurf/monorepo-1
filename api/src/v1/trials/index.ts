@@ -2,10 +2,9 @@ import express from "express"
 const router = express.Router()
 // @ts-ignore
 import faker from "@faker-js/faker"
-import { prisma } from "../../../services/prisma"
-import { getRandomValueFromArray } from "../../../utils/randomFromArray"
+import { prisma } from "../../services/prisma"
+import { getRandomValueFromArray } from "../../utils/randomFromArray"
 import { AcceptanceMethod } from "@prisma/client"
-import { formatSuccess } from "../../../utils/responseHandlers"
 
 // Write a new row
 router.post("/", async (req, response) => {
@@ -41,12 +40,12 @@ router.post("/", async (req, response) => {
 		}
 	})
 
-	return response.status(200).json(formatSuccess(resp))
+	return response.status(200).json(resp)
 })
 
 router.get("/", async (req, response) => {
 	const all = await prisma.trial.findMany()
-	return response.status(200).json(formatSuccess(all))
+	return response.status(200).json(all)
 })
 
 router.put("/", async (req, res) => {
