@@ -1,9 +1,9 @@
 // import { Provider } from "react-redux"
 // import { store } from "@Redux/store"
-import { QueryClient, QueryClientProvider } from "react-query"
-import { ReactQueryDevtools } from "react-query/devtools"
 import { MantineProvider } from "@mantine/core"
 import Head from "next/head"
+import { QueryClient, QueryClientProvider } from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -27,78 +27,79 @@ const MyApp = ({ Component, pageProps }: any) => {
 					colorScheme: "light",
 					fontFamilyMonospace: "Monaco, Courier, monospace",
 					fontFamily: "Josefin Sans",
+					headings: { fontFamily: "Lato, serif" },
 					colors: {
 						gray: [
-							"#000000",
-							"#333333",
-							"#4D4D4D",
-							"#666666",
-							"#808080",
-							"#969696",
-							"#ADADAD",
-							"#C4C4C4",
+							"#F2F2F2",
 							"#DBDBDB",
-							"#F2F2F2"
+							"#C4C4C4",
+							"#ADADAD",
+							"#969696",
+							"#808080",
+							"#666666",
+							"#4D4D4D",
+							"#333333",
+							"#000000"
 						],
 						teal: [
-							"#1D4044",
-							"#234E52",
-							"#285E61",
-							"#426E6F",
-							"#69A6A5",
-							"#8EC1BF",
-							"#B6DAD6",
-							"#D1E9E6",
+							"#ECFBF8",
 							"#E1F1EF",
-							"#ECFBF8"
+							"#D1E9E6",
+							"#B6DAD6",
+							"#8EC1BF",
+							"#69A6A5",
+							"#426E6F",
+							"#285E61",
+							"#234E52",
+							"#1D4044"
 						],
 						yellow: [
-							"#332800",
-							"#655001",
-							"#987901",
-							"#CAA102",
-							"#E1B920",
-							"#EAD173",
-							"#F0DE99",
-							"#FDF6D9",
+							"#FFFDF2",
 							"#FFFAE6",
-							"#FFFDF2"
+							"#FDF6D9",
+							"#F0DE99",
+							"#EAD173",
+							"#E1B920",
+							"#CAA102",
+							"#987901",
+							"#655001",
+							"#332800"
 						],
 						navy: [
-							"#0A323E",
-							"#114352",
-							"#1B596C",
-							"#2E7084",
-							"#418397",
-							"#62A1B5",
-							"#81BBCC",
-							"#A9D3DF",
+							"#EDF5F8",
 							"#D7E8ED",
-							"#EDF5F8"
+							"#A9D3DF",
+							"#81BBCC",
+							"#62A1B5",
+							"#418397",
+							"#2E7084",
+							"#1B596C",
+							"#114352",
+							"#0A323E"
 						],
 						red: [
-							"#2A0909",
-							"#541212",
-							"#7E1B1B",
-							"#A93E3E",
-							"#C85050",
-							"#D77676",
-							"#E08D8D",
-							"#EDB9B9",
+							"#FBEAEA",
 							"#F6D4D4",
-							"#FBEAEA"
+							"#EDB9B9",
+							"#E08D8D",
+							"#D77676",
+							"#C85050",
+							"#A93E3E",
+							"#7E1B1B",
+							"#541212",
+							"#2A0909"
 						],
 						green: [
-							"#0D2618",
-							"#1B4B31",
-							"#256A44",
-							"#3F7959",
-							"#569371",
-							"#77B794",
-							"#9FCBB3",
-							"#D1E8DC",
+							"#ECF8F2",
 							"#DFF3E9",
-							"#ECF8F2"
+							"#D1E8DC",
+							"#9FCBB3",
+							"#77B794",
+							"#569371",
+							"#3F7959",
+							"#256A44",
+							"#1B4B31",
+							"#0D2618"
 						]
 					}
 				}}
