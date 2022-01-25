@@ -3,12 +3,13 @@
 // @ts-ignore
 import faker from "@faker-js/faker"
 import { DogSex, PrismaClient } from "@prisma/client"
+import { getRandomValueFromArray } from "../src/utils/randomFromArray"
 const prisma = new PrismaClient()
 
 const items = [...Array(5)].map(() => ({
 	callName: faker.name.firstName(),
 	akcBreed: faker.animal.dog(),
-	sex: "MALE" as DogSex,
+	sex: getRandomValueFromArray(["MALE", "FEMALE"]) as DogSex,
 	birthdate: faker.date.past(),
 	birthplace: "USA",
 	akcRegisteredName: faker.animal.dog.name,
