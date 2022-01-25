@@ -20,40 +20,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # This is needed for the compose to pick up a .env file
-      - name: Create a testing .env
-        run: |
-          touch .env
-          echo ENVIRONMENT=development >> .env
-          echo POSTGRES_USER=yourUser >> .env
-          echo POSTGRES_PASSWORD=changeit >> .env
-          echo POSTGRES_DB=prisma >> .env
-          echo DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma >> .env
-          echo PGADMIN_DEFAULT_EMAIL=your@email.com >> .env
-          echo PGADMIN_DEFAULT_PASSWORD=changeit >> .env
-          echo SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}} >> .env
-          echo NEXT_PUBLIC_API_PATH=http://localhost:5000 >> .env
-          echo FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001 >> .env
-          echo FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002 >> .env
-          cat .env
-
-      - name: Run Cypress
-        # These env vars are needed so that the builds can happen
-        env:
-          ENVIRONMENT: development
-          POSTGRES_USER: yourUser
-          POSTGRES_PASSWORD: changeit
-          POSTGRES_DB: prisma
-          DATABASE_URL: postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
-          PGADMIN_DEFAULT_EMAIL: your@email.com
-          PGADMIN_DEFAULT_PASSWORD: changeit
-          SENTRY_AUTH_TOKEN: ${{secrets.SENTRY_AUTH_TOKEN}}
-          NEXT_PUBLIC_API_PATH: http://localhost:5000
-          FIREBASE_AUTH_EMULATOR_HOST: firebase-emulators:4001
-          FIREBASE_STORAGE_EMULATOR_HOST: firebase-emulators:4002
-        run: |
-          npm run test:build
-
       - name: Find Changed files
         uses: tj-actions/changed-files@v13.1
         id: changed-files
