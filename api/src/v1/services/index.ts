@@ -1,9 +1,9 @@
 // @ts-ignore
 import faker from "@faker-js/faker"
+import { prisma } from "@Libs/prisma"
 import { Dog, DogSex } from "@prisma/client"
-import { prisma } from "../../libs/prisma"
-import CrudInterface, { ListParams } from "../../utils/crudInterface"
-import { getRandomValueFromArray } from "../../utils/randomFromArray"
+import CrudInterface, { ListParams } from "@Utils/crudInterface"
+import { getRandomValueFromArray } from "@Utils/randomFromArray"
 
 // Things you do in a service:
 // Query your database

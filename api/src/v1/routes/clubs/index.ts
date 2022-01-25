@@ -1,7 +1,7 @@
 // @ts-ignore
 import faker from "@faker-js/faker"
+import { prisma } from "@Libs/prisma"
 import express from "express"
-import { prisma } from "../../libs/prisma"
 const router = express.Router()
 
 // Write a new row

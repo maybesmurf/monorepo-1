@@ -1,7 +1,7 @@
 // @ts-ignore
+import { prisma } from "@Libs/prisma"
+import DogController from "@v1/controllers/dog"
 import express from "express"
-import { prisma } from "../../libs/prisma"
-import DogController from "../controllers/dog"
 const router = express.Router()
 
 // Things to do in a route:

@@ -1,9 +1,9 @@
+// Sentry
+import Sentry, { initSentry } from "@Libs/sentry"
+import { errorHandler, ResponseError } from "@Utils/errorHandlers"
+import { getRandomValueFromArray } from "@Utils/randomFromArray"
 import cors from "cors"
 import express from "express"
-// Sentry
-import Sentry, { initSentry } from "./libs/sentry"
-import { errorHandler, ResponseError } from "./utils/errorHandlers"
-import { getRandomValueFromArray } from "./utils/randomFromArray"
 import v1 from "./v1"
 const app = express()
 const PORT = 5000
@@ -19,11 +19,9 @@ app.use(Sentry.Handlers.requestHandler())
 app.use(cors())
 app.use(express.json())
 
-// app.use(successHandler)
-
 app.use("/v1", v1)
 
-// Just ping the server, that's it.
+// Ping the server
 app.get("/", async (req, res) => {
 	const messages = [
 		"Go, dog, go.",

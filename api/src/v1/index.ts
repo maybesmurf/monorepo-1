@@ -1,10 +1,9 @@
 import express from "express"
+import clubs from "./routes/clubs"
+import dogs from "./routes/dogs"
+import trials from "./routes/trials"
+import users from "./routes/users"
 const router = express.Router()
-
-import clubs from "./clubs"
-import dogs from "./dogs"
-import trials from "./trials"
-import users from "./users"
 
 router.use("/clubs", clubs)
 router.use("/dogs", dogs)

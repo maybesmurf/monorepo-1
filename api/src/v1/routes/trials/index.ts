@@ -1,9 +1,9 @@
 // @ts-ignore
 import faker from "@faker-js/faker"
+import { prisma } from "@Libs/prisma"
 import { AcceptanceMethod } from "@prisma/client"
+import { getRandomValueFromArray } from "@Utils/randomFromArray"
 import express from "express"
-import { prisma } from "../../libs/prisma"
-import { getRandomValueFromArray } from "../../utils/randomFromArray"
 const router = express.Router()
 
 // Write a new row
