@@ -1,14 +1,13 @@
-import express from "express"
 import cors from "cors"
+import express from "express"
+// Sentry
+import Sentry, { initSentry } from "./libs/sentry"
+import { errorHandler, ResponseError } from "./utils/errorHandlers"
+import { getRandomValueFromArray } from "./utils/randomFromArray"
+import v1 from "./v1"
 const app = express()
 const PORT = 5000
 
-import v1 from "./v1"
-import { ResponseError, errorHandler } from "./utils/errorHandlers"
-
-// Sentry
-import Sentry, { initSentry } from "./services/sentry"
-import { getRandomValueFromArray } from "./utils/randomFromArray"
 initSentry()
 
 // Firebase
@@ -25,7 +24,7 @@ app.use(express.json())
 app.use("/v1", v1)
 
 // Just ping the server, that's it.
-app.get("/", async (req: any, res: any) => {
+app.get("/", async (req, res) => {
 	const messages = [
 		"Go, dog, go.",
 		"See Spot run.",
