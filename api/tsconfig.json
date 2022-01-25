@@ -1,22 +1,24 @@
 {
+	"compileOnSave": false,
 	"compilerOptions": {
-		"target": "es6",
-		"allowJs": true,
-		"skipLibCheck": true,
-		"strict": true,
-		"forceConsistentCasingInFileNames": true,
-		"noEmit": true,
-		"rootDir": "./",
-		"outDir": "./build",
-		"esModuleInterop": true,
+		"outDir": "dist",
+		"baseUrl": "./src",
 		"module": "commonjs",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"isolatedModules": false,
-		"jsx": "preserve",
-		"incremental": true,
-		"baseUrl": "./"
+		"target": "es2015",
+		"lib": ["es2017"],
+		"sourceMap": true,
+		"strictNullChecks": true,
+		"noImplicitAny": false,
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"paths": {
+			"@Utils/*": ["./utils/*"],
+			"@Libs/*": ["./libs/*"],
+			"@v1/*": ["./v1/*"]
+		}
 	},
-	"include": ["./**/*"],
-	"exclude": ["node_modules"]
+	"exclude": ["../node_modules"]
 }

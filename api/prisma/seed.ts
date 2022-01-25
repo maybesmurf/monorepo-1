@@ -2,12 +2,12 @@
 // You should still be able to use faker types in VSCode.
 // @ts-ignore
 import { PrismaClient } from "@prisma/client"
-import { users } from "./seeds/users"
-import { dogs } from "./seeds/dogs"
 import { clubs } from "./seeds/clubs"
-import { createTrials } from "./seeds/trials"
-import { createTrialDays } from "./seeds/trialDays"
+import { dogs } from "./seeds/dogs"
 import { createRings } from "./seeds/rings"
+import { createTrialDays } from "./seeds/trialDays"
+import { createTrials } from "./seeds/trials"
+import { users } from "./seeds/users"
 const prisma = new PrismaClient()
 
 const generateEntitySeedWithForeignKeys = (records: any, entityCreator: any): [] => {
