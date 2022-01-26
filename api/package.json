@@ -16,7 +16,10 @@
 		"typescript": "^4.5.4"
 	},
 	"_moduleAliases": {
-		"@shared": "dist/src/utils"
+		"@shared": "dist/src/utils",
+		"@Utils": "dist/utils/",
+		"@Libs/*": "dist/libs/",
+		"@v1/*": "dist/v1/"
 	},
 	"dependencies": {
 		"@prisma/client": "^3.7.0",
