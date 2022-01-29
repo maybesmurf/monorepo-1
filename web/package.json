@@ -7,7 +7,7 @@
 		"serve": "next start"
 	},
 	"dependencies": {
-		"@mantine/core": "^3.6.0",
+		"@mantine/core": "^3.6.3",
 		"@mantine/hooks": "^3.6.0",
 		"@mantine/next": "^3.6.0",
 		"@sentry/nextjs": "^6.17.3",
