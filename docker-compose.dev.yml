@@ -6,8 +6,10 @@ services:
     ports:
       - "5432:5432"
     image: postgres:alpine
-    env_file:
-      - .env
+    environment:
+      - POSTGRES_USER=devUser
+      - POSTGRES_PASSWORD=woofbark
+      - POSTGRES_DB=prisma
     restart: always
 
   # Leaving out this container in favor of Prisma Studio
@@ -36,7 +38,8 @@ services:
       - ./firebase/seed:/src/firebase/seed
     command: firebase emulators:start --project dev
 
-  rest_api:
+  api:
+    container_name: api
     depends_on:
       - postgres
       - firebase-emulators
