@@ -3,6 +3,7 @@ import { useEffect } from "react"
 
 const Error: NextPage = () => {
 	useEffect(() => {
+		console.log(process.env.NEXT_PUBLIC_ENVIRONMENT)
 		throw `Hi Sentry! This is a front-end error in environment: ${process.env.NEXT_PUBLIC_ENVIRONMENT}!`
 	}, [])
 
