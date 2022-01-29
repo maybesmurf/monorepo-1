@@ -1,42 +1,20 @@
-# FROM node:16-alpine3.14
+FROM node:16 as base
 
-# # Create app directory
-# RUN mkdir -p /usr/app
-# WORKDIR /usr/app
+# Create app directory
+WORKDIR /home/node/app
 
-# # Install dependencies
-# COPY package*.json ./
-# RUN npm install
-
-# # Copying source files
-# COPY . ./
-
-# ENV DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
-
-# # Exports
-# EXPOSE 5000
-# CMD ["npm", "run", "start"]
-
-FROM node:16-alpine3.14 as base
-
-WORKDIR /usr/app
-
-#---------- PRE-REQS ----------
-FROM base as prereq
-
+# Install app dependencies
 COPY package*.json ./
+RUN npm ci --only=production
+
+# Bundle app source
 COPY ./ ./
 
-RUN npm install --quiet --unsafe-perm --no-progress --no-audit --only=production
+FROM base as production
 
-#---------- DEVELOPMENT ----------
-FROM prereq as development
+ENV NODE_PATH=./build
 
-RUN npm install --quiet --unsafe-perm --no-progress --no-audit --only=development
-
-## All files will be volume mounted into the container
-
-ENV DATABASE_URL=postgres://yourUser:changeit@postgres:5432/prisma?schema=hello-prisma
+RUN npm run build
 
 EXPOSE 5000
-CMD ["npm", "run", "start"]
+CMD [ "node", "build/index.js" ]
