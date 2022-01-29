@@ -52,7 +52,7 @@ jobs:
       - name: Trigger api deployment to Digital Ocean
         uses: appleboy/ssh-action@master
         with:
-          host: ${{secrets.DROPLET_HOST}}
+          host: ${{secrets.DOKKU_HOST}}
           username: ${{secrets.DOKKU_SSH_USER}}
           key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
           script: |
@@ -61,7 +61,7 @@ jobs:
       - name: Trigger web deployment to Digital Ocean
         uses: appleboy/ssh-action@master
         with:
-          host: ${{secrets.DROPLET_HOST}}
+          host: ${{secrets.DOKKU_HOST}}
           username: ${{secrets.DOKKU_SSH_USER}}
           key: "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}"
           script: |
