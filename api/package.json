@@ -2,13 +2,13 @@
 	"scripts": {
 		"dev": "prisma migrate dev && ts-node-dev -r tsconfig-paths/register src/index.ts & prisma studio",
 		"build": "rm -rf build && prisma generate && tsc -p tsconfig.json",
-		"start": "prisma generate && node ./build/index.js",
+		"start": "prisma generate && node ./build/src/index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"_moduleAliases": {
-		"@Utils": "build/utils",
-		"@Libs": "build/libs",
-		"@v1": "build/v1"
+		"@Utils": "build/src/utils",
+		"@Libs": "build/src/libs",
+		"@v1": "build/src/v1"
 	},
 	"prisma": {
 		"seed": "ts-node prisma/seed.ts"

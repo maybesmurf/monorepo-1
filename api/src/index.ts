@@ -1,5 +1,13 @@
-// Sentry
-import Sentry, { initSentry } from "@Libs/sentry"
+import moduleAlias from "module-alias"
+
+if (process.env.ENVIRONMENT !== "development") {
+	moduleAlias.addAliases({
+		"@Libs": __dirname + "/libs",
+		"@Types": __dirname + "/types",
+		"@Utils": __dirname + "/utils"
+	})
+}
+
 import { errorHandler, ResponseError } from "@Utils/errorHandlers"
 import { getRandomValueFromArray } from "@Utils/randomFromArray"
 import cors from "cors"
@@ -8,6 +16,7 @@ import v1 from "./v1"
 const app = express()
 const PORT = 5000
 
+import Sentry, { initSentry } from "@Libs/sentry"
 initSentry()
 
 // Firebase
