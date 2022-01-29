@@ -6,7 +6,7 @@ RUN npm ci
 
 FROM node:16-alpine AS builder
 WORKDIR /app
-COPY . ./
+COPY ./ ./
 COPY --from=deps /app/node_modules ./node_modules
 
 ARG SENTRY_AUTH_TOKEN
@@ -18,7 +18,7 @@ ENV NEXT_PUBLIC_TEST ${NEXT_PUBLIC_TEST}
 ARG NEXT_PUBLIC_API_PATH
 ENV NEXT_PUBLIC_API_PATH ${NEXT_PUBLIC_API_PATH}
 
-RUN npm run build && npm ci --only=production
+RUN npm run build
 
 FROM node:16-alpine AS runner
 WORKDIR /app
@@ -32,7 +32,7 @@ COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/package*.json ./package.json
 
 # COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 # COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
