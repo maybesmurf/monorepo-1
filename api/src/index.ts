@@ -3,7 +3,7 @@ import moduleAlias from "module-alias"
 if (process.env.ENVIRONMENT !== "development") {
 	moduleAlias.addAliases({
 		"@Libs": __dirname + "/libs",
-		"@Types": __dirname + "/types",
+		"@v1": __dirname + "/v1",
 		"@Utils": __dirname + "/utils"
 	})
 }
@@ -12,7 +12,7 @@ import { errorHandler, ResponseError } from "@Utils/errorHandlers"
 import { getRandomValueFromArray } from "@Utils/randomFromArray"
 import cors from "cors"
 import express from "express"
-import v1 from "./v1"
+import v1 from "@v1/index"
 const app = express()
 const PORT = 5000
 
