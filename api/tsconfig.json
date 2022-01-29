@@ -1,7 +1,7 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-		"outDir": "dist",
+		"outDir": "build",
 		"baseUrl": "./src",
 		"module": "commonjs",
 		"target": "es2015",
