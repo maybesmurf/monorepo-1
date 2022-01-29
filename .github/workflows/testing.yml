@@ -32,8 +32,11 @@ jobs:
           push: true
           tags: ghcr.io/${{github.repository}}/web:test-${{github.sha}}
           build-args: |
+            ENVIRONMENT=testing
             SENTRY_AUTH_TOKEN=${{secrets.SENTRY_AUTH_TOKEN}}
-            NEXT_PUBLIC_TEST=${{secrets.NEXT_PUBLIC_TEST}}
+            SENTRY_DSN=${{secrets.SENTRY_DSN}}
+            NEXT_PUBLIC_ENVIRONMENT=testing
+            NEXT_PUBLIC_SENTRY_DSN=${{secrets.SENTRY_DSN}}
             NEXT_PUBLIC_API_PATH=${{secrets.NEXT_PUBLIC_API_PATH}}
           # NEXT_PUBLIC_GOOGLE_ANALYTICS=${{secrets.CI_NEXT_PUBLIC_GOOGLE_ANALYTICS}}
           # NEXT_PUBLIC_API_KEY=${{secrets.CI_NEXT_PUBLIC_API_KEY}}
