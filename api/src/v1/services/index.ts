@@ -18,9 +18,7 @@ export default class DogService implements CrudInterface<Dog> {
 
 	list({ where, skip, take }: ListParams<Dog>): Promise<Dog[]> {
 		const { sex, ...rest } = where
-
 		const newWhere = { sex: sex?.toUpperCase() as DogSex, ...rest }
-
 		return prisma.dog.findMany({ where: newWhere, skip, take })
 	}
 
