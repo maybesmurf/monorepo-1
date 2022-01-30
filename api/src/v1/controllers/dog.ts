@@ -32,11 +32,7 @@ const listDogs: RequestHandler<{}, any, any, { skip?: string; take?: string; sex
 	const { skip, take, ...where } = setPagerDefaults(req.query, 0, 10)
 
 	const dogs = await dogService.list({ where, skip, take })
-	if (dogs.length) {
-		return res.status(200).json(dogs)
-	}
-
-	throw new ResponseError("No dogs found", { statusCode: 404 })
+	return res.status(200).json(dogs)
 }
 
 const createNewDog: RequestHandler = async (req, res, next) => {
