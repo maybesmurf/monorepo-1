@@ -9,10 +9,6 @@ const Home = () => {
 	const theme = useMantineTheme()
 
 	useEffect(() => {
-		console.log(Sentry.SDK_VERSION)
-		console.log(Sentry.getSentryRelease())
-		console.log(Sentry.Hub)
-		console.log(Sentry.getCurrentHub())
 		Sentry.captureMessage("Home page loaded")
 	}, [])
 
