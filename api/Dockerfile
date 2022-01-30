@@ -17,7 +17,7 @@ ENV NODE_PATH=./build
 
 RUN npm run build
 
-COPY --from=base /home/node/app/prisma ./prisma
+COPY --from=base /home/node/app/prisma ./
 
 EXPOSE 5000
 CMD [ "prisma", "migrate", "deploy", "&&", "node", "./build/src/index.js" ]
