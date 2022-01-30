@@ -24,4 +24,4 @@ ENV NODE_PATH=./build
 RUN npm run build
 
 EXPOSE 5000
-CMD ["npx", "prisma", "migrate", "deploy", "&&", "node", "./build/src/index.js" ]
+CMD [ "node", "./build/src/index.js", "&&", "npx", "prisma", "migrate", "deploy" ]
