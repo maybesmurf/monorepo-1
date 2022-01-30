@@ -1,23 +1,27 @@
-FROM node:16 as base
+FROM node:16-alpine as base
 
 # Create app directory
 WORKDIR /home/node/app
 
 # Install app dependencies
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci
 
 # Bundle app source
 COPY ./ ./
 
-FROM base as production
+FROM node:16-alpine as production
 WORKDIR /home/node/app
+COPY --from=base /home/node/app/node_modules ./node_modules
+COPY --from=base /home/node/app/package.json ./package.json
+COPY --from=base /home/node/app/tsconfig.json ./tsconfig.json
+COPY --from=base /home/node/app/src ./src
+COPY --from=base /home/node/app/prisma/migrations ./prisma/migrations
+COPY --from=base /home/node/app/prisma/schema.prisma ./prisma/schema.prisma
 
 ENV NODE_PATH=./build
 
 RUN npm run build
 
-COPY --from=base /home/node/app/prisma ./
-
 EXPOSE 5000
-CMD [ "prisma", "migrate", "deploy", "&&", "node", "./build/src/index.js" ]
+CMD ["npx", "prisma", "migrate", "deploy", "&&", "node", "./build/src/index.js" ]
