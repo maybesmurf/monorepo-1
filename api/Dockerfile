@@ -11,12 +11,13 @@ RUN npm ci --only=production
 COPY ./ ./
 
 FROM base as production
+WORKDIR /home/node/app
 
 ENV NODE_PATH=./build
 
 RUN npm run build
 
-COPY --from=base /app/prisma ./prisma
+COPY --from=base /home/node/app/prisma ./prisma
 
 EXPOSE 5000
 CMD [ "prisma", "migrate", "deploy", "&&", "node", "./build/src/index.js" ]
