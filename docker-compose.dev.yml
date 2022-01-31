@@ -86,13 +86,14 @@ services:
       - api
     build:
       context: ./api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.jest
     volumes:
-      - ./api/build:/home/node/app/build
-      - ./api/package.json:/home/node/app/package.json
-      - ./api/jest.config.js:/home/node/app/jest.config.js
-      - ./api/tsconfig.json:/home/node/app/tsconfig.json
-      - ./api/babel.config.js:/home/node/app/babel.config.js
+      - ./api/src:/app/frontend/src
+      - ./api/package.json:/app/frontend/package.json
+      - ./api/jest.config.js:/app/frontend/jest.config.js
+      - ./api/tsconfig.json:/app/frontend/tsconfig.json
+      - ./api/babel.config.js:/app/frontend/babel.config.js
+      - ./.git:/app/.git
     environment:
       - ENVIRONMENT=development
       - POSTGRES_USER=devUser
@@ -106,6 +107,8 @@ services:
       - SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
       - SENTRY_DSN=${SENTRY_DSN}
     command: npm run test
+    tty: true
+    stdin_open: false
 
   web:
     container_name: web

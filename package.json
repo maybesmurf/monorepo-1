@@ -9,7 +9,8 @@
     "dev:down": "docker-compose -f docker-compose.dev.yml down",
     "dev:seed": "TODO",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "jest-logs": "docker logs --follow --tail 100 api-jest"
   },
   "devDependencies": {
     "cypress": "^9.3.1"

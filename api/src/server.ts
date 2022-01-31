@@ -33,7 +33,7 @@ app.use("/v1", v1)
 
 // Ping the server
 app.get("/", async (req, res) => {
-	return res.status(200).json({ message: "Thjdfasdfasfsdahkfklhja;f" })
+	return res.status(200).json({ message: "Go, dog, go." })
 })
 
 // Force an error
