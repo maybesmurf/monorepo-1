@@ -1,4 +1,4 @@
-function makeModuleNameMapper(srcPath, tsconfigPath) {
+const makeModuleNameMapper = (srcPath, tsconfigPath) => {
 	const { paths } = require(tsconfigPath).compilerOptions
 
 	const aliases = {}
@@ -9,8 +9,6 @@ function makeModuleNameMapper(srcPath, tsconfigPath) {
 		const path = paths[item][0].replace("/*", "/$1")
 		aliases[key] = "<rootDir>" + srcPath + "/" + path
 	})
-
-	console.log(aliases)
 
 	return aliases
 }

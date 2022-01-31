@@ -24,7 +24,7 @@ const MantineTesting: NextPage = () => {
 
 	return (
 		<div>
-			{/* <Title>All Dogs</Title>
+			<Title>All Dogs</Title>
 			<Table>
 				<thead>
 					<tr>
@@ -35,14 +35,14 @@ const MantineTesting: NextPage = () => {
 					</tr>
 				</thead>
 				<tbody>{rows}</tbody>
-			</Table> */}
+			</Table>
 
-			<Stepper active={active} styles={{ step: { flexDirection: "column" } }}>
+			{/* <Stepper active={active} styles={{ step: { flexDirection: "column" } }}>
 				<Stepper.Step label="Fist step">Step 1 content: Create an account</Stepper.Step>
 				<Stepper.Step label="Second step">Step 2 content: Verify email</Stepper.Step>
 				<Stepper.Step label="Final step">Step 3 content: Get full access</Stepper.Step>
 				<Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
-			</Stepper>
+			</Stepper> */}
 		</div>
 	)
 }

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "Anthony Shew",
   "scripts": {
-    "dev": "docker-compose -f docker-compose.dev.yml up -d && npm run dev -C ./api",
+    "dev": "docker-compose -f docker-compose.dev.yml up -d",
     "dev:with-logs": "docker-compose -f docker-compose.dev.yml up",
     "dev:build": "docker-compose -f docker-compose.dev.yml up --build",
     "dev:down": "docker-compose -f docker-compose.dev.yml down",
