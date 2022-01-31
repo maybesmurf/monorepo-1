@@ -16,7 +16,7 @@ function makeModuleNameMapper(srcPath, tsconfigPath) {
 }
 
 const TS_CONFIG_PATH = "./tsconfig.json"
-const SRC_PATH = "/src"
+const SRC_PATH = "./src"
 
 module.exports = {
 	testEnvironment: "node",
