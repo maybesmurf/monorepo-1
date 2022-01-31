@@ -20,7 +20,7 @@ const SRC_PATH = "./src"
 
 module.exports = {
 	testEnvironment: "node",
-	coveragePathIgnorePatterns: ["/node_modules/"],
+	coveragePathIgnorePatterns: ["./node_modules/"],
 	roots: [SRC_PATH],
 	transform: {
 		"^.+\\.ts?$": "ts-jest"

@@ -3,13 +3,13 @@ dotenv.config()
 
 import moduleAlias from "module-alias"
 
-if (process.env.ENVIRONMENT !== "development") {
-	moduleAlias.addAliases({
-		"@Libs": __dirname + "/libs",
-		"@v1": __dirname + "/v1",
-		"@Utils": __dirname + "/utils"
-	})
-}
+// if (process.env.ENVIRONMENT !== "development") {
+moduleAlias.addAliases({
+	"@Libs": __dirname + "/libs",
+	"@v1": __dirname + "/v1",
+	"@Utils": __dirname + "/utils"
+})
+// }
 
 import { errorHandler, ResponseError } from "@Utils/errorHandlers"
 import cors from "cors"
@@ -33,7 +33,7 @@ app.use("/v1", v1)
 
 // Ping the server
 app.get("/", async (req, res) => {
-	return res.status(200).json({ message: "Go, dog, go." })
+	return res.status(200).json({ message: "Go, dog, goooooooo." })
 })
 
 // Force an error

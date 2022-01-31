@@ -1,12 +1,10 @@
 {
-	"compileOnSave": false,
 	"compilerOptions": {
 		"outDir": "build",
 		"baseUrl": "./src",
 		"module": "commonjs",
 		"target": "es2015",
 		"lib": ["es2017"],
-		"sourceMap": true,
 		"strictNullChecks": true,
 		"noImplicitAny": false,
 		"preserveConstEnums": true,
@@ -14,11 +12,13 @@
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": true,
 		"esModuleInterop": true,
+		"incremental": true,
 		"paths": {
 			"@Utils/*": ["./utils/*"],
 			"@Libs/*": ["./libs/*"],
 			"@v1/*": ["./v1/*"]
 		}
 	},
-	"exclude": ["../node_modules"]
+	"include": ["**/*.ts", "**/*.js"],
+	"exclude": ["node_modules"]
 }

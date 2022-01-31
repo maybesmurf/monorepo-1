@@ -1,3 +1,4 @@
+# This actually works but I would love to do it the multi-stage way as seen below...
 FROM node:16-alpine as base
 
 # Create app directory
@@ -17,7 +18,6 @@ RUN npm run build
 EXPOSE 5000
 CMD [ "node", "./build/src/index.js", "&&", "npx", "prisma", "migrate", "deploy" ]
 
-## This actually works but I would love to do it the multi-stage way as seen below...
 
 # FROM node:16-alpine as production
 

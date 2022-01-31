@@ -38,32 +38,32 @@ services:
       - ./firebase/seed:/src/firebase/seed
     command: firebase emulators:start --project dev
 
-  api:
-    container_name: api
-    depends_on:
-      - postgres
-      - firebase-emulators
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    ports:
-      - 5000:5000
-      - 5555:5555
-    volumes:
-      - ./api:/home/node/app
-    environment:
-      - ENVIRONMENT=development
-      - POSTGRES_USER=devUser
-      - POSTGRES_PASSWORD=woofbark
-      - POSTGRES_DB=prisma
-      - DATABASE_URL=postgres://devUser:woofbark@postgres:5432/prisma?schema=prisma
-      - PGADMIN_DEFAULT_EMAIL=dev@example.com
-      - PGADMIN_DEFAULT_PASSWORD=pgadmin
-      - FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001
-      - FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002
-      - SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
-      - SENTRY_DSN=${SENTRY_DSN}
-    command: npm run dev
+  # api:
+  #   container_name: api
+  #   depends_on:
+  #     - postgres
+  #     - firebase-emulators
+  #   build:
+  #     context: ./api
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 5000:5000
+  #     - 5555:5555
+  #   volumes:
+  #     - ./api:/home/node/app
+  #   environment:
+  #     - ENVIRONMENT=development
+  #     - POSTGRES_USER=devUser
+  #     - POSTGRES_PASSWORD=woofbark
+  #     - POSTGRES_DB=prisma
+  #     - DATABASE_URL=postgres://devUser:woofbark@postgres:5432/prisma?schema=prisma
+  #     - PGADMIN_DEFAULT_EMAIL=dev@example.com
+  #     - PGADMIN_DEFAULT_PASSWORD=pgadmin
+  #     - FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001
+  #     - FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002
+  #     - SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+  #     - SENTRY_DSN=${SENTRY_DSN}
+  #   command: npm run dev
 
   web:
     container_name: web
