@@ -5,7 +5,9 @@
 		"dev": "prisma migrate dev && prisma studio & nodemon -w build --exec npm run dev:start",
 		"dev:start": "node ./build/src/index.js",
 		"start": "node ./build/src/index.js && prisma migrate deploy",
-		"test": "jest --watchAll",
+		"test": "jest --watchAll --no-cache",
+		"test:clear-cache": "jest --clearCache",
+		"test:show-config": "jest --showConfig",
 		"ci:test": "jest"
 	},
 	"_moduleAliases": {
