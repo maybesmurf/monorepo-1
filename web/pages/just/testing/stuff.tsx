@@ -1,12 +1,10 @@
 import type { NextPage } from "next"
 import { useQuery } from "react-query"
 import fetch from "@Utils/fetch"
-import { useState } from "react"
-import { Title, Table, Stepper } from "@mantine/core"
-import { Calendar, DatePicker } from "@mantine/dates"
+import { Title, Table } from "@mantine/core"
+import { DatePicker } from "@mantine/dates"
 
 const MantineTesting: NextPage = () => {
-	const [active, setActive] = useState(1)
 	const { data, isLoading, error } = useQuery<Dog[]>("all-dogs", () => fetch.get("/v1/dogs"))
 
 	if (error) return <p>Error: {error}</p>
@@ -25,7 +23,7 @@ const MantineTesting: NextPage = () => {
 
 	return (
 		<div>
-			{/* <Title>All Dogs</Title>
+			<Title>All Dogs</Title>
 			<Table>
 				<thead>
 					<tr>
@@ -36,9 +34,9 @@ const MantineTesting: NextPage = () => {
 					</tr>
 				</thead>
 				<tbody>{rows}</tbody>
-			</Table> */}
+			</Table>
 
-			<Calendar size="xl" />
+			<DatePicker size="xl" />
 		</div>
 	)
 }
