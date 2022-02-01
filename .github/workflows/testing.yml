@@ -11,18 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        working-directory: /api
-        run: npm install
+        run: cd api && npm ci --no-audit --prefer-offline
       - name: Run unit tests
-        working-directory: /api
-        run: npm run ci:test
+        run: cd && npm run ci:test
 
   build:
     needs: unit-tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
