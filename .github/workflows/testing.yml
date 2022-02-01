@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies
         run: cd api && npm ci --no-audit --prefer-offline
       - name: Run unit tests
-        run: cd && npm run ci:test
+        run: cd api && npm run ci:test
 
   build:
     needs: unit-tests
