@@ -1,5 +1,5 @@
 // @ts-ignore
-import { prisma } from "@Libs/prisma"
+import { prisma, Dog } from "@Libs/prisma"
 import DogController from "@v1/controllers/dog"
 import express from "express"
 const router = express.Router()
@@ -8,7 +8,22 @@ const router = express.Router()
 // Send the client's request to the correct route (AKA the actual routing)
 // Perform authentication checks using authentication middleware
 
-// Write a new row
+export const buildDog = (dogOverrides: Dog) => ({
+	name: "whatever initial name",
+	age: 13,
+	...dogOverrides
+})
+
+const dogArr = [
+	buildDog({
+		name: "dog1",
+		age: 13
+	}),
+	buildDog({
+		name: "dog2",
+		age: 14
+	})
+]
 
 router.get("/:dogId", DogController.getDog)
 router.get("/", DogController.listDogs)

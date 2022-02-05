@@ -1,9 +1,12 @@
 import type { ParamsDictionary } from "express-serve-static-core"
 
+type SortOrder = "asc" | "desc"
+
 export interface ListParams<T> {
 	where: Partial<T>
 	skip: number
 	take: number
+	orderBy?: Record<string, SortOrder>
 }
 
 export default interface Service<T> {

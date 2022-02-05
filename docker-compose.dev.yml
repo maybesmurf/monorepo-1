@@ -91,6 +91,7 @@ services:
       - ./api/src:/app/frontend/src
       - ./api/package.json:/app/frontend/package.json
       - ./api/jest.config.js:/app/frontend/jest.config.js
+      - ./api/.jest:/app/frontend/.jest
       - ./api/tsconfig.json:/app/frontend/tsconfig.json
       - ./api/babel.config.js:/app/frontend/babel.config.js
       - ./.git:/app/.git

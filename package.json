@@ -4,10 +4,12 @@
   "author": "Anthony Shew",
   "scripts": {
     "dev": "docker-compose -f docker-compose.dev.yml up -d",
-    "dev:with-jest": "docker-compose -f docker-compose.dev.yml up -d && docker exec -it api-jest npm run test ",
+    "dev:with-jest": "docker-compose -f docker-compose.dev.yml up -d && docker exec -it api-jest npm run test",
     "dev:with-logs": "docker-compose -f docker-compose.dev.yml up",
     "dev:build": "docker-compose -f docker-compose.dev.yml up --build",
+    "dev:build:with-jest": "docker-compose -f docker-compose.dev.yml up --build  -d && docker exec -it api-jest npm run test",
     "dev:down": "docker-compose -f docker-compose.dev.yml down",
+    "dev:stop": "docker-compose -f docker-compose.dev.yml stop",
     "dev:seed": "TODO",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",

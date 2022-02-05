@@ -14,9 +14,11 @@
 		"esModuleInterop": true,
 		"incremental": true,
 		"paths": {
+			"@Root/*": ["./*"],
 			"@Utils/*": ["./utils/*"],
 			"@Libs/*": ["./libs/*"],
-			"@v1/*": ["./v1/*"]
+			"@v1/*": ["./v1/*"],
+			"@Jest/*": ["./.jest/*"]
 		}
 	},
 	"include": ["**/*.ts", "**/*.js"],

@@ -36,7 +36,7 @@ const MantineTesting: NextPage = () => {
 				<tbody>{rows}</tbody>
 			</Table>
 
-			<DatePicker size="xl" />
+			<DatePicker size="xs" />
 		</div>
 	)
 }

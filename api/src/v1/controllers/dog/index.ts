@@ -2,7 +2,7 @@ import { Dog, DogSex } from "@prisma/client"
 import { ResponseError } from "@Utils/errorHandlers"
 import { setPagerDefaults } from "@Utils/setPagerDefaults"
 import { RequestHandler } from "express"
-import DogService from "../services/index"
+import DogService from "../../services/dog/index"
 
 // Things you would do in a controller:
 // Create response payloads (for instance, getting rid of unnecessary values)

@@ -20,6 +20,7 @@ module.exports = {
 	testEnvironment: "node",
 	coveragePathIgnorePatterns: ["./node_modules/"],
 	roots: [SRC_PATH],
+	clearMocks: true,
 	transform: {
 		"^.+\\.ts?$": "ts-jest"
 	},

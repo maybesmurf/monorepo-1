@@ -1,5 +1,3 @@
-import { useEffect } from "react"
-import * as Sentry from "@sentry/nextjs"
 import { Title, Header, Text, Container, useMantineTheme } from "@mantine/core"
 import Image from "next/image"
 
@@ -7,10 +5,6 @@ import { Blob } from "./Blob"
 
 const Home = () => {
 	const theme = useMantineTheme()
-
-	useEffect(() => {
-		Sentry.captureMessage("Home page loaded")
-	}, [])
 
 	return (
 		<div style={{ minHeight: "100vh" }}>

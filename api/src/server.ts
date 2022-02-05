@@ -3,13 +3,12 @@ dotenv.config()
 
 import moduleAlias from "module-alias"
 
-// if (process.env.ENVIRONMENT !== "development") {
 moduleAlias.addAliases({
+	"@Root": __dirname + "/",
 	"@Libs": __dirname + "/libs",
 	"@v1": __dirname + "/v1",
 	"@Utils": __dirname + "/utils"
 })
-// }
 
 import { errorHandler, ResponseError } from "@Utils/errorHandlers"
 import cors from "cors"
