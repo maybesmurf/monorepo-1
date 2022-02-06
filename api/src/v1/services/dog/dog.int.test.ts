@@ -13,16 +13,17 @@ describe("Dog Services", () => {
 	const dog3 = buildDog({ id: faker.datatype.uuid(), callName: "DDD" })
 	const dog4 = buildDog({ id: faker.datatype.uuid(), callName: "CCC" })
 
+	const createDog = buildDog()
+
 	const dogToUpdate = dog1
 	const { id: dogId } = dog1
 
 	beforeEach(async () => {
-		await prisma.dog.deleteMany({})
 		await prisma.dog.createMany({ data: [dog1, dog2, dog3, dog4] })
 	})
 
 	afterEach(async () => {
-		await prisma.dog.deleteMany({})
+		await prisma.dog.deleteMany({ where: { id: { in: [dog1.id, dog2.id, dog3.id, dog4.id, createDog.id] } } })
 	})
 
 	describe("v1", () => {
@@ -42,9 +43,8 @@ describe("Dog Services", () => {
 		})
 
 		it("creates a dog", async () => {
-			const dog = buildDog()
-			const result = await dogService.create(dog)
-			expect(result).toEqual(dog)
+			const result = await dogService.create(createDog)
+			expect(result).toEqual(createDog)
 		})
 
 		it("delete a dog", async () => {

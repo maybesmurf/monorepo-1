@@ -5,6 +5,8 @@ import trials from "./routes/trials"
 import users from "./routes/users"
 const router = express.Router()
 
+router.use(express.json())
+
 router.use("/clubs", clubs)
 router.use("/dogs", dogs)
 router.use("/trials", trials)

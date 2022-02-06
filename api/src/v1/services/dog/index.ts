@@ -1,9 +1,8 @@
 // @ts-ignore
-import faker from "@faker-js/faker"
 import { prisma } from "@Libs/prisma"
 import { Dog, DogSex } from "@prisma/client"
 import CrudInterface, { ListParams } from "@Utils/crudInterface"
-import { getRandomValueFromArray } from "@Utils/randomFromArray"
+import { ResponseError } from "@Utils/errorHandlers"
 
 // Things you do in a service:
 // Query your database
@@ -13,7 +12,12 @@ import { getRandomValueFromArray } from "@Utils/randomFromArray"
 
 export default class DogService implements CrudInterface<Dog> {
 	get(params: { dogId: string }): Promise<Dog | null> {
-		return prisma.dog.findUnique({ where: { id: params.dogId } })
+		const { dogId } = params
+		if (!dogId) throw new ResponseError("Dog ID is required", { statusCode: 400 })
+
+		const result = prisma.dog.findUnique({ where: { id: dogId } })
+		if (!result) throw new ResponseError("Dog not found", { statusCode: 404 })
+		return result
 	}
 
 	list({ where, skip, take, orderBy }: ListParams<Dog>): Promise<Dog[]> {
@@ -34,7 +38,6 @@ export default class DogService implements CrudInterface<Dog> {
 
 	update(params: Dog): Promise<Dog | null> {
 		const { id, ...dog } = params
-
 		return prisma.dog.update({ where: { id }, data: dog })
 	}
 }

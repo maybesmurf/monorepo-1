@@ -10,12 +10,15 @@
     "dev:build:with-jest": "docker-compose -f docker-compose.dev.yml up --build  -d && docker exec -it api-jest npm run test",
     "dev:down": "docker-compose -f docker-compose.dev.yml down",
     "dev:stop": "docker-compose -f docker-compose.dev.yml stop",
-    "dev:seed": "TODO",
+    "dev:seed": "cross-env DATABASE_URL=postgres://devUser:woofbark@localhost:5432/prisma?schema=prisma ts-node ./api/prisma/seed.ts",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "jest-logs": "docker logs --follow --tail 100 api-jest"
   },
   "devDependencies": {
-    "cypress": "^9.3.1"
+    "cross-env": "^7.0.3",
+    "cypress": "^9.3.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
   }
 }

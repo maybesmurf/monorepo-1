@@ -14,14 +14,8 @@ const dogService = new DogService()
 
 const getDog: RequestHandler = async (req, res, next) => {
 	const { dogId } = req.params
-
 	const dog = await dogService.get({ dogId })
-	if (dog) {
-		const { callName } = dog
-		return res.status(200).json({ callName })
-	}
-
-	throw new ResponseError("Dog not found", { statusCode: 404 })
+	return res.status(200).json(dog)
 }
 
 const listDogs: RequestHandler<{}, any, any, { skip?: string; take?: string; sex: DogSex }> = async (
@@ -36,7 +30,8 @@ const listDogs: RequestHandler<{}, any, any, { skip?: string; take?: string; sex
 }
 
 const createNewDog: RequestHandler = async (req, res, next) => {
-	const dogs = await dogService.create({} as Dog)
+	console.log("yes hello")
+	const dogs = await dogService.create(req.body)
 	return res.status(200).json(dogs)
 }
 
@@ -48,6 +43,7 @@ const deleteDog: RequestHandler = async (req, res, next) => {
 		return res.status(200).json(dog)
 	}
 
+	// Should be moved to service
 	throw new ResponseError("Dog not found", { statusCode: 404 })
 }
 
