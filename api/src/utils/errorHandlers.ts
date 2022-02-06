@@ -1,3 +1,5 @@
+import { NextFunction, Request, Response } from "express"
+
 export class ResponseError extends Error {
 	constructor(message: string, public readonly responseInfo: { statusCode: number; info?: any }) {
 		super(message)
@@ -6,7 +8,7 @@ export class ResponseError extends Error {
 
 // This handler does not need to include Sentry.
 // Sentry's error handling has been accounted for in the application's index.
-export const errorHandler = (err: any, req: any, res: any, next: any) => {
+export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
 	console.error(err)
 
 	if (err instanceof ResponseError) {
