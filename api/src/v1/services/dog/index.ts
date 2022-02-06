@@ -27,8 +27,10 @@ export default class DogService implements CrudInterface<Dog> {
 	}
 
 	create(dog: Dog): Promise<Dog> {
+		const birthdate = dog.birthdate ? new Date(dog.birthdate) : null
+
 		return prisma.dog.create({
-			data: dog
+			data: { ...dog, birthdate }
 		})
 	}
 

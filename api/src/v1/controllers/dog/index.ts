@@ -30,7 +30,6 @@ const listDogs: RequestHandler<{}, any, any, { skip?: string; take?: string; sex
 }
 
 const createNewDog: RequestHandler = async (req, res, next) => {
-	console.log("yes hello")
 	const dogs = await dogService.create(req.body)
 	return res.status(200).json(dogs)
 }
