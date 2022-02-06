@@ -88,12 +88,12 @@ services:
       context: ./api
       dockerfile: Dockerfile.jest
     volumes:
-      - ./api/src:/app/frontend/src
-      - ./api/package.json:/app/frontend/package.json
-      - ./api/jest.config.js:/app/frontend/jest.config.js
-      - ./api/.jest:/app/frontend/.jest
-      - ./api/tsconfig.json:/app/frontend/tsconfig.json
-      - ./api/babel.config.js:/app/frontend/babel.config.js
+      - ./api/src:/src/src
+      - ./api/package.json:/src/package.json
+      - ./api/jest.config.js:/src/jest.config.js
+      - ./api/.jest:/src/.jest
+      - ./api/tsconfig.json:/src/tsconfig.json
+      - ./api/babel.config.js:/src/babel.config.js
       - ./.git:/app/.git
     environment:
       - ENVIRONMENT=development
