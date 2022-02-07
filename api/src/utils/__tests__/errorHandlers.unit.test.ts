@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express"
 import { errorHandler, ResponseError } from "../errorHandlers"
 
 describe("errorHandler", () => {
-	it("responds with ok equal to false", () => {
+	it("sends error for ResponseErrors", () => {
 		const mockResponse: Partial<Response> = {
 			json: jest.fn(),
 			status: jest.fn().mockReturnThis()
@@ -18,10 +18,23 @@ describe("errorHandler", () => {
 
 		expect(mockResponse.status).toHaveBeenCalledWith(500)
 		expect(mockResponse.json).toHaveBeenCalledWith({
-			ok: false,
 			error: "some test error",
 			errorInfo: "some testing info"
 		})
+		expect(nextFunction).not.toHaveBeenCalled()
+	})
+
+	it("sends error for other errors", () => {
+		const mockResponse: Partial<Response> = {
+			json: jest.fn(),
+			status: jest.fn().mockReturnThis()
+		}
+		const nextFunction: NextFunction = jest.fn()
+
+		errorHandler(new Error("some test error"), {} as Request, mockResponse as Response, nextFunction)
+
+		expect(mockResponse.status).toHaveBeenCalledWith(500)
+		expect(mockResponse.json).toHaveBeenCalledWith({ error: "some test error" })
 		expect(nextFunction).not.toHaveBeenCalled()
 	})
 })

@@ -14,62 +14,99 @@ describe("Dog Services", () => {
 	const dog3 = buildDog({ id: faker.datatype.uuid(), callName: "DDD", sex: "FEMALE" })
 	const dog4 = buildDog({ id: faker.datatype.uuid(), callName: "CCC" })
 
-	const createDog = buildDog()
+	const createdDog = buildDog()
+	const createdDogWithoutBirthdate = buildDog({ birthdate: null })
 
 	const dogToUpdate = dog1
 	const { id: dogId } = dog1
 
 	beforeEach(async () => {
-		// This is weird, why do I have to do this deleteMany?
-		await prisma.dog.deleteMany({ where: { id: { in: [dog1.id, dog2.id, dog3.id, dog4.id, createDog.id] } } })
-		await prisma.dog.createMany({ data: [dog1, dog2, dog3, dog4] })
-	})
+		const deleted = await prisma.dog.deleteMany({
+			where: { id: { in: [dog1.id, dog2.id, dog3.id, dog4.id] } }
+		})
 
-	afterEach(async () => {
-		await prisma.dog.deleteMany({ where: { id: { in: [dog1.id, dog2.id, dog3.id, dog4.id, createDog.id] } } })
+		let deletedCreated = false
+
+		try {
+			await prisma.dog.delete({ where: { id: createdDog.id } })
+			await prisma.dog.delete({ where: { id: createdDogWithoutBirthdate.id } })
+			deletedCreated = true
+		} catch {
+			deletedCreated = true
+		}
+
+		if (deleted && deletedCreated) {
+			await prisma.dog.createMany({ data: [dog1, dog2, dog3, dog4] })
+		}
 	})
 
 	describe("v1", () => {
-		it("get a dog", async () => {
-			const dogResult = await dogService.get({ dogId: dogId })
-			expect(dogResult).toEqual(dog1)
+		describe("get", () => {
+			it("get a dog", async () => {
+				const dogResult = await dogService.get({ dogId: dogId })
+				expect(dogResult).toEqual(dog1)
+			})
+
+			it("throws with no dogId", async () => {
+				expect(dogService.get).rejects.toThrow("Dog ID is required")
+			})
+
+			it("throws when no dog found", async () => {
+				expect(async () => await dogService.get({ dogId: "123" })).rejects.toThrow("Dog not found")
+			})
 		})
 
-		it("list only female dogs", async () => {
-			const listResult = await dogService.list({ where: { sex: "FEMALE" }, skip: 0, take: 10 })
-			expect(listResult).toEqual(expect.arrayContaining([dog2, dog3]))
+		describe("list", () => {
+			it("list only female dogs", async () => {
+				const listResult = await dogService.list({ where: { sex: "FEMALE" }, skip: 0, take: 10 })
+				expect(listResult).toEqual(expect.arrayContaining([dog2, dog3]))
+			})
+
+			it("sort dogs by call name", async () => {
+				const listResult = await dogService.list({ where: {}, skip: 0, take: 10, orderBy: { callName: "asc" } })
+
+				// Filter to only test dogs
+				const filteredResult = listResult.filter(
+					(dog) => dog.id === dog1.id || dog.id === dog2.id || dog.id === dog3.id || dog.id === dog4.id
+				)
+
+				// Pare down to just the call names for comparison
+				const resultCallNames = filteredResult.map((dog) => dog.callName)
+				const testCallNames = [dog1, dog2, dog3, dog4].map((dog) => dog.callName).sort()
+
+				expect(resultCallNames).toEqual(testCallNames)
+			})
 		})
 
-		it("sort dogs by call name", async () => {
-			const listResult = await dogService.list({ where: {}, skip: 0, take: 10, orderBy: { callName: "asc" } })
+		describe("create", () => {
+			it("a dog", async () => {
+				const result = await dogService.create(createdDog)
+				expect(result).toEqual(createdDog)
+			})
 
-			// Filter to only test dogs
-			const filteredResult = listResult.filter(
-				(dog) => dog.id === dog1.id || dog.id === dog2.id || dog.id === dog3.id || dog.id === dog4.id
-			)
-
-			// Pare down to just the call names for comparison
-			const resultCallNames = filteredResult.map((dog) => dog.callName)
-			const testCallNames = [dog1, dog2, dog3, dog4].map((dog) => dog.callName).sort()
-
-			expect(resultCallNames).toEqual(testCallNames)
+			it("a dog without a birthdate", async () => {
+				const result = await dogService.create(createdDogWithoutBirthdate)
+				expect(result).toEqual(createdDogWithoutBirthdate)
+			})
 		})
 
-		it("creates a dog", async () => {
-			const result = await dogService.create(createDog)
-			expect(result).toEqual(createDog)
+		describe("delete", () => {
+			it("a dog", async () => {
+				await dogService.delete({ dogId })
+				expect(async () => await dogService.get({ dogId })).rejects.toThrow("Dog not found")
+			})
 		})
 
-		it("delete a dog", async () => {
-			await dogService.delete({ dogId })
-			const result = await dogService.get({ dogId })
-			expect(result).toEqual(null)
-		})
+		describe("update", () => {
+			it("a dog", async () => {
+				await dogService.update({ ...dogToUpdate, callName: "ZZZ" })
+				const result = await dogService.get({ dogId: dogToUpdate.id })
+				expect(result).toHaveProperty("callName", "ZZZ")
+			})
 
-		it("update a dog", async () => {
-			await dogService.update({ ...dogToUpdate, callName: "ZZZ" })
-			const result = await dogService.get({ dogId: dogToUpdate.id })
-			expect(result).toHaveProperty("callName", "ZZZ")
+			it("throws with no id", async () => {
+				expect(dogService.update).rejects.toThrow("Dog ID is required")
+			})
 		})
 	})
 })

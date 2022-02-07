@@ -15,8 +15,6 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
 		const { responseInfo, message } = err
 		const { statusCode, info } = responseInfo
 		return res.status(statusCode).json({
-			// ok: false is required for the front-end to know that the response is an error!
-			ok: false,
 			error: message,
 			errorInfo: info
 		})
