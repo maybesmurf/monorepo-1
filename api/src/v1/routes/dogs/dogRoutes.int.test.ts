@@ -17,17 +17,17 @@ describe("Dogs routes", () => {
 		})
 	})
 
-	it("should return 404 when no dog found", async () => {
-		const response = await supertest(app).get("/v1/dogs/notadog")
-		expect(response.status).toEqual(404)
-		expect(response.body).toEqual({
-			error: "Dog not found"
+	describe("GET /", () => {
+		it("should return 404 when not dog found", async () => {
+			const response = await supertest(app).get("/v1/dogs/notadog")
+			expect(response.status).toEqual(404)
+			expect(response.body).toHaveProperty("error", "Dog not found")
 		})
-	})
 
-	it("should return dog when found", async () => {
-		const response = await supertest(app).get("/v1/dogs/123")
-		expect(response.status).toEqual(200)
-		expect(response.body).toHaveProperty("callName", "Fido")
+		it("should return dog when found", async () => {
+			const response = await supertest(app).get("/v1/dogs/123")
+			expect(response.status).toEqual(200)
+			expect(response.body).toHaveProperty("callName", "Fido")
+		})
 	})
 })
