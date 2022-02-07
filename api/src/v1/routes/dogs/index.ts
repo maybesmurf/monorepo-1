@@ -1,4 +1,3 @@
-// @ts-ignore
 import { prisma } from "@Libs/prisma"
 import DogController from "@v1/controllers/dog"
 

@@ -1,4 +1,3 @@
-// @ts-ignore
 import { prisma } from "@Libs/prisma"
 import { Dog, DogSex } from "@prisma/client"
 import CrudInterface, { ListParams } from "@Utils/crudInterface"

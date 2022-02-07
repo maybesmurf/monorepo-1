@@ -1,4 +1,3 @@
-// @ts-ignore
 import faker from "@faker-js/faker"
 import { prisma } from "@Libs/prisma"
 import express from "express"
