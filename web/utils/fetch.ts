@@ -40,7 +40,7 @@ const handleResponse = (response: any) => {
 	return response.text().then((text: any) => {
 		const data = text && JSON.parse(text)
 
-		if (!response.ok) {
+		if (response.error) {
 			const error = data || response.statusText
 			return Promise.reject(error)
 		}

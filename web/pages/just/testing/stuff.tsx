@@ -1,11 +1,16 @@
+import { useState } from "react"
 import type { NextPage } from "next"
 import { useQuery } from "react-query"
 import fetch from "@Utils/fetch"
-import { Title, Table } from "@mantine/core"
+import { Title, Table, Button } from "@mantine/core"
 import { DatePicker } from "@mantine/dates"
 
 const MantineTesting: NextPage = () => {
-	const { data, isLoading, error } = useQuery<Dog[]>("all-dogs", () => fetch.get("/v1/dogs"))
+	const [fetchIt, setFetchIt] = useState(false)
+
+	const { data, isLoading, error, refetch } = useQuery<Dog[]>("all-dogs", () => fetch.get("/v1/dogs"), {
+		enabled: fetchIt
+	})
 
 	if (error) return <p>Error: {error}</p>
 	if (isLoading) return <p>Loading..........</p>
@@ -21,8 +26,11 @@ const MantineTesting: NextPage = () => {
 		  ))
 		: []
 
+	if (!data) return <button onClick={() => setFetchIt(true)}>Do the fetch</button>
+
 	return (
 		<div>
+			<Button onClick={() => refetch()}>Refetch</Button>
 			<Title>All Dogs</Title>
 			<Table>
 				<thead>
