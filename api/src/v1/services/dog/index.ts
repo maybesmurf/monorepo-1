@@ -1,3 +1,4 @@
+import { dogSchema } from "@Libs/joi/dog"
 import { prisma } from "@Libs/prisma"
 import { Dog, DogSex } from "@prisma/client"
 import CrudInterface, { ListParams } from "@Utils/crudInterface"
@@ -26,10 +27,18 @@ export default class DogService implements CrudInterface<Dog> {
 	}
 
 	async create(dog: Dog): Promise<Dog> {
-		const birthdate = dog.birthdate ? new Date(dog.birthdate) : null
+		const { error, value } = dogSchema.validate(dog)
+		if (error) {
+			throw new ResponseError("Your dog is shaped funny. Check the schema of your dog payload.", {
+				statusCode: 400,
+				info: error
+			})
+		}
+
+		value.birthdate = dog.birthdate ? new Date(dog.birthdate) : null
 
 		return await prisma.dog.create({
-			data: { ...dog, birthdate }
+			data: { ...dog, birthdate: value.birthdate }
 		})
 	}
 

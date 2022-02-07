@@ -20,6 +20,11 @@ describe("Dog Services (INT)", () => {
 	const dogToUpdate = dog1
 	const { id: dogId } = dog1
 
+	const removeData = async () => {
+		await prisma.dog.delete({ where: { id: createdDog.id } })
+		await prisma.dog.delete({ where: { id: createdDogWithoutBirthdate.id } })
+	}
+
 	beforeEach(async () => {
 		const deleted = await prisma.dog.deleteMany({
 			where: { id: { in: [dog1.id, dog2.id, dog3.id, dog4.id] } }
@@ -28,8 +33,7 @@ describe("Dog Services (INT)", () => {
 		let deletedCreated = false
 
 		try {
-			await prisma.dog.delete({ where: { id: createdDog.id } })
-			await prisma.dog.delete({ where: { id: createdDogWithoutBirthdate.id } })
+			await removeData()
 			deletedCreated = true
 		} catch {
 			deletedCreated = true
@@ -38,6 +42,10 @@ describe("Dog Services (INT)", () => {
 		if (deleted && deletedCreated) {
 			await prisma.dog.createMany({ data: [dog1, dog2, dog3, dog4] })
 		}
+	})
+
+	afterAll(async () => {
+		await removeData()
 	})
 
 	describe("v1", () => {

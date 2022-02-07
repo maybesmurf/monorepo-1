@@ -1,3 +1,4 @@
+import { dogSchema } from "@Libs/joi/dog"
 import { Dog, DogSex } from "@prisma/client"
 import { ResponseError } from "@Utils/errorHandlers"
 import { setPagerDefaults } from "@Utils/setPagerDefaults"
