@@ -1,12 +1,12 @@
 // TODO: Absolute import
-import { buildDog } from "../../../../.jest/dogGenerator"
+import { buildDog } from "@Root/../.jest/dogGenerator"
 import DogService from "./index"
 import { prisma } from "@Libs/prisma"
 import faker from "@faker-js/faker"
 
 const dogService = new DogService()
 
-describe("Dog Services", () => {
+describe("Dog Services (INT)", () => {
 	faker.seed(123)
 
 	const dog1 = buildDog({ id: faker.datatype.uuid(), callName: "BBB" })
