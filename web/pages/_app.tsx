@@ -1,6 +1,6 @@
 // import { Provider } from "react-redux"
 // import { store } from "@Redux/store"
-import { MantineProvider } from "@mantine/core"
+import { Global, MantineProvider } from "@mantine/core"
 import Head from "next/head"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
@@ -39,6 +39,13 @@ const MyApp = ({ Component, pageProps }: any) => {
 					}
 				}}
 			>
+				<Global
+					styles={(theme) => ({
+						body: {
+							backgroundColor: theme.colors.yellow[0]
+						}
+					})}
+				/>
 				<Component {...pageProps} />
 				<ReactQueryDevtools />
 			</MantineProvider>

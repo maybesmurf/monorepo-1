@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from "react"
 import { Image } from "@Components/shared"
-import { MediaQuery, Burger, Header, useMantineTheme } from "@mantine/core"
+import { MediaQuery, Burger, Header, useMantineTheme, Center } from "@mantine/core"
 import { imageDict } from "@Utils/imageDict"
 
 interface Props {
@@ -12,10 +12,23 @@ const HeaderComp = ({ opened, setOpened }: Props) => {
 	const { colors } = useMantineTheme()
 
 	return (
-		<Header height={100} padding="lg">
+		<Header
+			height={100}
+			padding="lg"
+			styles={{
+				root: {
+					display: "flex",
+					flexDirection: "row",
+					justifyContent: "space-between",
+					backgroundColor: colors.yellow[0]
+				}
+			}}
+		>
 			<Image src={imageDict.logoWithText.src} alt={imageDict.logoWithText.alt} width="9rem" height="3.75rem" />
 			<MediaQuery largerThan="sm" styles={{ display: "none" }}>
-				<Burger opened={opened} onClick={() => setOpened((o) => !o)} size="sm" color={colors.gray[6]} mr="xl" />
+				<Center>
+					<Burger opened={opened} onClick={() => setOpened((o) => !o)} size="sm" color={colors.gray[6]} mr="xl" />
+				</Center>
 			</MediaQuery>
 		</Header>
 	)
