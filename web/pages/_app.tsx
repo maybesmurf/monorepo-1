@@ -5,6 +5,7 @@ import Head from "next/head"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import colors from "@Styles/colors"
+import { NextPage } from "next"
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -15,6 +16,8 @@ const queryClient = new QueryClient({
 })
 
 const MyApp = ({ Component, pageProps }: any) => {
+	const getLayout = Component.getLayout || ((page: NextPage) => page)
+
 	return (
 		<>
 			<Head>
@@ -46,7 +49,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 						}
 					})}
 				/>
-				<Component {...pageProps} />
+				{getLayout(<Component {...pageProps} />)}
 				<ReactQueryDevtools />
 			</MantineProvider>
 		</>

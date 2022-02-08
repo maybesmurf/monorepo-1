@@ -1,8 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
 import { Button, Navbar, useMantineTheme } from "@mantine/core"
 import SVG from "@Components/shared/SVG"
-import ShallowRoute from "@Components/shared/ShallowRoute"
-import { useRouter } from "next/router"
+import Link from "next/link"
 
 interface Props {
 	opened: boolean
@@ -10,7 +9,6 @@ interface Props {
 }
 
 const NavbarComp = ({ opened, setOpened }: Props) => {
-	const router = useRouter()
 	const { colors } = useMantineTheme()
 
 	return (
@@ -21,7 +19,7 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 			width={{ xs: 300, lg: 400 }}
 			styles={{ root: { backgroundColor: colors.yellow[0] } }}
 		>
-			<ShallowRoute path="/dashboard">
+			<Link href="/dashboard" passHref>
 				<Button
 					component="a"
 					leftIcon={<SVG.Box width="25px" />}
@@ -34,9 +32,8 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 				>
 					Dashboard
 				</Button>
-			</ShallowRoute>
-			{/* <ShallowRoute path="/dashboard/my-events"> */}
-			<a onClick={() => router.push("/dashboard/my-events", undefined, { shallow: true })}>
+			</Link>
+			<Link href="/dashboard/my-events" passHref>
 				<Button
 					component="a"
 					leftIcon={<SVG.Box width="25px" />}
@@ -49,8 +46,8 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 				>
 					My Events
 				</Button>
-			</a>
-			<ShallowRoute path="/dashboard/dogs">
+			</Link>
+			<Link href="/dashboard/my-dogs" passHref>
 				<Button
 					component="a"
 					leftIcon={<SVG.Box width="25px" />}
@@ -63,7 +60,7 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 				>
 					Dogs
 				</Button>
-			</ShallowRoute>
+			</Link>
 		</Navbar>
 	)
 }
