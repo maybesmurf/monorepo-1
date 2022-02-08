@@ -1,4 +1,4 @@
-import { getLayout } from "@Components/features/Dashboard/DashLayout"
+import { getLayout } from "@Components/layouts/Dashboard"
 import { Image } from "@Components/shared"
 import SVG from "@Components/shared/SVG"
 import { Alert, Card, Container, Group, Title, useMantineTheme } from "@mantine/core"
