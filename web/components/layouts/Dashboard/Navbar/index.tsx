@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
-import { Button, Navbar, useMantineTheme } from "@mantine/core"
+import { Navbar, List, useMantineTheme } from "@mantine/core"
+import ListItem from "./ListItem"
 import SVG from "@Components/shared/SVG"
-import Link from "next/link"
 
 interface Props {
 	opened: boolean
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const NavbarComp = ({ opened, setOpened }: Props) => {
-	const { colors } = useMantineTheme()
+	const { colors, spacing } = useMantineTheme()
 
 	return (
 		<Navbar
@@ -19,48 +19,39 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 			width={{ xs: 300, lg: 400 }}
 			styles={{ root: { backgroundColor: colors.yellow[0] } }}
 		>
-			<Link href="/dashboard" passHref>
-				<Button
-					component="a"
-					leftIcon={<SVG.Box width="25px" />}
-					color="yellow"
-					fullWidth
-					variant="subtle"
-					radius="xl"
-					size="md"
-					styles={{ root: { color: colors.gray[9] } }}
-				>
-					Dashboard
-				</Button>
-			</Link>
-			<Link href="/dashboard/my-events" passHref>
-				<Button
-					component="a"
-					leftIcon={<SVG.Box width="25px" />}
-					color="yellow"
-					fullWidth
-					variant="subtle"
-					radius="xl"
-					size="md"
-					styles={{ root: { color: colors.gray[9] } }}
-				>
-					My Events
-				</Button>
-			</Link>
-			<Link href="/dashboard/my-dogs" passHref>
-				<Button
-					component="a"
-					leftIcon={<SVG.Box width="25px" />}
-					color="yellow"
-					fullWidth
-					variant="subtle"
-					radius="xl"
-					size="md"
-					styles={{ root: { color: colors.gray[9] } }}
-				>
-					Dogs
-				</Button>
-			</Link>
+			<List styles={{ root: { listStyle: "none" }, item: { paddingBottom: spacing.xs } }}>
+				<List.Item>
+					<ListItem
+						icon={<SVG.DogHouse width="2rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
+						buttonLabel="Dashboard"
+						path="/dashboard"
+					/>
+				</List.Item>
+				<List.Item>
+					<ListItem
+						icon={<SVG.Calendar width="2rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
+						buttonLabel="My Events"
+						path="/dashboard/my-events"
+					>
+						My Events
+					</ListItem>
+				</List.Item>
+				<List.Item>
+					<ListItem
+						icon={<SVG.Paw width="2rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
+						buttonLabel="My Dogs"
+						path="/dashboard/my-dogs"
+					/>
+				</List.Item>
+
+				<List.Item>
+					<ListItem
+						icon={<SVG.AwardRibbon width="2rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
+						buttonLabel="Trophy Case"
+						path="/dashboard/trophy-case"
+					/>
+				</List.Item>
+			</List>
 		</Navbar>
 	)
 }

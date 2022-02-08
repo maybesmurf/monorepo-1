@@ -39,6 +39,10 @@ const MyApp = ({ Component, pageProps }: any) => {
 						navy: colors.navy,
 						red: colors.red,
 						green: colors.green
+					},
+					spacing: {
+						// xxl: "5rem"
+						// TODO: Need sizes for 48 = 3rem, 88 = 5.5rem, and 72 = 4.5rem
 					}
 				}}
 			>
