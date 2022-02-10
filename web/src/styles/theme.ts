@@ -14,6 +14,7 @@ export const theme: MantineThemeOverride = {
 		red: colors.red,
 		green: colors.green
 	},
+	primaryColor: "teal",
 	spacing: {
 		// xxl: "5rem"
 		// TODO: Need sizes for 48 = 3rem, 88 = 5.5rem, and 72 = 4.5rem
