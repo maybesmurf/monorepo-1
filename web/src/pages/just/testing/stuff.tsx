@@ -1,7 +1,7 @@
 import { useState } from "react"
 import type { NextPage } from "next"
 import { useQuery } from "react-query"
-import fetch from "@Utils/fetch"
+import fetch from "src/utils/fetch"
 import { Title, Table, Button } from "@mantine/core"
 import { DatePicker } from "@mantine/dates"
 

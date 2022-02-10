@@ -122,7 +122,14 @@ services:
       context: ./web
       dockerfile: Dockerfile.dev
     volumes:
-      - ./web:/src
+      - ./web/next-env.d.ts:/app/next-env.d.ts
+      - ./web/next.config.js:/app/next.config.js
+      - ./web/sentry.client.config.js:/app/sentry.client.config.js
+      - ./web/sentry.server.config.js:/app/sentry.server.config.js
+      - ./web/.babelrc:/app/.babelrc
+      - ./web/tsconfig.json:/app/tsconfig.json
+      - ./web/public:/app/public
+      - ./web/src:/app/src
     environment:
       - ENVIRONMENT=development
       - DATABASE_URL=postgres://devUser:woofbark@postgres:5432/prisma?schema=prisma
@@ -132,3 +139,37 @@ services:
       - NEXT_PUBLIC_ENVIRONMENT=development
       - NEXT_PUBLIC_SENTRY_DSN=${NEXT_PUBLIC_SENTRY_DSN}
       - SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+
+  web-jest:
+    container_name: web-jest
+    depends_on:
+      - web
+    build:
+      context: ./web
+      dockerfile: Dockerfile.jest
+    volumes:
+      - ./web/next-env.d.ts:/src/next-env.d.ts
+      - ./web/next.config.js:/src/next.config.js
+      - ./web/sentry.client.config.js:/src/sentry.client.config.js
+      - ./web/sentry.server.config.js:/src/sentry.server.config.js
+      - ./web/.babelrc:/src/.babelrc
+      - ./web/tsconfig.json:/src/tsconfig.json
+      - ./web/public:/src/public
+      - ./web/src:/src/src
+      - ./web/jest.config.js:/src/jest.config.js
+      - ./.git:/app/.git
+    environment:
+      - ENVIRONMENT=development
+      - POSTGRES_USER=devUser
+      - POSTGRES_PASSWORD=woofbark
+      - POSTGRES_DB=prisma
+      - DATABASE_URL=postgres://devUser:woofbark@postgres:5432/prisma?schema=prisma
+      - PGADMIN_DEFAULT_EMAIL=dev@example.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin
+      - FIREBASE_AUTH_EMULATOR_HOST=firebase-emulators:4001
+      - FIREBASE_STORAGE_EMULATOR_HOST=firebase-emulators:4002
+      - SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+      - SENTRY_DSN=${SENTRY_DSN}
+    command: npm run test
+    tty: true
+    stdin_open: false

@@ -15,10 +15,11 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"baseUrl": ".",
+		"baseUrl": "./src",
 		"paths": {
 			"@Firebase/*": ["services/firebase/*"],
 			"@Utils/*": ["utils/*"],
+			"@test-utils": ["utils/testing/test-utils"],
 			"@Components/*": ["components/*"],
 			"@Styles/*": ["styles/*"]
 		}

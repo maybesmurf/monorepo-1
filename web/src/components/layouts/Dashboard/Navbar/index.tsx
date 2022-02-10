@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
 import { Navbar, List, useMantineTheme } from "@mantine/core"
 import ListItem from "./ListItem"
-import SVG from "@Components/shared/SVG"
+import SVG from "src/components/shared/SVG"
 
 interface Props {
 	opened: boolean

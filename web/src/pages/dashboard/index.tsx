@@ -1,4 +1,4 @@
-import { getLayout } from "@Components/layouts/Dashboard"
+import { getLayout } from "src/components/layouts/Dashboard"
 
 const DashboardPage = () => <div>The home</div>
 

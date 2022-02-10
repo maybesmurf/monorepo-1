@@ -4,7 +4,7 @@ import { Global, MantineProvider } from "@mantine/core"
 import Head from "next/head"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
-import colors from "@Styles/colors"
+import { theme } from "@Styles/theme"
 import { NextPage } from "next"
 
 const queryClient = new QueryClient({
@@ -23,29 +23,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 			<Head>
 				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 			</Head>
-			<MantineProvider
-				withGlobalStyles
-				withNormalizeCSS
-				theme={{
-					/** Put your mantine theme override here */
-					colorScheme: "light",
-					fontFamilyMonospace: "Monaco, Courier, monospace",
-					fontFamily: "Josefin Sans",
-					headings: { fontFamily: "Lato, serif" },
-					colors: {
-						gray: colors.gray,
-						teal: colors.teal,
-						yellow: colors.yellow,
-						navy: colors.navy,
-						red: colors.red,
-						green: colors.green
-					},
-					spacing: {
-						// xxl: "5rem"
-						// TODO: Need sizes for 48 = 3rem, 88 = 5.5rem, and 72 = 4.5rem
-					}
-				}}
-			>
+			<MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
 				<Global
 					styles={(theme) => ({
 						body: {
