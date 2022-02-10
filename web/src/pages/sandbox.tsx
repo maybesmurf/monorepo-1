@@ -1,4 +1,4 @@
-import { Button } from "src/components/shared/Button"
+import { Button } from "@Components/shared/Button"
 
 const Sandbox = () => {
 	return (
@@ -12,7 +12,15 @@ const Sandbox = () => {
 				flexDirection: "column"
 			}}
 		>
-			<Button />
+			{["xs", "sm", "md", "lg", "xl"].map((size) => {
+				return (
+					<div key={size} style={{ margin: "1rem 0" }}>
+						<Button size={size} compact>
+							Button
+						</Button>
+					</div>
+				)
+			})}
 		</div>
 	)
 }
