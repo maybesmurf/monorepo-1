@@ -12,3 +12,9 @@ const customRender = (ui: ReactElement, options?: Omit<RenderOptions, "wrapper">
 
 export * from "@testing-library/react"
 export { customRender as render }
+
+export const getComputedStyle = (id: string) => {
+	const elem = document.getElementById(id)
+	if (!elem) throw new Error("No element!")
+	return window.getComputedStyle(elem)
+}
