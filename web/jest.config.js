@@ -26,5 +26,6 @@ module.exports = {
 	// 	"\\.(ts|tsx)?$": "babel-jest"
 	// },
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-	moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH)
+	moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
+	setupFilesAfterEnv: ["<rootDir>/setupTests.js"]
 }

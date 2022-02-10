@@ -3,22 +3,18 @@ import { Button } from "./index"
 
 describe("Button", () => {
 	it("Renders", async () => {
-		render(<Button />)
+		render(<Button>Test Text</Button>)
 
 		screen.getByText("Test Text")
 	})
 
-	it("Renders with text", async () => {
-		render(<Button text="Test Text" />)
+	it("Doesn't allow disabled on <a> tag", async () => {
+		render(
+			<Button component="a" disabled>
+				Test Text
+			</Button>
+		)
 
-		screen.getByText("Test Text")
-	})
-
-	it("Renders with border", async () => {
-		render(<Button text="Test Text" />)
-
-		const elem = screen.getByText("Test Text")
-
-		expect(elem).toHaveStyle({ border: "1px solid black" })
+		expect(screen.getByText("Test Text").closest("a")).toBeInTheDocument()
 	})
 })

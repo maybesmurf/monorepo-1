@@ -157,6 +157,7 @@ services:
       - ./web/public:/src/public
       - ./web/src:/src/src
       - ./web/jest.config.js:/src/jest.config.js
+      - ./web/setupTests.js:/src/setupTests.js
       - ./.git:/app/.git
     environment:
       - ENVIRONMENT=development
