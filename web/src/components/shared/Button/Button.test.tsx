@@ -1,4 +1,4 @@
-import { render, screen, getComputedStyle } from "./test-utils"
+import { render, screen, getComputedStyle } from "@test-utils"
 import { Button } from "./index"
 
 describe("Button", () => {
@@ -6,6 +6,16 @@ describe("Button", () => {
 		render(<Button>Test Text</Button>)
 
 		screen.getByText("Test Text")
+	})
+
+	it("Allow disabled on <button> tag", async () => {
+		render(
+			<Button component="button" disabled>
+				Test Text
+			</Button>
+		)
+
+		expect(screen.getByText("Test Text").closest("button")).toBeDisabled()
 	})
 
 	it("Doesn't allow disabled on <a> tag", async () => {
