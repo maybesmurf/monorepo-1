@@ -10,7 +10,7 @@ export const Textarea = ({ invalidText, ...props }: Props) => {
 	return (
 		<>
 			<MantineTextarea value={props.value} {...props} />
-			{invalidText && !props.invalid && <Space style={{ height: "2.0498125rem", background: "green" }} />}
+			{invalidText && !props.invalid && <Space style={{ height: "2.0498125rem" }} />}
 			{invalidText && props.invalid && (
 				<Text color={colors.red[6]} styles={{ root: { marginTop: ".5rem" } }}>
 					{invalidText}

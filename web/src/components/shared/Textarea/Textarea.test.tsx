@@ -5,4 +5,10 @@ describe("Button", () => {
 	it("Renders", async () => {
 		render(<Textarea />)
 	})
+
+	it("Renders with invalid text", async () => {
+		render(<Textarea invalid invalidText="Test invalid text" />)
+
+		expect(screen.getByText("Test invalid text")).toBeInTheDocument()
+	})
 })
