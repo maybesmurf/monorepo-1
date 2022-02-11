@@ -1,9 +1,8 @@
-import { NumberInput } from "@Components/shared/NumberInput"
-import { OptionalInputLabel } from "@Components/shared/OptionalInputLabel"
+import { TimeInput } from "@Components/shared/TimeInput"
 import { useState } from "react"
 
 const Sandbox = () => {
-	const [value, setValue] = useState(0)
+	const [value, setValue] = useState(new Date())
 
 	return (
 		<div
@@ -19,14 +18,15 @@ const Sandbox = () => {
 			{["xs", "sm", "md", "lg", "xl"].map((size) => {
 				return (
 					<div key={size} style={{ margin: "1rem 0" }}>
-						<NumberInput
+						<TimeInput
 							size={size as any}
-							label={<OptionalInputLabel>Some Label</OptionalInputLabel>}
+							label="Some Label"
 							description="This is a description"
 							placeholder="Placeholder text"
+							required
 							value={value}
 							onChange={(val) => setValue(val || 0)}
-							invalid={value === 0}
+							invalid={true}
 							invalidText="You did something wrong!"
 						/>
 					</div>
