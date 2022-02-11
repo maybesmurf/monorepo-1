@@ -63,7 +63,8 @@ const MyApp = ({ Component, pageProps }: any) => {
 						}
 					}),
 					Textarea: createInputStyles(),
-					TextInput: createInputStyles()
+					TextInput: createInputStyles(),
+					NumberInput: createInputStyles()
 				}}
 			>
 				<Global
