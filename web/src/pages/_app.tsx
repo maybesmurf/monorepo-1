@@ -62,7 +62,8 @@ const MyApp = ({ Component, pageProps }: any) => {
 							}
 						}
 					}),
-					Textarea: createInputStyles()
+					Textarea: createInputStyles(),
+					TextInput: createInputStyles()
 				}}
 			>
 				<Global

@@ -1,4 +1,4 @@
-import { Textarea } from "@Components/shared/Textarea"
+import { TextInput } from "@Components/shared/TextInput"
 import { useState } from "react"
 
 const Sandbox = () => {
@@ -18,7 +18,7 @@ const Sandbox = () => {
 			{["xs", "sm", "md", "lg", "xl"].map((size) => {
 				return (
 					<div key={size} style={{ margin: "1rem 0" }}>
-						<Textarea
+						<TextInput
 							size={size as any}
 							label="Label"
 							description="This is a description"
