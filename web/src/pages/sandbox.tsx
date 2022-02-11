@@ -1,5 +1,4 @@
-import { TextInput } from "@Components/shared/TextInput"
-import { useMantineTheme } from "@mantine/core"
+import { Select, useMantineTheme } from "@mantine/core"
 import { useState } from "react"
 
 const Sandbox = () => {
@@ -17,7 +16,19 @@ const Sandbox = () => {
 				flexDirection: "column"
 			}}
 		>
-			{["xs", "sm", "md", "lg", "xl"].map((size) => {
+			<Select
+				disabled
+				placeholder="asdjklhfasdfkjh"
+				label="Label"
+				required
+				description="This is a description"
+				data={[
+					{ value: "react", label: "React" },
+					{ value: "ng", label: "Angular" },
+					{ value: "svelte", label: "Svelte" }
+				]}
+			></Select>
+			{/* {["xs", "sm", "md", "lg", "xl"].map((size) => {
 				return (
 					<div key={size} style={{ margin: "1rem 0" }}>
 						<TextInput
@@ -33,7 +44,7 @@ const Sandbox = () => {
 						/>
 					</div>
 				)
-			})}
+			})} */}
 		</div>
 	)
 }

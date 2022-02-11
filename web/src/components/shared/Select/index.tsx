@@ -1,15 +1,15 @@
-import { Space, Text, Textarea as MantineTextarea, TextareaProps, useMantineTheme } from "@mantine/core"
+import { Select as MantineSelect, SelectProps, Space, Text, useMantineTheme } from "@mantine/core"
 
-interface Props extends TextareaProps {
+interface Props extends SelectProps {
 	invalidText?: string
 }
 
-export const Textarea = ({ invalidText, ...props }: Props) => {
+export const Select = ({ invalidText, ...props }: Props) => {
 	const { colors } = useMantineTheme()
 
 	return (
 		<>
-			<MantineTextarea {...props} />
+			<MantineSelect {...props} />
 			{invalidText && !props.invalid && <Space style={{ height: "2.0498125rem" }} />}
 			{invalidText && props.invalid && (
 				<Text color={colors.red[6]} styles={{ root: { marginTop: ".5rem" } }}>

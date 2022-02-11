@@ -66,6 +66,33 @@ const MyApp = ({ Component, pageProps }: any) => {
 					TextInput: createInputStyles(),
 					NumberInput: createInputStyles(),
 					TimeInput: createInputStyles(),
+					Select: ({ colors, other }) => ({
+						...createInputStyles({
+							input: {
+								"backgroundColor": colors.yellow[0],
+								"color": colors.navy[9],
+								"borderColor": colors.gray[1],
+								"&:focus": {
+									backgroundColor: other.colors.white
+								},
+								"&:disabled": {
+									"::placeholder": {
+										color: colors.gray[1]
+									},
+									"backgroundColor": colors.yellow[1],
+									"borderColor": colors.gray[1]
+								}
+							},
+							hovered: {
+								color: colors.navy[9],
+								backgroundColor: colors.teal[1]
+							},
+							selected: {
+								color: colors.navy[9],
+								backgroundColor: colors.yellow[1]
+							}
+						})
+					}),
 					Checkbox: ({ colors }) => ({
 						input: {
 							"backgroundColor": colors.yellow[1],
