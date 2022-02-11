@@ -1,3 +1,4 @@
+import { OptionalInputLabel } from "@Components/shared/OptionalInputLabel"
 import { TextInput } from "@Components/shared/TextInput"
 import { useState } from "react"
 
@@ -20,9 +21,8 @@ const Sandbox = () => {
 					<div key={size} style={{ margin: "1rem 0" }}>
 						<TextInput
 							size={size as any}
-							label="Label"
+							label={<OptionalInputLabel>Some Label</OptionalInputLabel>}
 							description="This is a description"
-							required
 							placeholder="Placeholder text"
 							value={value}
 							onChange={(val) => setValue(val.target.value)}
