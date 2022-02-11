@@ -1,8 +1,8 @@
-import { TimeInput } from "@Components/shared/TimeInput"
+import { Radio, RadioGroup } from "@Components/shared/RadioGroup"
 import { useState } from "react"
 
 const Sandbox = () => {
-	const [value, setValue] = useState(new Date())
+	const [value, setValue] = useState("")
 
 	return (
 		<div
@@ -15,7 +15,22 @@ const Sandbox = () => {
 				flexDirection: "column"
 			}}
 		>
-			{["xs", "sm", "md", "lg", "xl"].map((size) => {
+			<RadioGroup
+				value={value}
+				onChange={setValue}
+				label="Select your favorite framework/library"
+				description="This is anonymous"
+				required
+				invalid={!value}
+				invalidText="Please select a framework/library"
+				variant="vertical"
+			>
+				<Radio value="react">React</Radio>
+				<Radio value="svelte">Svelte</Radio>
+				<Radio value="ng">Angular</Radio>
+				<Radio value="vue">Vue</Radio>
+			</RadioGroup>
+			{/* {["xs", "sm", "md", "lg", "xl"].map((size) => {
 				return (
 					<div key={size} style={{ margin: "1rem 0" }}>
 						<TimeInput
@@ -31,7 +46,7 @@ const Sandbox = () => {
 						/>
 					</div>
 				)
-			})}
+			})} */}
 		</div>
 	)
 }
