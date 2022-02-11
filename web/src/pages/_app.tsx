@@ -43,7 +43,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 							"&:disabled": DISABLED_BUTTON_STYLES
 						},
 						outline: {
-							"borderWidth": 1.5,
+							"borderWidth": 1,
 							"&:hover": {
 								borderColor: colors.teal[6],
 								backgroundColor: colors.teal[6],
@@ -65,7 +65,17 @@ const MyApp = ({ Component, pageProps }: any) => {
 					Textarea: createInputStyles(),
 					TextInput: createInputStyles(),
 					NumberInput: createInputStyles(),
-					TimeInput: createInputStyles()
+					TimeInput: createInputStyles(),
+					Checkbox: ({ colors }) => ({
+						input: {
+							"backgroundColor": colors.yellow[1],
+							"borderColor": colors.gray[1],
+							"&:disabled": {
+								backgroundColor: colors.yellow[0],
+								borderColor: colors.gray[1]
+							}
+						}
+					})
 				}}
 			>
 				<Global

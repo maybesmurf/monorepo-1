@@ -1,7 +1,9 @@
-import { Radio, RadioGroup } from "@Components/shared/RadioGroup"
+import { TextInput } from "@Components/shared/TextInput"
+import { useMantineTheme } from "@mantine/core"
 import { useState } from "react"
 
 const Sandbox = () => {
+	const { colors } = useMantineTheme()
 	const [value, setValue] = useState("")
 
 	return (
@@ -15,38 +17,23 @@ const Sandbox = () => {
 				flexDirection: "column"
 			}}
 		>
-			<RadioGroup
-				value={value}
-				onChange={setValue}
-				label="Select your favorite framework/library"
-				description="This is anonymous"
-				required
-				invalid={!value}
-				invalidText="Please select a framework/library"
-				variant="vertical"
-			>
-				<Radio value="react">React</Radio>
-				<Radio value="svelte">Svelte</Radio>
-				<Radio value="ng">Angular</Radio>
-				<Radio value="vue">Vue</Radio>
-			</RadioGroup>
-			{/* {["xs", "sm", "md", "lg", "xl"].map((size) => {
+			{["xs", "sm", "md", "lg", "xl"].map((size) => {
 				return (
 					<div key={size} style={{ margin: "1rem 0" }}>
-						<TimeInput
+						<TextInput
 							size={size as any}
 							label="Some Label"
 							description="This is a description"
 							placeholder="Placeholder text"
 							required
 							value={value}
-							onChange={(val) => setValue(val || 0)}
-							invalid={true}
-							invalidText="You did something wrong!"
+							onChange={(val) => setValue(val.target.value)}
+							// invalid={true}
+							// invalidText="You did something wrong!"
 						/>
 					</div>
 				)
-			})} */}
+			})}
 		</div>
 	)
 }
