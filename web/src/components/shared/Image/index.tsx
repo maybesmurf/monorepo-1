@@ -5,7 +5,7 @@ interface Props {
 	/**
 	 * If this image comes from an external source, we do NOT want to use Next Image!
 	 * This is because each time that image renders, Next will attempt to optimize it.
-	 * That means CPU usage when it won't even help with the load time anyway.
+	 * That means CPU usage on the server when it won't even help with the load time anyway.
 	 */
 	external?: boolean
 	src: string
