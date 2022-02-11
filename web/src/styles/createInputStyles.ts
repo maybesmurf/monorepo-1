@@ -3,14 +3,16 @@ import { colors, other } from "@Styles/theme"
 export const createInputStyles = () => ({
 	label: {
 		color: colors.navy[9],
-		fontWeight: 600
+		fontWeight: 600,
+		width: "100%"
 	},
 	required: {
 		color: colors.red[6]
 	},
 	description: {
 		color: `${colors.navy[9]} !important`,
-		margin: ".2rem 0 .6rem"
+		margin: ".2rem 0 .6rem",
+		fontWeight: "400"
 	},
 	input: {
 		"color": colors.navy[9],
