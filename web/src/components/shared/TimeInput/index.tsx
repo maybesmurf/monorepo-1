@@ -2,17 +2,18 @@ import { Space, Text, useMantineTheme } from "@mantine/core"
 import { TimeInput as MantineTimeInput, TimeInputProps } from "@mantine/dates"
 
 interface Props extends TimeInputProps {
+	invalid?: boolean
 	invalidText?: string
 }
 
-export const TimeInput = ({ invalidText, ...props }: Props) => {
+export const TimeInput = ({ invalid, invalidText, ...props }: Props) => {
 	const { colors } = useMantineTheme()
 
 	return (
 		<>
-			<MantineTimeInput value={props.value} {...props} />
-			{invalidText && !props.invalid && <Space style={{ height: "2.0498125rem" }} />}
-			{invalidText && props.invalid && (
+			<MantineTimeInput {...props} />
+			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
+			{invalidText && invalid && (
 				<Text color={colors.red[6]} styles={{ root: { marginTop: ".5rem" } }}>
 					{invalidText}
 				</Text>
