@@ -1,9 +1,6 @@
-import { DateRangePicker } from "@Components/shared/DateRangePicker"
-import { useState } from "react"
+import { Stepper } from "@mantine/core"
 
 const Sandbox = () => {
-	const [value, setValue] = useState<Date | undefined>(undefined)
-
 	return (
 		<div
 			style={{
@@ -15,13 +12,11 @@ const Sandbox = () => {
 				flexDirection: "column"
 			}}
 		>
-			<DateRangePicker
-				invalid={!value}
-				invalidText="Some test invalid"
-				placeholder="some placeholder"
-				label="Label"
-				description="This is a description"
-			/>
+			<Stepper active={1} styles={{ root: { width: "100%" } }}>
+				<Stepper.Step label="First Step">Tester 1</Stepper.Step>
+				<Stepper.Step label="Second Step">Tester 2</Stepper.Step>
+				<Stepper.Step label="Third Step">Tester 3</Stepper.Step>
+			</Stepper>
 		</div>
 	)
 }

@@ -168,6 +168,40 @@ const MyApp = ({ Component, pageProps }: any) => {
 								borderColor: colors.gray[1]
 							}
 						}
+					}),
+					Stepper: ({ colors }) => ({
+						steps: {
+							marginBottom: "3rem"
+						},
+						step: {
+							flexDirection: "column",
+							alignItems: "center"
+						},
+						stepIcon: {
+							color: colors.navy[9],
+							backgroundColor: colors.yellow[2]
+						},
+						stepBody: {
+							position: "relative",
+							margin: 0
+						},
+						stepLabel: {
+							position: "absolute",
+							top: ".5rem",
+							left: "50%",
+							transform: "translateX(-50%)",
+							color: colors.navy[9],
+							fontWeight: "600",
+							textAlign: "center",
+							lineHeight: "150%",
+							letterSpacing: ".03rem"
+						},
+						separator: {
+							backgroundColor: colors.yellow[2],
+							height: "6px",
+							margin: 0
+						},
+						stepProgress: {}
 					})
 				}}
 			>
