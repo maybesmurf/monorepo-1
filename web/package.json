@@ -9,10 +9,11 @@
 		"ci:test": "jest .*\\.unit\\.test\\.ts"
 	},
 	"dependencies": {
-		"@mantine/core": "^3.6.3",
-		"@mantine/dates": "^3.6.4",
-		"@mantine/hooks": "^3.6.0",
-		"@mantine/next": "^3.6.3",
+		"@mantine/core": "^3.6.7",
+		"@mantine/dates": "^3.6.7",
+		"@mantine/hooks": "^3.6.7",
+		"@mantine/next": "^3.6.7",
+		"@mantine/rte": "^3.6.7",
 		"@sentry/nextjs": "^6.17.3",
 		"firebase": "^9.6.5",
 		"msw": "^0.36.8",
