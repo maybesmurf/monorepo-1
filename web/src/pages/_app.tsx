@@ -34,6 +34,9 @@ const MyApp = ({ Component, pageProps }: any) => {
 				withNormalizeCSS
 				theme={theme}
 				styles={{
+					Alert: ({ colors }) => ({
+						message: { letterSpacing: ".06rem" }
+					}),
 					Button: ({ colors }) => ({
 						root: {
 							fontFamily: "Open Sans, sans-serif",
@@ -202,6 +205,13 @@ const MyApp = ({ Component, pageProps }: any) => {
 							margin: 0
 						},
 						stepProgress: {}
+					}),
+					Tooltip: ({ colors, other }) => ({
+						body: {
+							backgroundColor: other.colors.white,
+							color: colors.gray[7],
+							border: `${colors.gray[1]} solid 1px`
+						}
 					})
 				}}
 			>
@@ -213,6 +223,9 @@ const MyApp = ({ Component, pageProps }: any) => {
 						},
 						"body": {
 							backgroundColor: theme.colors.yellow[0]
+						},
+						".quill-editor": {
+							backgroundColor: theme.colors.yellow[1]
 						}
 					})}
 				/>
