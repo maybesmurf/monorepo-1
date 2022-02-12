@@ -1,6 +1,11 @@
-import { Stepper } from "@mantine/core"
+import { RichTextEditor } from "@Components/shared/RichTextEditor"
+import { useState } from "react"
+
+const initialValue = "<p>Your initial <b>html value</b> or an empty string to init editor without value</p>"
 
 const Sandbox = () => {
+	const [value, onChange] = useState(initialValue)
+
 	return (
 		<div
 			style={{
@@ -12,11 +17,7 @@ const Sandbox = () => {
 				flexDirection: "column"
 			}}
 		>
-			<Stepper active={1} styles={{ root: { width: "100%" } }}>
-				<Stepper.Step label="First Step">Tester 1</Stepper.Step>
-				<Stepper.Step label="Second Step">Tester 2</Stepper.Step>
-				<Stepper.Step label="Third Step">Tester 3</Stepper.Step>
-			</Stepper>
+			<RichTextEditor value={value} onChange={onChange} />
 		</div>
 	)
 }
