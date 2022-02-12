@@ -1,9 +1,8 @@
-import { Select, useMantineTheme } from "@mantine/core"
+import { DateRangePicker } from "@Components/shared/DateRangePicker"
 import { useState } from "react"
 
 const Sandbox = () => {
-	const { colors } = useMantineTheme()
-	const [value, setValue] = useState("")
+	const [value, setValue] = useState<Date | undefined>(undefined)
 
 	return (
 		<div
@@ -16,35 +15,13 @@ const Sandbox = () => {
 				flexDirection: "column"
 			}}
 		>
-			<Select
-				disabled
-				placeholder="asdjklhfasdfkjh"
+			<DateRangePicker
+				invalid={!value}
+				invalidText="Some test invalid"
+				placeholder="some placeholder"
 				label="Label"
-				required
 				description="This is a description"
-				data={[
-					{ value: "react", label: "React" },
-					{ value: "ng", label: "Angular" },
-					{ value: "svelte", label: "Svelte" }
-				]}
-			></Select>
-			{/* {["xs", "sm", "md", "lg", "xl"].map((size) => {
-				return (
-					<div key={size} style={{ margin: "1rem 0" }}>
-						<TextInput
-							size={size as any}
-							label="Some Label"
-							description="This is a description"
-							placeholder="Placeholder text"
-							required
-							value={value}
-							onChange={(val) => setValue(val.target.value)}
-							// invalid={true}
-							// invalidText="You did something wrong!"
-						/>
-					</div>
-				)
-			})} */}
+			/>
 		</div>
 	)
 }

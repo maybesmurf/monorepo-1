@@ -71,13 +71,16 @@ const MyApp = ({ Component, pageProps }: any) => {
 							input: {
 								"backgroundColor": colors.yellow[0],
 								"color": colors.navy[9],
-								"borderColor": colors.gray[1],
+								// "borderColor": colors.gray[1],
+								"::placeholder": {
+									color: `${colors.gray[1]} !important`
+								},
 								"&:focus": {
 									backgroundColor: other.colors.white
 								},
 								"&:disabled": {
 									"::placeholder": {
-										color: colors.gray[1]
+										color: `${colors.gray[1]} !important`
 									},
 									"backgroundColor": colors.yellow[1],
 									"borderColor": colors.gray[1]
@@ -90,6 +93,69 @@ const MyApp = ({ Component, pageProps }: any) => {
 							selected: {
 								color: colors.navy[9],
 								backgroundColor: colors.yellow[1]
+							}
+						})
+					}),
+					DatePicker: ({ colors }) => ({
+						...createInputStyles({
+							input: {
+								"backgroundColor": colors.yellow[1],
+								"::placeholder": {
+									color: `${colors.gray[1]} !important`
+								},
+								"&:disabled": {
+									"::placeholder": {
+										color: `${colors.gray[1]} !important`
+									},
+									"backgroundColor": colors.yellow[1],
+									"borderColor": colors.gray[1]
+								}
+							},
+							day: {
+								"color": colors.navy[9],
+								"&:hover": {
+									backgroundColor: colors.yellow[1]
+								}
+							},
+							weekend: {
+								color: `${colors.navy[9]} !important`
+							}
+						})
+					}),
+					DateRangePicker: ({ colors }) => ({
+						...createInputStyles({
+							input: {
+								"backgroundColor": colors.yellow[1],
+								"::placeholder": {
+									color: `${colors.gray[1]} !important`
+								},
+								"&:disabled": {
+									"::placeholder": {
+										color: `${colors.gray[1]} !important`
+									},
+									"backgroundColor": colors.yellow[1],
+									"borderColor": colors.gray[1]
+								}
+							},
+							inRange: {
+								backgroundColor: `${colors.teal[1]} !important`
+							},
+							firstInRange: {
+								backgroundColor: `${colors.teal[9]} !important`,
+								borderRadius: ".2rem !important"
+							},
+							lastInRange: {
+								backgroundColor: `${colors.teal[9]} !important`,
+								borderRadius: ".2rem !important"
+							},
+							day: {
+								"color": colors.navy[9],
+								"&:hover": {
+									backgroundColor: colors.yellow[1]
+								}
+							},
+							weekend: {
+								color: `${colors.navy[9]} !important`
 							}
 						})
 					}),

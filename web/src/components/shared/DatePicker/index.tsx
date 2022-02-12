@@ -1,20 +1,22 @@
-import { Select as MantineSelect, SelectProps, Space, Text, useMantineTheme } from "@mantine/core"
+import { Text, Space, useMantineTheme } from "@mantine/core"
+import { DatePicker as MantineDatePicker, DatePickerProps } from "@mantine/dates"
 
-interface Props extends Omit<SelectProps, "error"> {
+interface Props extends Omit<DatePickerProps, "error"> {
 	invalid?: boolean
 	invalidText?: string
 }
 
-export const Select = ({ invalid, invalidText, ...props }: Props) => {
+export const DatePicker = ({ invalid, invalidText, ...props }: Props) => {
 	const { colors } = useMantineTheme()
 
-	// The Mantine Select element has both an invalid and error prop.
+	// The Mantine DatePicker element has both an invalid and error prop.
 	// However, the invalid prop doesn't seem to work like the rest of the Mantine inputs.
-	// Therefore, we're using the error prop to determine if the Select is invalid.
+	// Therefore, we're using the error prop to determine if the DatePicker is invalid.
 	// Additionally, the styling infromation must be handled in the Styles API here.
 	return (
 		<div>
-			<MantineSelect
+			<MantineDatePicker
+				firstDayOfWeek="sunday"
 				error={invalid}
 				styles={{ error: { backgroundColor: `${colors.red[6]}`, borderColor: `${colors.red[6]}` } }}
 				{...props}
