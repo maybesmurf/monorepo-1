@@ -1,14 +1,36 @@
 import { useState } from "react"
-import { Stepper, Button, Group } from "@mantine/core"
+import { Group, Container, Title, Button, MantineSize, ButtonProps } from "@mantine/core"
+import SVG from "@Components/shared/SVG"
 
 const Test = () => {
-	const [active, setActive] = useState(1)
-	const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current))
-	const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current))
+	const [text, setText] = useState("Hello world!")
 
 	return (
-		<>
-			<Stepper
+		<main>
+			<Title order={1} align="center">
+				Welcome to the Kitchen Sink!
+			</Title>
+			<Group position="center" direction="column">
+				<Container fluid>
+					<Title order={2}>Buttons</Title>
+					<Group position="center" direction="row">
+						{["xs", "sm", "md", "lg", "xl"].map((size) => {
+							return (
+								<Group key={size} direction="column">
+									{[{}, { leftIcon: <SVG.Checkmark /> }].map((props: ButtonProps<"button">) => {
+										return (
+											<Button key={Math.random()} size={size as MantineSize} {...props}>
+												{text}
+											</Button>
+										)
+									})}
+								</Group>
+							)
+						})}
+					</Group>
+				</Container>
+			</Group>
+			{/* <Stepper
 				active={active}
 				onStepClick={setActive}
 				breakpoint="sm"
@@ -39,15 +61,8 @@ const Test = () => {
 					Step 3 content: Get full access
 				</Stepper.Step>
 				<Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
-			</Stepper>
-
-			<Group position="center" mt="xl">
-				<Button variant="default" onClick={prevStep}>
-					Back
-				</Button>
-				<Button onClick={nextStep}>Next step</Button>
-			</Group>
-		</>
+			</Stepper> */}
+		</main>
 	)
 }
 

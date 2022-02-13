@@ -42,6 +42,12 @@ const MyApp = ({ Component, pageProps }: any) => {
 							fontFamily: "Open Sans, sans-serif",
 							letterSpacing: ".1rem"
 						},
+						inner: {
+							color: colors.yellow[0]
+						},
+						leftIcon: {
+							height: "33%"
+						},
 						filled: {
 							"&:disabled": DISABLED_BUTTON_STYLES
 						},
