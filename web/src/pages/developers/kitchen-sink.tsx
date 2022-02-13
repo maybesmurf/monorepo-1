@@ -17,13 +17,15 @@ const Test = () => {
 						{["xs", "sm", "md", "lg", "xl"].map((size) => {
 							return (
 								<Group key={size} direction="column">
-									{[{}, { leftIcon: <SVG.Checkmark /> }].map((props: ButtonProps<"button">) => {
-										return (
-											<Button key={Math.random()} size={size as MantineSize} {...props}>
-												{text}
-											</Button>
-										)
-									})}
+									{[{}, { leftIcon: <SVG.Checkmark /> }, { rightIcon: <SVG.Carat /> }].map(
+										(props: ButtonProps<"button">) => {
+											return (
+												<Button key={Math.random()} size={size as MantineSize} {...props}>
+													{text}
+												</Button>
+											)
+										}
+									)}
 								</Group>
 							)
 						})}
