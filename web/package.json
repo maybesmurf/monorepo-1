@@ -5,6 +5,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"serve": "next start",
+		"lint": "next lint",
+		"tsc": "tsc --noEmit --incremental false",
 		"test": "jest --watch --coverage",
 		"ci:test": "jest .*\\.unit\\.test\\.ts"
 	},

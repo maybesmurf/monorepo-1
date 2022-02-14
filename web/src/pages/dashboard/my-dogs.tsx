@@ -1,8 +1,8 @@
-import { getLayout } from "src/components/layouts/Dashboard"
-import { Image } from "src/components/shared"
-import SVG from "src/components/shared/SVG"
+import { getLayout } from "@Components/layouts/Dashboard"
+import { Image } from "@Components/shared"
+import SVG from "@Components/shared/SVG"
 import { Alert, Card, Container, Group, Title, useMantineTheme } from "@mantine/core"
-import { imageDict } from "src/utils/imageDict"
+import { imageDict } from "@Utils/imageDict"
 
 const DUMMY_TRIALS = [
 	{
