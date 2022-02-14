@@ -1,13 +1,18 @@
 import { useState } from "react"
-import { useMantineTheme, Group, Container, Title, MantineSize, Space } from "@mantine/core"
-import { Button } from "@Components/shared/Button"
-import SVG from "@Components/shared/SVG"
-import { Textarea } from "@Components/shared/Textarea"
-import { TextInput } from "@Components/shared/TextInput"
-import { NumberInput } from "@Components/shared/NumberInput"
-import { TimeInput } from "@Components/shared/TimeInput"
-import { RadioGroup, Radio } from "@Components/shared/RadioGroup"
-import { Select } from "@Components/shared/Select"
+import { Stepper, Group, Container, Title, MantineSize, Space } from "@mantine/core"
+import {
+	Button,
+	DatePicker,
+	DateRangePicker,
+	Select,
+	NumberInput,
+	RadioGroup,
+	Radio,
+	SVG,
+	Textarea,
+	TextInput,
+	TimeInput
+} from "@Components/shared"
 
 const SELECT_DATA = [
 	{ value: "rick", label: "Rick", group: "Used to be a pickle" },
@@ -17,8 +22,8 @@ const SELECT_DATA = [
 ]
 
 const Test = () => {
-	const { colors } = useMantineTheme()
 	const [inputText, setInputText] = useState("")
+	const [activeStep, setActiveStep] = useState(1)
 
 	const buttonText = "Button"
 
@@ -93,42 +98,35 @@ const Test = () => {
 						</RadioGroup>
 
 						<Select data={SELECT_DATA} />
+
+						<DatePicker label="DatePicker" description="This is a description" />
+
+						<DateRangePicker label="DateRangePicker" description="This is a description" />
 					</Group>
 				</Container>
 			</Group>
-			{/* <Stepper
-				active={active}
-				onStepClick={setActive}
+			<Stepper
+				styles={{
+					root: {
+						margin: "0 3rem"
+					}
+				}}
+				active={activeStep}
+				onStepClick={setActiveStep}
 				breakpoint="sm"
-				progressIcon={
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth="2"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						className="feather feather-activity"
-					>
-						<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-					</svg>
-				}
 			>
-				<Stepper.Step label="Fist step" description="Create an account">
+				<Stepper.Step label="Fist step" description="description">
 					Step 1 content: Create an account
 				</Stepper.Step>
-				<Stepper.Step label="Second step" description="Verify email">
+				<Stepper.Step label="Second step" description="description">
 					Step 2 content: Verify email
 				</Stepper.Step>
-				<Stepper.Step label="Final step" description="Get full access">
+				<Stepper.Step label="Final step" description="description">
 					Step 3 content: Get full access
 				</Stepper.Step>
 				<Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
-			</Stepper> */}
-			<Space style={{ height: "10rem" }} />
+			</Stepper>
+			<Space style={{ height: "50rem" }} />
 		</main>
 	)
 }

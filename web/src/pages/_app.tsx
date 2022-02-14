@@ -95,7 +95,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 							}
 						})
 					}),
-					DatePicker: ({ colors }) => ({
+					DatePicker: ({ colors, other }) => ({
 						...createInputStyles({
 							input: {
 								"backgroundColor": colors.yellow[1],
@@ -118,10 +118,11 @@ const MyApp = ({ Component, pageProps }: any) => {
 							},
 							weekend: {
 								color: `${colors.navy[9]} !important`
-							}
+							},
+							selected: { color: `${other.colors.white} !important` }
 						})
 					}),
-					DateRangePicker: ({ colors }) => ({
+					DateRangePicker: ({ colors, other }) => ({
 						...createInputStyles({
 							input: {
 								"backgroundColor": colors.yellow[1],
@@ -155,7 +156,8 @@ const MyApp = ({ Component, pageProps }: any) => {
 							},
 							weekend: {
 								color: `${colors.navy[9]} !important`
-							}
+							},
+							selected: { color: `${other.colors.white} !important` }
 						})
 					}),
 					Checkbox: ({ colors }) => ({
@@ -181,9 +183,13 @@ const MyApp = ({ Component, pageProps }: any) => {
 					}),
 					Stepper: ({ colors }) => ({
 						steps: {
-							marginBottom: "3rem"
+							alignItems: "flex-start"
 						},
 						step: {
+							position: "relative",
+							margin: 0,
+							width: "42px",
+							top: "50%",
 							flexDirection: "column",
 							alignItems: "center"
 						},
@@ -192,24 +198,27 @@ const MyApp = ({ Component, pageProps }: any) => {
 							backgroundColor: colors.yellow[2]
 						},
 						stepBody: {
-							position: "relative",
-							margin: 0
-						},
-						stepLabel: {
-							position: "absolute",
-							top: ".5rem",
-							left: "50%",
-							transform: "translateX(-50%)",
-							color: colors.navy[9],
-							fontWeight: "600",
-							textAlign: "center",
+							marginTop: ".4rem",
+							marginLeft: 0,
 							lineHeight: "150%",
 							letterSpacing: ".03rem"
+						},
+						stepLabel: {
+							margin: 0,
+							color: colors.navy[9],
+							fontWeight: "600",
+							textAlign: "center"
+						},
+						stepDescription: {
+							margin: 0,
+							marginTop: ".5rem",
+							textAlign: "center"
 						},
 						separator: {
 							backgroundColor: colors.yellow[2],
 							height: "6px",
-							margin: 0
+							margin: 0,
+							marginTop: "18px"
 						},
 						stepProgress: {}
 					}),

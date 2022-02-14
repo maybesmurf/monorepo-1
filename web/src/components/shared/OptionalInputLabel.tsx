@@ -1,5 +1,6 @@
 import { Flexbox } from "@Components/shared/Flexbox"
 import { ReactNode } from "react"
+
 /** This component contains an optional tag on the right side of the label. */
 export const OptionalInputLabel = ({ children }: { children: ReactNode }) => {
 	return (

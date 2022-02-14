@@ -69,5 +69,3 @@ export const Table = ({ headers, rows, horizontalSpacing = "xs", verticalSpacing
 		</MantineTable>
 	)
 }
-
-export default Table

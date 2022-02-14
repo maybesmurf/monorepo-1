@@ -44,12 +44,14 @@ export const createInputStyles = (overrides?: any) => {
 			},
 			...overrides?.input
 		},
-		hovered: {
-			...overrides?.hovered
-		},
-		focused: {
-			...overrides?.focused
-		}
+		hovered: { ...overrides?.hovered },
+		focused: { ...overrides?.focused },
+		selected: { ...overrides?.selected },
+		day: { ...overrides?.day },
+		weekend: { ...overrides?.weekend },
+		inRange: { ...overrides?.inRange },
+		firstInRange: { ...overrides?.firstInRange },
+		lastInRange: { ...overrides?.lastInRange }
 	}
 
 	return stylesObj
