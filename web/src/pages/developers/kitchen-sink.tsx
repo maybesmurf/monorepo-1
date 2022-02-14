@@ -1,9 +1,11 @@
 import { useState } from "react"
-import { Group, Container, Title, Button, MantineSize, ButtonProps } from "@mantine/core"
+import { Group, Container, Title, MantineSize } from "@mantine/core"
+import { Button } from "@Components/shared/Button"
 import SVG from "@Components/shared/SVG"
+import { Textarea } from "@Components/shared/Textarea"
 
 const Test = () => {
-	const [text, setText] = useState("Hello world!")
+	const [text, setText] = useState("Button")
 
 	return (
 		<main>
@@ -11,25 +13,43 @@ const Test = () => {
 				Welcome to the Kitchen Sink!
 			</Title>
 			<Group position="center" direction="column">
-				<Container fluid>
+				<Container fluid padding="xl">
 					<Title order={2}>Buttons</Title>
 					<Group position="center" direction="row">
 						{["xs", "sm", "md", "lg", "xl"].map((size) => {
 							return (
 								<Group key={size} direction="column">
-									{[{}, { leftIcon: <SVG.Checkmark /> }, { rightIcon: <SVG.Carat /> }].map(
-										(props: ButtonProps<"button">) => {
-											return (
-												<Button key={Math.random()} size={size as MantineSize} {...props}>
-													{text}
-												</Button>
-											)
-										}
-									)}
+									{[
+										{},
+										{ leftIcon: <SVG.Checkmark /> },
+										{ rightIcon: <SVG.Carat />, variant: "outline" },
+										{ compact: true, leftIcon: <SVG.Checkmark /> },
+										{ compact: true, rightIcon: <SVG.Carat />, variant: "subtle" },
+										{ compact: true, leftIcon: <SVG.Checkmark />, disabled: true },
+										{ compact: true, rightIcon: <SVG.Carat />, disabled: true }
+									].map((props: any) => {
+										return (
+											<Button key={Math.random()} size={size as MantineSize} {...props}>
+												{text}
+											</Button>
+										)
+									})}
 								</Group>
 							)
 						})}
 					</Group>
+				</Container>
+
+				<Container fluid>
+					<Title order={2}>Inputs</Title>
+					<Textarea
+						label="Label"
+						description="This is a description"
+						required
+						invalid={text.length === 0}
+						invalidText="You must enter a value"
+						styles={{ input: { width: "50vw", height: "10rem" } }}
+					/>
 				</Container>
 			</Group>
 			{/* <Stepper

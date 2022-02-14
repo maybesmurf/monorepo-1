@@ -38,21 +38,24 @@ const MyApp = ({ Component, pageProps }: any) => {
 						message: { letterSpacing: ".06rem" }
 					}),
 					Button: ({ colors }) => ({
+						default: {
+							color: colors.yellow[0]
+						},
 						root: {
 							fontFamily: "Open Sans, sans-serif",
 							letterSpacing: ".1rem"
 						},
-						inner: {
-							color: colors.yellow[0]
-						},
 						leftIcon: {
+							height: "33%"
+						},
+						rightIcon: {
 							height: "33%"
 						},
 						filled: {
 							"&:disabled": DISABLED_BUTTON_STYLES
 						},
 						outline: {
-							"borderWidth": 1,
+							"borderWidth": 2,
 							"&:hover": {
 								borderColor: colors.teal[6],
 								backgroundColor: colors.teal[6],
