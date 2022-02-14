@@ -11,7 +11,7 @@ export const TimeInput = ({ invalid, invalidText, ...props }: Props) => {
 
 	return (
 		<div>
-			<MantineTimeInput {...props} />
+			<MantineTimeInput format={"12" || props.format} {...props} />
 			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
 			{invalidText && invalid && (
 				<Text color={colors.red[6]} styles={{ root: { marginTop: ".5rem" } }}>

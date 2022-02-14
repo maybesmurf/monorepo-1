@@ -43,6 +43,12 @@ export const createInputStyles = (overrides?: any) => {
 				...overrides?.input?.["&:invalid"]
 			},
 			...overrides?.input
+		},
+		hovered: {
+			...overrides?.hovered
+		},
+		focused: {
+			...overrides?.focused
 		}
 	}
 

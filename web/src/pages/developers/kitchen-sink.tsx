@@ -1,13 +1,26 @@
 import { useState } from "react"
-import { Group, Container, Title, MantineSize } from "@mantine/core"
+import { useMantineTheme, Group, Container, Title, MantineSize, Space } from "@mantine/core"
 import { Button } from "@Components/shared/Button"
 import SVG from "@Components/shared/SVG"
 import { Textarea } from "@Components/shared/Textarea"
 import { TextInput } from "@Components/shared/TextInput"
+import { NumberInput } from "@Components/shared/NumberInput"
+import { TimeInput } from "@Components/shared/TimeInput"
+import { RadioGroup, Radio } from "@Components/shared/RadioGroup"
+import { Select } from "@Components/shared/Select"
+
+const SELECT_DATA = [
+	{ value: "rick", label: "Rick", group: "Used to be a pickle" },
+	{ value: "morty", label: "Morty", group: "Never was a pickle" },
+	{ value: "beth", label: "Beth", group: "Never was a pickle" },
+	{ value: "summer", label: "Summer", group: "Never was a pickle" }
+]
 
 const Test = () => {
+	const { colors } = useMantineTheme()
 	const [inputText, setInputText] = useState("")
-	const [buttonText, setButtonText] = useState("Button")
+
+	const buttonText = "Button"
 
 	return (
 		<main>
@@ -54,6 +67,7 @@ const Test = () => {
 							invalid={inputText.length === 0 || inputText === "Button"}
 							invalidText="You must enter a value"
 						/>
+
 						<Textarea
 							value={inputText}
 							onChange={(e) => setInputText(e.target.value)}
@@ -67,6 +81,18 @@ const Test = () => {
 							label="TextInput"
 							description="This is a description"
 						/>
+						<NumberInput label="NumberInput" description="This is a description" />
+
+						<TimeInput label="TimeInput" description="This is a description" />
+
+						<RadioGroup label="RadioGroup" description="This is a description">
+							<Radio value="react">React</Radio>
+							<Radio value="svelte">Svelte</Radio>
+							<Radio value="ng">Angular</Radio>
+							<Radio value="vue">Vue</Radio>
+						</RadioGroup>
+
+						<Select data={SELECT_DATA} />
 					</Group>
 				</Container>
 			</Group>
@@ -102,6 +128,7 @@ const Test = () => {
 				</Stepper.Step>
 				<Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
 			</Stepper> */}
+			<Space style={{ height: "10rem" }} />
 		</main>
 	)
 }

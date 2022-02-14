@@ -84,26 +84,9 @@ const MyApp = ({ Component, pageProps }: any) => {
 					TimeInput: createInputStyles(),
 					Select: ({ colors, other }) => ({
 						...createInputStyles({
-							input: {
-								"backgroundColor": colors.yellow[0],
-								"color": colors.navy[9],
-								// "borderColor": colors.gray[1],
-								"::placeholder": {
-									color: `${colors.gray[1]} !important`
-								},
-								"&:focus": {
-									backgroundColor: other.colors.white
-								},
-								"&:disabled": {
-									"::placeholder": {
-										color: `${colors.gray[1]} !important`
-									},
-									"backgroundColor": colors.yellow[1],
-									"borderColor": colors.gray[1]
-								}
-							},
 							hovered: {
-								color: colors.navy[9],
+								color: "green",
+								// color: colors.navy[9],
 								backgroundColor: colors.teal[1]
 							},
 							selected: {
@@ -182,6 +165,17 @@ const MyApp = ({ Component, pageProps }: any) => {
 							"&:disabled": {
 								backgroundColor: colors.yellow[0],
 								borderColor: colors.gray[1]
+							}
+						}
+					}),
+					RadioGroup: ({ colors }) => ({
+						label: {
+							color: colors.navy[9],
+							fontWeight: 600
+						},
+						radioWrapper: {
+							label: {
+								fontWeight: 400
 							}
 						}
 					}),
