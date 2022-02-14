@@ -9,7 +9,7 @@ export const Textarea = ({ invalid, invalidText, ...props }: Props) => {
 	const { colors } = useMantineTheme()
 
 	return (
-		<>
+		<div>
 			<MantineTextarea {...props} />
 			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
 			{invalidText && invalid && (
@@ -17,6 +17,6 @@ export const Textarea = ({ invalid, invalidText, ...props }: Props) => {
 					{invalidText}
 				</Text>
 			)}
-		</>
+		</div>
 	)
 }

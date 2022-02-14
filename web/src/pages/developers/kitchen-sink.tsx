@@ -3,9 +3,11 @@ import { Group, Container, Title, MantineSize } from "@mantine/core"
 import { Button } from "@Components/shared/Button"
 import SVG from "@Components/shared/SVG"
 import { Textarea } from "@Components/shared/Textarea"
+import { TextInput } from "@Components/shared/TextInput"
 
 const Test = () => {
-	const [text, setText] = useState("Button")
+	const [inputText, setInputText] = useState("")
+	const [buttonText, setButtonText] = useState("Button")
 
 	return (
 		<main>
@@ -27,10 +29,10 @@ const Test = () => {
 										{ compact: true, rightIcon: <SVG.Carat />, variant: "subtle" },
 										{ compact: true, leftIcon: <SVG.Checkmark />, disabled: true },
 										{ compact: true, rightIcon: <SVG.Carat />, disabled: true }
-									].map((props: any) => {
+									].map((props: any, index: number) => {
 										return (
-											<Button key={Math.random()} size={size as MantineSize} {...props}>
-												{text}
+											<Button key={size + index} size={size as MantineSize} {...props}>
+												{buttonText}
 											</Button>
 										)
 									})}
@@ -42,14 +44,30 @@ const Test = () => {
 
 				<Container fluid>
 					<Title order={2}>Inputs</Title>
-					<Textarea
-						label="Label"
-						description="This is a description"
-						required
-						invalid={text.length === 0}
-						invalidText="You must enter a value"
-						styles={{ input: { width: "50vw", height: "10rem" } }}
-					/>
+					<Group>
+						<Textarea
+							value={inputText}
+							onChange={(e) => setInputText(e.target.value)}
+							label="Textarea"
+							description="This is a description"
+							required
+							invalid={inputText.length === 0 || inputText === "Button"}
+							invalidText="You must enter a value"
+						/>
+						<Textarea
+							value={inputText}
+							onChange={(e) => setInputText(e.target.value)}
+							label="Textarea"
+							description="This is a description"
+						/>
+
+						<TextInput
+							value={inputText}
+							onChange={(e) => setInputText(e.target.value)}
+							label="TextInput"
+							description="This is a description"
+						/>
+					</Group>
 				</Container>
 			</Group>
 			{/* <Stepper

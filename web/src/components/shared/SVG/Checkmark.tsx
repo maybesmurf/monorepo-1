@@ -1,14 +1,9 @@
 import { SVGProps } from "react"
 
-// If I set both width and height, use them.
-// If I set only width, use height auto.
-// If I set only height, use height auto.
-// If I don't set anything, use width: 100%, height: auto.
-
 export const Checkmark = ({ stroke, fill, ...props }: SVGProps<SVGSVGElement>) => (
 	<svg
 		width={props.width || "100%"}
-		height={props.height || "auto"}
+		height={props.height || "100%"}
 		viewBox="0 0 10 8"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"

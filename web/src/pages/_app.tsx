@@ -74,7 +74,11 @@ const MyApp = ({ Component, pageProps }: any) => {
 							}
 						}
 					}),
-					Textarea: createInputStyles(),
+					Textarea: createInputStyles({
+						input: {
+							height: "10rem"
+						}
+					}),
 					TextInput: createInputStyles(),
 					NumberInput: createInputStyles(),
 					TimeInput: createInputStyles(),

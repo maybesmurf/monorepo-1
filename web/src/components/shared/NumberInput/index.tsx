@@ -9,7 +9,7 @@ export const NumberInput = ({ invalid, invalidText, ...props }: Props) => {
 	const { colors } = useMantineTheme()
 
 	return (
-		<>
+		<div>
 			<MantineNumberInput value={props.value} {...props} />
 			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
 			{invalidText && invalid && (
@@ -17,6 +17,6 @@ export const NumberInput = ({ invalid, invalidText, ...props }: Props) => {
 					{invalidText}
 				</Text>
 			)}
-		</>
+		</div>
 	)
 }
