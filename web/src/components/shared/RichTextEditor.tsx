@@ -15,20 +15,26 @@ interface Props extends RichTextEditorProps {
 }
 
 export const RichTextEditor = (props: Props) => {
-	const { colors, other } = useMantineTheme()
+	const { colors, radius, other } = useMantineTheme()
 
 	return (
 		<DynamicallyLoadedRte
 			{...props}
 			styles={{
 				root: {
+					"height": "15rem",
 					"backgroundColor": colors.yellow[1],
+					"borderRadius": radius.md,
+					"borderColor": colors.gray[1],
 					"&:focus": {
 						backgroundColor: other.colors.white
 					}
 				},
 				toolbar: {
-					backgroundColor: colors.yellow[0]
+					borderTopLeftRadius: `${radius.md}px !important`,
+					borderTopRightRadius: `${radius.md}px !important`,
+					backgroundColor: colors.yellow[0],
+					borderColor: colors.gray[1]
 				}
 			}}
 		/>

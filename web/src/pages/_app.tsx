@@ -34,7 +34,16 @@ const MyApp = ({ Component, pageProps }: any) => {
 				withNormalizeCSS
 				theme={theme}
 				styles={{
-					Alert: ({ colors }) => ({
+					Alert: ({ spacing }) => ({
+						light: {
+							borderRadius: spacing.lg
+						},
+						filled: {
+							borderRadius: spacing.lg
+						},
+						outline: {
+							borderRadius: spacing.lg
+						},
 						message: { letterSpacing: ".06rem" }
 					}),
 					Button: ({ colors }) => ({
@@ -99,7 +108,10 @@ const MyApp = ({ Component, pageProps }: any) => {
 					}),
 					TextInput: createInputStyles(),
 					NumberInput: createInputStyles(),
-					TimeInput: createInputStyles(),
+					TimeInput: ({ other }) =>
+						createInputStyles({
+							disabled: { background: "green" }
+						}),
 					Select: ({ colors, other }) => ({
 						...createInputStyles({
 							hovered: {

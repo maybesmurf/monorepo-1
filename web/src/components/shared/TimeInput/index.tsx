@@ -7,11 +7,18 @@ interface Props extends TimeInputProps {
 }
 
 export const TimeInput = ({ invalid, invalidText, ...props }: Props) => {
-	const { colors } = useMantineTheme()
+	const { colors, other } = useMantineTheme()
 
 	return (
 		<div>
-			<MantineTimeInput format={"12" || props.format} {...props} />
+			<MantineTimeInput
+				format={"12" || props.format}
+				{...props}
+				styles={{
+					input: { "cursor": "pointer", "&:hover": { background: other.colors.white } },
+					timeInput: { "&:focus": { background: other.colors.white } }
+				}}
+			/>
 			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
 			{invalidText && invalid && (
 				<Text color={colors.red[6]} styles={{ root: { marginTop: ".5rem" } }}>

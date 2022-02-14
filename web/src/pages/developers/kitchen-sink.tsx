@@ -44,7 +44,7 @@ const TABLE_DATA = [
 ]
 
 const Test = () => {
-	const { colors, spacing } = useMantineTheme()
+	const { colors } = useMantineTheme()
 	const [inputText, setInputText] = useState("")
 	const [activeStep, setActiveStep] = useState(1)
 	const [rteInput, setRteInput] = useState("")
@@ -56,6 +56,17 @@ const Test = () => {
 			<Title order={1} align="center">
 				Welcome to the Kitchen Sink!
 			</Title>
+
+			<Group>
+				<Title order={2}>Typography</Title>
+				<Title order={1}>Headline 1</Title>
+				<Title order={2}>Headline 2</Title>
+				<Title order={3}>Headline 3</Title>
+				<Title order={4}>Headline 4</Title>
+				<Title order={5}>Headline 5</Title>
+				<Title order={6}>Headline 6</Title>
+			</Group>
+
 			<Group position="center" direction="column">
 				<Container fluid padding="xl">
 					<Title order={2}>Buttons</Title>
@@ -160,12 +171,7 @@ const Test = () => {
 					Alert
 				</Title>
 				<Group>
-					<Alert
-						icon={<SVG.AlertCircle />}
-						title="This is a title"
-						color="red"
-						styles={{ message: { color: colors.red[8] } }}
-					>
+					<Alert icon={<SVG.AlertCircle />} title="This is a title" color="red">
 						Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia con.
 					</Alert>
 				</Group>
