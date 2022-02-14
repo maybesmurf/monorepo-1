@@ -18,30 +18,19 @@ export const RichTextEditor = (props: Props) => {
 	const { colors, other } = useMantineTheme()
 
 	return (
-		<div
-			style={{
-				width: "100%",
-				height: "100vh",
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				flexDirection: "column"
-			}}
-		>
-			<DynamicallyLoadedRte
-				{...props}
-				styles={{
-					root: {
-						"backgroundColor": colors.yellow[1],
-						"&:focus": {
-							backgroundColor: other.colors.white
-						}
-					},
-					toolbar: {
-						backgroundColor: colors.yellow[0]
+		<DynamicallyLoadedRte
+			{...props}
+			styles={{
+				root: {
+					"backgroundColor": colors.yellow[1],
+					"&:focus": {
+						backgroundColor: other.colors.white
 					}
-				}}
-			/>
-		</div>
+				},
+				toolbar: {
+					backgroundColor: colors.yellow[0]
+				}
+			}}
+		/>
 	)
 }

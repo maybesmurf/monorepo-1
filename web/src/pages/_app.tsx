@@ -74,6 +74,24 @@ const MyApp = ({ Component, pageProps }: any) => {
 							}
 						}
 					}),
+					Chips: ({ colors, radius }) => ({
+						outline: {
+							color: colors.gray[7],
+							borderRadius: radius.xs,
+							borderColor: colors.gray[7],
+							backgroundColor: "transparent"
+						},
+						filled: {
+							"color": colors.gray[7],
+							"backgroundColor": colors.teal[1],
+							":hover": {
+								backgroundColor: colors.teal[2]
+							}
+						},
+						checked: {
+							color: `${colors.navy[9]} !important`
+						}
+					}),
 					Textarea: createInputStyles({
 						input: {
 							height: "10rem"
@@ -227,6 +245,15 @@ const MyApp = ({ Component, pageProps }: any) => {
 							backgroundColor: other.colors.white,
 							color: colors.gray[7],
 							border: `${colors.gray[1]} solid 1px`
+						}
+					}),
+					Pagination: ({ colors }) => ({
+						item: {
+							background: "transparent",
+							color: colors.navy[9],
+							fontFamily: "Open Sans, sans-serif",
+							borderColor: colors.gray[1],
+							borderWidth: 2
 						}
 					})
 				}}

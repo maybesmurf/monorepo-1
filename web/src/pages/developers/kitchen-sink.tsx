@@ -1,5 +1,17 @@
 import { useState } from "react"
-import { Stepper, Group, Container, Title, MantineSize, Space } from "@mantine/core"
+import {
+	Alert,
+	Stepper,
+	Group,
+	Container,
+	Title,
+	MantineSize,
+	Space,
+	useMantineTheme,
+	Chips,
+	Chip,
+	Pagination
+} from "@mantine/core"
 import {
 	Button,
 	DatePicker,
@@ -11,7 +23,9 @@ import {
 	SVG,
 	Textarea,
 	TextInput,
-	TimeInput
+	TimeInput,
+	Table,
+	RichTextEditor
 } from "@Components/shared"
 
 const SELECT_DATA = [
@@ -21,9 +35,19 @@ const SELECT_DATA = [
 	{ value: "summer", label: "Summer", group: "Never was a pickle" }
 ]
 
+const TABLE_DATA = [
+	{ position: 6, mass: 12.011, symbol: "C", name: "Carbon" },
+	{ position: 7, symbol: "N", name: "Nitrogen" },
+	{ position: 39, mass: 88.906, symbol: "Y", name: "Yttrium" },
+	{ position: 56, mass: 137.33, name: "Barium" },
+	{ position: 58, name: "Cerium" }
+]
+
 const Test = () => {
+	const { colors, spacing } = useMantineTheme()
 	const [inputText, setInputText] = useState("")
 	const [activeStep, setActiveStep] = useState(1)
+	const [rteInput, setRteInput] = useState("")
 
 	const buttonText = "Button"
 
@@ -60,7 +84,7 @@ const Test = () => {
 					</Group>
 				</Container>
 
-				<Container fluid>
+				<Container fluid style={{ marginTop: "2rem" }}>
 					<Title order={2}>Inputs</Title>
 					<Group>
 						<Textarea
@@ -105,27 +129,108 @@ const Test = () => {
 					</Group>
 				</Container>
 			</Group>
-			<Stepper
-				styles={{
-					root: {
-						margin: "0 3rem"
-					}
-				}}
-				active={activeStep}
-				onStepClick={setActiveStep}
-				breakpoint="sm"
-			>
-				<Stepper.Step label="Fist step" description="description">
-					Step 1 content: Create an account
-				</Stepper.Step>
-				<Stepper.Step label="Second step" description="description">
-					Step 2 content: Verify email
-				</Stepper.Step>
-				<Stepper.Step label="Final step" description="description">
-					Step 3 content: Get full access
-				</Stepper.Step>
-				<Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
-			</Stepper>
+
+			<Container fluid style={{ marginTop: "2rem" }}>
+				<Title order={2}>Stepper</Title>
+				<Stepper
+					styles={{
+						root: {
+							margin: "0 3rem"
+						}
+					}}
+					active={activeStep}
+					onStepClick={setActiveStep}
+					breakpoint="sm"
+				>
+					<Stepper.Step label="Fist step" description="description">
+						Step 1 content: Create an account
+					</Stepper.Step>
+					<Stepper.Step label="Second step" description="description">
+						Step 2 content: Verify email
+					</Stepper.Step>
+					<Stepper.Step label="Final step" description="description">
+						Step 3 content: Get full access
+					</Stepper.Step>
+					<Stepper.Completed>Completed, click back button to get to previous step</Stepper.Completed>
+				</Stepper>
+			</Container>
+
+			<Container>
+				<Title order={2} style={{ marginTop: "2rem" }}>
+					Alert
+				</Title>
+				<Group>
+					<Alert
+						icon={<SVG.AlertCircle />}
+						title="This is a title"
+						color="red"
+						styles={{ message: { color: colors.red[8] } }}
+					>
+						Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia con.
+					</Alert>
+				</Group>
+			</Container>
+
+			<Container>
+				<Title order={2} style={{ marginTop: "2rem" }}>
+					Table
+				</Title>
+				<Table
+					rows={TABLE_DATA}
+					headers={[
+						{
+							title: "Position",
+							property: "position"
+						},
+						{
+							title: "Mass",
+							property: "mass"
+						},
+						{
+							title: "Symbol",
+							property: "symbol"
+						},
+						{
+							title: "Name",
+							property: "name"
+						}
+					]}
+				/>
+			</Container>
+
+			<Container>
+				<Title order={2} style={{ marginTop: "2rem" }}>
+					Rich Text Editor
+				</Title>
+				<RichTextEditor value={rteInput} onChange={setRteInput} />
+			</Container>
+
+			<Container>
+				<Title order={2} style={{ marginTop: "2rem" }}>
+					Chips
+				</Title>
+				<Group>
+					<Chips>
+						<Chip value="react">React</Chip>
+						<Chip value="ng">Angular</Chip>
+						<Chip value="svelte">Svelte</Chip>
+						<Chip value="vue">Vue</Chip>
+					</Chips>
+					<Chips variant="filled">
+						<Chip value="react">React</Chip>
+						<Chip value="ng">Angular</Chip>
+						<Chip value="svelte">Svelte</Chip>
+						<Chip value="vue">Vue</Chip>
+					</Chips>
+				</Group>
+			</Container>
+
+			<Container>
+				<Title order={2} style={{ marginTop: "2rem" }}>
+					Pagination
+				</Title>
+				<Pagination total={10} />
+			</Container>
 			<Space style={{ height: "50rem" }} />
 		</main>
 	)

@@ -5,7 +5,7 @@ import { Table as MantineTable, TableProps, useMantineTheme } from "@mantine/cor
 
 interface Props extends Omit<TableProps, "children"> {
 	/** Automagically wrapped in tbody. */
-	rows: Array<Record<string, ReactElement | string | number>>
+	rows: Array<Record<string, ReactElement | string | number | undefined>>
 	/** Automagically wrapped in thead.
 	 *
 	 * Title is the displayed table header.
