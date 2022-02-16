@@ -1,6 +1,5 @@
 import DogService from "./index"
 import { buildDog } from "@Root/../.jest/dogGenerator"
-import { DogSex } from "@prisma/client"
 import { prisma } from "@Root/libs/prisma"
 
 const dogService = new DogService()
@@ -11,7 +10,7 @@ describe("Dog Services (UNIT)", () => {
 
 		const spy = jest.spyOn(prisma.dog, "findMany").mockResolvedValue([dog])
 
-		await dogService.list({ where: { sex: "female" as DogSex }, skip: 0, take: 10 })
+		await dogService.list({ where: { sex: "female" as "FEMALE" }, skip: 0, take: 10 })
 		expect(spy).toHaveBeenCalledWith({ where: { sex: "FEMALE" }, skip: 0, take: 10, orderBy: undefined })
 	})
 })
