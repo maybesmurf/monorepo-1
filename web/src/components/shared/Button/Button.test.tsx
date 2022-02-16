@@ -18,16 +18,6 @@ describe("Button", () => {
 		expect(screen.getByText("Test Text").closest("button")).toBeDisabled()
 	})
 
-	it("Doesn't allow disabled on <a> tag", async () => {
-		render(
-			<Button component="a" disabled>
-				Test Text
-			</Button>
-		)
-
-		expect(screen.getByText("Test Text").closest("a")).not.toBeDisabled()
-	})
-
 	it("Uses md radius on xs size", async () => {
 		render(
 			<Button id="button" size="xs">

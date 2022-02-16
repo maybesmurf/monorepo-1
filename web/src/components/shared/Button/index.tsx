@@ -1,10 +1,10 @@
-import { Button as MantineButton, ButtonProps } from "@mantine/core"
+import { Button as MantineButton, ButtonProps as MantineButtonProps } from "@mantine/core"
 
-interface Props extends ButtonProps<"button" | "a"> {
+interface ButtonProps extends MantineButtonProps<"button"> {
 	disabled?: boolean
 }
 
-export const Button = ({ children, ...props }: Props) => {
+export const Button = ({ children, ...props }: ButtonProps) => {
 	return (
 		<MantineButton
 			disabled={props.component === "button" ? props.disabled : false}
