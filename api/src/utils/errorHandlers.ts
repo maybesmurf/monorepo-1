@@ -9,8 +9,6 @@ export class ResponseError extends Error {
 // This handler does not need to include Sentry.
 // Sentry's error handling has been accounted for in the application's index.
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
-	console.error(err)
-
 	if (err instanceof ResponseError) {
 		const { responseInfo, message } = err
 		const { statusCode, info } = responseInfo
