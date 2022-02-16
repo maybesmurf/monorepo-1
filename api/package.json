@@ -6,7 +6,7 @@
 		"dev:start": "node ./build/src/index.js",
 		"start": "node ./build/src/index.js && prisma migrate deploy",
 		"test": "jest --watch --coverage",
-		"ci:test": "cross-env DATABASE_URL=test jest .*\\.unit\\.test\\.ts"
+		"ci:test": "cross-env DATABASE_URL=test prisma generate && jest .*\\.unit\\.test\\.ts"
 	},
 	"_moduleAliases": {
 		"@Root": "build/src",
