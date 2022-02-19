@@ -1,16 +1,16 @@
 import { ReactElement } from "react"
 import { Table as MantineTable, TableProps } from "@mantine/core"
-import { useMantineTheme } from "@Hooks"
-// TODO: Extra type safety can be introduced to index the array and make it the styles for the rows, I bet.
+import { useMantineTheme } from "@Hooks/index"
+// TODO: Extra type safety can be introduced to index the array and make it the types for the rows, I bet.
 
 interface Props extends Omit<TableProps, "children"> {
 	/** Automagically wrapped in tbody. */
 	rows: Array<Record<string, ReactElement | string | number | undefined>>
 	/** Automagically wrapped in thead.
 	 *
-	 * Title is the displayed table header.
+	 * Title is the displayed name for the column in the table header.
 	 *
-	 * Property is the name of the property in the row object.
+	 * Property is the name of the property in the row object from data.
 	 * */
 	headers: Array<{
 		/** Displayed table header */

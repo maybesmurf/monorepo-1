@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic"
 import { RichTextEditorProps } from "@mantine/rte"
-import { useMantineTheme } from "@Hooks"
+import { useMantineTheme } from "@Hooks/index"
 
 const DynamicallyLoadedRte = dynamic(() => import("@mantine/rte"), {
 	// Disables server side rendering

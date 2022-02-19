@@ -2,7 +2,7 @@ import { getLayout } from "@Components/layouts/Dashboard"
 import { Image } from "@Components/shared"
 import SVG from "@Components/shared/SVG"
 import { Alert, Card, Container, Group, Title } from "@Components/shared"
-import { useMantineTheme } from "@Hooks"
+import { useMantineTheme } from "@Hooks/index"
 import { imageDict } from "@Utils/imageDict"
 
 const DUMMY_TRIALS = [
