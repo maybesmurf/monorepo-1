@@ -13,6 +13,8 @@ jobs:
       - name: Install dependencies
         run: cd api && npm ci --no-audit --prefer-offline
       - name: Run unit tests
+        env:
+          DATABASE_URL: ${secrets.CI_DATABASE_URL}
         run: cd api && npm run ci:test
 
   build:
