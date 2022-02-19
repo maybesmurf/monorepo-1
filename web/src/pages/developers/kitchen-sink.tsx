@@ -44,7 +44,6 @@ const TABLE_DATA = [
 ]
 
 const Test = () => {
-	const { colors } = useMantineTheme()
 	const [inputText, setInputText] = useState("")
 	const [activeStep, setActiveStep] = useState(1)
 	const [rteInput, setRteInput] = useState("")
@@ -102,6 +101,7 @@ const Test = () => {
 							value={inputText}
 							onChange={(e) => setInputText(e.target.value)}
 							label="Textarea"
+							placeholder="Some test placeholder"
 							description="This is a description"
 							required
 							invalid={inputText.length === 0 || inputText === "Button"}
@@ -110,6 +110,7 @@ const Test = () => {
 
 						<Textarea
 							value={inputText}
+							placeholder="Some test placeholder"
 							onChange={(e) => setInputText(e.target.value)}
 							label="Textarea"
 							description="This is a description"
@@ -117,13 +118,14 @@ const Test = () => {
 
 						<TextInput
 							value={inputText}
+							placeholder="Some test placeholder"
 							onChange={(e) => setInputText(e.target.value)}
 							label="TextInput"
 							description="This is a description"
 						/>
 						<NumberInput label="NumberInput" description="This is a description" />
 
-						<TimeInput label="TimeInput" description="This is a description" />
+						<TimeInput icon={<SVG.Clock />} label="TimeInput" description="This is a description" />
 
 						<RadioGroup label="RadioGroup" description="This is a description">
 							<Radio value="react">React</Radio>
@@ -134,7 +136,7 @@ const Test = () => {
 
 						<Select data={SELECT_DATA} />
 
-						<DatePicker label="DatePicker" description="This is a description" />
+						<DatePicker icon={<SVG.Calendar />} label="DatePicker" description="This is a description" />
 
 						<DateRangePicker label="DateRangePicker" description="This is a description" />
 					</Group>
@@ -235,7 +237,7 @@ const Test = () => {
 				<Title order={2} style={{ marginTop: "2rem" }}>
 					Pagination
 				</Title>
-				<Pagination total={10} />
+				<Pagination size="sm" total={10} />
 			</Container>
 			<Space style={{ height: "50rem" }} />
 		</main>

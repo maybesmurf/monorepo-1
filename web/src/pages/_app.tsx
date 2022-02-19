@@ -34,7 +34,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 				withNormalizeCSS
 				theme={theme}
 				styles={{
-					Alert: ({ spacing }) => ({
+					Alert: ({ colors, spacing }) => ({
 						light: {
 							borderRadius: spacing.lg
 						},
@@ -44,7 +44,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 						outline: {
 							borderRadius: spacing.lg
 						},
-						message: { letterSpacing: ".06rem" }
+						message: { letterSpacing: ".06rem", color: colors.red[8] }
 					}),
 					Button: ({ colors }) => ({
 						default: {
@@ -108,20 +108,18 @@ const MyApp = ({ Component, pageProps }: any) => {
 					}),
 					TextInput: createInputStyles(),
 					NumberInput: createInputStyles(),
-					TimeInput: ({ other }) =>
-						createInputStyles({
-							disabled: { background: "green" }
-						}),
-					Select: ({ colors, other }) => ({
+					Select: ({ colors }) => ({
 						...createInputStyles({
 							hovered: {
-								color: "green",
-								// color: colors.navy[9],
-								backgroundColor: colors.teal[1]
+								color: colors.navy[9],
+								backgroundColor: colors.yellow[1]
 							},
 							selected: {
 								color: colors.navy[9],
-								backgroundColor: colors.yellow[1]
+								backgroundColor: colors.teal[1]
+							},
+							dropdown: {
+								color: colors.navy[9]
 							}
 						})
 					}),
@@ -259,6 +257,11 @@ const MyApp = ({ Component, pageProps }: any) => {
 							border: `${colors.gray[1]} solid 1px`
 						}
 					}),
+					TimeInput: ({}) => ({
+						...createInputStyles({
+							icon: { padding: ".5rem" }
+						})
+					}),
 					Pagination: ({ colors }) => ({
 						item: {
 							background: "transparent",
@@ -271,16 +274,22 @@ const MyApp = ({ Component, pageProps }: any) => {
 				}}
 			>
 				<Global
-					styles={(theme) => ({
+					styles={({ colors, other }) => ({
 						"*": {
 							boxSizing: "border-box",
 							letterSpacing: ".03rem"
 						},
 						"body": {
-							backgroundColor: theme.colors.yellow[0]
+							backgroundColor: colors.yellow[0]
 						},
-						".quill-editor": {
-							backgroundColor: theme.colors.yellow[1]
+						".ql-editor": {
+							borderBottomLeftRadius: "8px",
+							borderBottomRightRadius: "8px",
+							outline: `1px solid ${colors.gray[1]} !important`,
+							backgroundColor: colors.yellow[1]
+						},
+						".ql-editor.focus-visible": {
+							backgroundColor: other.colors.white
 						}
 					})}
 				/>

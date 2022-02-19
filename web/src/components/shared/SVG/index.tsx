@@ -6,6 +6,7 @@ import { Paw } from "./Paw"
 import { AwardRibbon } from "./AwardRibbon"
 import { Checkmark } from "./Checkmark"
 import { Carat } from "./Carat"
+import { Clock } from "./Clock"
 
 export const SVG = {
 	Box,
@@ -15,7 +16,8 @@ export const SVG = {
 	Paw,
 	AwardRibbon,
 	Checkmark,
-	Carat
+	Carat,
+	Clock
 }
 
 export default SVG

@@ -44,6 +44,8 @@ export const createInputStyles = (overrides?: any) => {
 			},
 			...overrides?.input
 		},
+		icon: { ...overrides?.icon },
+		dropdown: { ...overrides?.dropdown },
 		hovered: { ...overrides?.hovered },
 		focused: { ...overrides?.focused },
 		selected: { ...overrides?.selected },

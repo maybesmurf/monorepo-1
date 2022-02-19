@@ -16,7 +16,8 @@ export const TimeInput = ({ invalid, invalidText, ...props }: Props) => {
 				{...props}
 				styles={{
 					input: { "cursor": "pointer", "&:hover": { background: other.colors.white } },
-					timeInput: { "&:focus": { background: other.colors.white } }
+					timeInput: { "&:focus": { background: other.colors.white } },
+					...props?.styles
 				}}
 			/>
 			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}

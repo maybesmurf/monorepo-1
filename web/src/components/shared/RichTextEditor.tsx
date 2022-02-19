@@ -22,7 +22,6 @@ export const RichTextEditor = (props: Props) => {
 			{...props}
 			styles={{
 				root: {
-					"height": "15rem",
 					"backgroundColor": colors.yellow[1],
 					"borderRadius": radius.md,
 					"borderColor": colors.gray[1],
