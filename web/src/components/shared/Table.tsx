@@ -1,6 +1,6 @@
 import { ReactElement } from "react"
-import { Table as MantineTable, TableProps, useMantineTheme } from "@mantine/core"
-
+import { Table as MantineTable, TableProps } from "@mantine/core"
+import { useMantineTheme } from "@Hooks"
 // TODO: Extra type safety can be introduced to index the array and make it the styles for the rows, I bet.
 
 interface Props extends Omit<TableProps, "children"> {

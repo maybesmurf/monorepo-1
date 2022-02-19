@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { Button, Collapse, useMantineTheme } from "@mantine/core"
+import { Button, Collapse, useMantineTheme } from "@Components/shared"
 import { useRouter } from "next/router"
 import Link from "next/link"
 interface Props {
@@ -18,7 +18,7 @@ const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
 			<Link href={path} passHref>
 				<Button
 					variant="subtle"
-					component="a"
+					asLink
 					fullWidth
 					leftIcon={icon}
 					styles={{

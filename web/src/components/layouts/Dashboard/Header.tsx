@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
 import { Image } from "@Components/shared/Image"
 // import { Image } from "src/components/shared"
-import { MediaQuery, Burger, Header, useMantineTheme, Center } from "@mantine/core"
+import { MediaQuery, Burger, Header, useMantineTheme, Center } from "@Components/shared"
 import { imageDict } from "@Utils/imageDict"
 
 interface Props {

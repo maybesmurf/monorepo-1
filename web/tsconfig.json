@@ -21,7 +21,8 @@
 			"@Utils/*": ["utils/*"],
 			"@test-utils": ["utils/testing/test-utils"],
 			"@Components/*": ["components/*"],
-			"@Styles/*": ["styles/*"]
+			"@Styles/*": ["styles/*"],
+			"@Hooks/*": ["hooks/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

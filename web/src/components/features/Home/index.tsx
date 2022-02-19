@@ -1,4 +1,4 @@
-import { Title, Header, Text, Container, useMantineTheme } from "@mantine/core"
+import { Title, Header, Text, Container, useMantineTheme } from "@Components/shared"
 import Image from "next/image"
 
 import { Blob } from "./Blob"

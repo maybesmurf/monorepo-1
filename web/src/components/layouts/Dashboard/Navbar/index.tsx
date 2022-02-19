@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react"
-import { Navbar, List, useMantineTheme } from "@mantine/core"
+import { Navbar, List, useMantineTheme } from "@Components/shared"
 import ListItem from "./ListItem"
 import SVG from "@Components/shared/SVG"
 
