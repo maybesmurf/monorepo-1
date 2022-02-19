@@ -1,3 +1,6 @@
+export * from "@mantine/core"
+export * from "@mantine/dates"
+
 export { OptionalInputLabel } from "./OptionalInputLabel"
 export { RichTextEditor } from "./RichTextEditor"
 export { Table } from "./Table"
@@ -8,8 +11,9 @@ export { Flexbox } from "./Flexbox"
 export { Image } from "./Image"
 export { NumberInput } from "./NumberInput"
 export { RadioGroup, Radio } from "./RadioGroup"
-export * from "./SVG"
 export { Textarea } from "./Textarea"
 export { TextInput } from "./TextInput"
 export { TimeInput } from "./TimeInput"
 export { Select } from "./Select"
+import SVGLibrary from "./SVG"
+export const SVG = SVGLibrary

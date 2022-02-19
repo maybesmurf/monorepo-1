@@ -169,11 +169,11 @@ const MyApp = ({ Component, pageProps }: any) => {
 								backgroundColor: `${colors.teal[1]} !important`
 							},
 							firstInRange: {
-								backgroundColor: `${colors.teal[9]} !important`,
+								backgroundColor: `${colors.teal[6]} !important`,
 								borderRadius: ".2rem !important"
 							},
 							lastInRange: {
-								backgroundColor: `${colors.teal[9]} !important`,
+								backgroundColor: `${colors.teal[6]} !important`,
 								borderRadius: ".2rem !important"
 							},
 							day: {

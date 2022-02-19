@@ -1,18 +1,15 @@
 import { useState } from "react"
 import {
-	Alert,
-	Stepper,
+	Title,
 	Group,
 	Container,
-	Title,
 	MantineSize,
-	Space,
-	useMantineTheme,
+	Stepper,
+	Alert,
 	Chips,
 	Chip,
-	Pagination
-} from "@mantine/core"
-import {
+	Pagination,
+	Space,
 	Button,
 	DatePicker,
 	DateRangePicker,
@@ -138,7 +135,7 @@ const Test = () => {
 
 						<DatePicker icon={<SVG.Calendar />} label="DatePicker" description="This is a description" />
 
-						<DateRangePicker label="DateRangePicker" description="This is a description" />
+						<DateRangePicker icon={<SVG.Calendar />} label="DateRangePicker" description="This is a description" />
 					</Group>
 				</Container>
 			</Group>
