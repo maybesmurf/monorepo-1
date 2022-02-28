@@ -1,7 +1,7 @@
 module.exports = {
-	...require("@kittr/config/eslint/common"),
+	...require("@doggo/config/eslint/common"),
 	ignorePatterns: [
-		...require("@kittr/config/eslint/common").ignorePatterns,
+		...require("@doggo/config/eslint/common").ignorePatterns,
 		"/nextjs",
 		"/node"
 	]

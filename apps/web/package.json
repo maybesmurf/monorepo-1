@@ -1,6 +1,6 @@
 {
 	"name": "web",
-	"version": "0.0.0",
+	"version": "0.1.1",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
@@ -15,6 +15,10 @@
 		"ci:test": "jest .*\\.unit\\.test\\.ts"
 	},
 	"dependencies": {
+		"@doggo/config": "file:packages/config",
+		"@doggo/logger": "file:packages/logger",
+		"@doggo/types": "file:packages/types",
+		"@doggo/ui": "file:packages/ui",
 		"@mantine/core": "^3.6.9",
 		"@mantine/dates": "^3.6.9",
 		"@mantine/hooks": "^3.6.9",
@@ -28,9 +32,7 @@
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
 		"react-hook-form": "^7.26.1",
-		"react-query": "^3.34.5",
-		"ui": "*",
-		"types": "*"
+		"react-query": "^3.34.5"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.17.2",

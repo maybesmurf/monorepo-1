@@ -1,6 +1,6 @@
 {
 	"name": "cypress",
-	"version": "0.0.0",
+	"version": "0.1.1",
 	"private": true,
 	"scripts": {
 		"cypress:e2e": "cypress open --config-file ./config.dev.json"
