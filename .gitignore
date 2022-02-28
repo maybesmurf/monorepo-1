@@ -40,3 +40,4 @@ next/**
 build
 dist
 tsconfig.tsbuildinfo
+.tsbuildinfo
