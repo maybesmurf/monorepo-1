@@ -1,9 +1,6 @@
 {
-	"name": "types",
+	"name": "@doggo/types",
 	"version": "0.1.1",
 	"private": true,
-	"main": "index.js",
-	"dependencies": {
-		"@doggo/config": "file:packages/config"
-	}
+	"main": "index.d.ts"
 }

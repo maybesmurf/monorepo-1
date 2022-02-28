@@ -1,4 +1,4 @@
-import { Title, Header, Text, Container, useMantineTheme } from "ui"
+import { Title, Header, Text, Container, useMantineTheme } from "@doggo/ui"
 import Image from "next/image"
 
 import { Blob } from "./Blob"

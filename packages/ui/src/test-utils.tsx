@@ -3,7 +3,9 @@ import { render, RenderOptions } from "@testing-library/react"
 import { MantineProvider } from "@mantine/core"
 import { theme } from "@Styles/theme"
 
-const Providers: FC = ({ children }) => <MantineProvider theme={theme}>{children}</MantineProvider>
+const Providers: FC = ({ children }) => {
+	return <MantineProvider theme={theme}>{children}</MantineProvider>
+}
 
 const customRender = (
 	ui: ReactElement,

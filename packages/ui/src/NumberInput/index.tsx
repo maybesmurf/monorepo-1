@@ -12,17 +12,17 @@ interface Props extends NumberInputProps {
 	invalidText?: string
 }
 
-export function NumberInput({ invalid, invalidText, ...props }: Props) {
+export const NumberInput = ({ invalid, invalidText, ...props }: Props) => {
 	const { colors } = useMantineTheme()
 
 	return (
-  <div>
-  <MantineNumberInput value={props.value} {...props} />
-  {invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
-  {invalidText && invalid && (
+		<div>
+			<MantineNumberInput value={props.value} {...props} />
+			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
+			{invalidText && invalid && (
 				<Text color={colors.red[6]} styles={{ root: { marginTop: ".5rem" } }}>
-    {invalidText}
-  </Text>
+					{invalidText}
+				</Text>
 			)}
 		</div>
 	)

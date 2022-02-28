@@ -15,13 +15,13 @@ interface Props extends RichTextEditorProps {
 	// initialValue: string
 }
 
-export function RichTextEditor(props: Props) {
+export const RichTextEditor = (props: Props) => {
 	const { colors, radius, other } = useMantineTheme()
 
 	return (
-  <DynamicallyLoadedRte
-  {...props}
-  styles={{
+		<DynamicallyLoadedRte
+			{...props}
+			styles={{
 				root: {
 					"backgroundColor": colors.yellow[1],
 					"borderRadius": radius.md,

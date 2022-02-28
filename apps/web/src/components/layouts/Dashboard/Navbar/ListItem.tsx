@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { Button, Collapse, useMantineTheme } from "ui"
+import { Button, Collapse, useMantineTheme } from "@doggo/ui"
 import { useRouter } from "next/router"
 import Link from "next/link"
 interface Props {

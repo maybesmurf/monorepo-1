@@ -1,7 +1,7 @@
 import { getLayout } from "@Components/layouts/Dashboard"
-import { Image } from "ui"
-import { SVG } from "ui"
-import { Alert, Card, Container, Group, Title } from "ui"
+import { Image } from "@doggo/ui"
+import { SVG } from "@doggo/ui"
+import { Alert, Card, Container, Group, Title } from "@doggo/ui"
 import { useMantineTheme } from "@Hooks/index"
 import { imageDict } from "@Utils/imageDict"
 

@@ -1,12 +1,14 @@
 {
-	"extends": "tsconfig/react-library.json",
+	"extends": "@doggo/config/tsconfig/nextjs.json",
 	"compilerOptions": {
+		"incremental":true,
+		"tsBuildInfoFile": ".tsbuildinfo",
 		"baseUrl": "./src",
 		"paths": {
 			"@test-utils": ["test-utils"],
 			"@Styles/*": ["styles/*"]
 		}
 	},
-	"include": ["."],
+	"include": ["./src"],
 	"exclude": ["dist", "build", "node_modules"]
 }

@@ -1,5 +1,5 @@
-import React, { ReactElement } from "react"
-
+import React from "react"
+import { ReactElement } from "react"
 import {
 	Table as MantineTable,
 	TableProps,
@@ -24,55 +24,61 @@ interface Props extends Omit<TableProps, "children"> {
 	}>
 }
 
-export function Table({
+export const Table = ({
 	headers,
 	rows,
 	horizontalSpacing = "xs",
 	verticalSpacing = "xs",
 	...props
-}: Props) {
+}: Props) => {
 	const { colors } = useMantineTheme()
 
 	return (
-  <MantineTable
-  horizontalSpacing={horizontalSpacing}
-  verticalSpacing={verticalSpacing}
-  {...props}
+		<MantineTable
+			horizontalSpacing={horizontalSpacing}
+			verticalSpacing={verticalSpacing}
+			{...props}
 		>
-  <thead>
-  <tr>
-  {headers.map((header) => (
-  <th
-  key={header.property}
-  style={{
-								color: colors.gray[7],
-								fontWeight: "400",
-								letterSpacing: "0.06rem",
-								borderBottomColor: colors.gray[1]
-							}}
-						>
-  {header.title}
-						</th>
-					))}
-				</tr>
-			</thead>
-  <tbody>
-  {rows.map((row, index) => (
-  <tr key={index}>
-  {headers.map((header) => (
-							<td
+			<thead>
+				<tr>
+					{headers.map((header) => {
+						return (
+							<th
 								key={header.property}
 								style={{
-									border: "none",
-									color: colors.navy[9],
-									fontWeight: "600"
+									color: colors.gray[7],
+									fontWeight: "400",
+									letterSpacing: "0.06rem",
+									borderBottomColor: colors.gray[1]
 								}}
-    >
-								{row[header.property]}
-    </td>
-						))}
-					</tr>
-				))}
+							>
+								{header.title}
+							</th>
+						)
+					})}
+				</tr>
+			</thead>
+			<tbody>
+				{rows.map((row, index) => {
+					return (
+						<tr key={index}>
+							{headers.map((header) => {
+								return (
+									<td
+										key={header.property}
+										style={{
+											border: "none",
+											color: colors.navy[9],
+											fontWeight: "600"
+										}}
+									>
+										{row[header.property]}
+									</td>
+								)
+							})}
+						</tr>
+					)
+				})}
 			</tbody>
 		</MantineTable>
 	)

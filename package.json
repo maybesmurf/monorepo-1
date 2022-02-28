@@ -8,7 +8,7 @@
 	],
 	"scripts": {
 		"docker:build": "docker-compose -f docker-compose.yml up --build",
-		"dev:docker": "docker-compose -f docker-compose.yml up",
+		"dev:docker": "docker-compose -f docker-compose.yml up -d",
 		"dev": "concurrently \"npm run dev:docker\" \"turbo run dev --parallel\"",
 		"dev:turbo": "\"turbo run dev --parallel\"",
 		"dev:seed": "cross-env DATABASE_URL=postgres://turboAf:getTurbo@localhost:5432/prisma?schema=prisma ts-node ./apps/api/prisma/seed.ts",

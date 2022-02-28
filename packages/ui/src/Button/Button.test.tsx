@@ -11,7 +11,7 @@ describe("Button", () => {
 	it("Renders an <a> tag", async () => {
 		render(
 			<Button asLink disabled>
-    Test Text
+				Test Text
 			</Button>
 		)
 		// TODO: Try changing the 'lib' compiler option to include 'dom'.
@@ -29,7 +29,7 @@ describe("Button", () => {
 	it("Uses md radius on xs size", async () => {
 		render(
 			<Button id="button" size="xs">
-    Test Text
+				Test Text
 			</Button>
 		)
 
@@ -40,7 +40,7 @@ describe("Button", () => {
 	it("Uses lg radius on sm and up", async () => {
 		render(
 			<Button id="button" size="sm">
-    Test Text
+				Test Text
 			</Button>
 		)
 

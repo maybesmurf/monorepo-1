@@ -1,1 +1,1 @@
-module.exports = require("@doggo/config/eslint/common")
+module.exports = require("@doggo/config/eslint/next.js")

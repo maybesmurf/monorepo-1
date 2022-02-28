@@ -16,11 +16,11 @@ export interface Props extends MantineProviderProps {
 	children: React.ReactNode
 }
 
-export function MantineProvider({ children, ...props }: Props) {
+export const MantineProvider = ({ children, ...props }: Props) => {
 	return (
-  <MantineLibProvider
-  theme={theme}
-  styles={{
+		<MantineLibProvider
+			theme={theme}
+			styles={{
 				Alert: ({ colors, spacing }) => ({
 					light: {
 						borderRadius: spacing.lg
@@ -259,9 +259,9 @@ export function MantineProvider({ children, ...props }: Props) {
 					}
 				})
 			}}
-  {...props}
+			{...props}
 		>
-  {children}
+			{children}
 		</MantineLibProvider>
 	)
 }

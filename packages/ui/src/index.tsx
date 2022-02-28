@@ -16,14 +16,13 @@ import { TextInput as uiTextInput } from "./TextInput"
 import { TimeInput as uiTimeInput } from "./TimeInput"
 import { Select as uiSelect } from "./Select"
 import SVGLibrary from "./SVG"
+const uiSVG = SVGLibrary
 
 /** Theme provider. */
 import {
 	MantineProvider,
 	Props as MantineProviderProps
 } from "./MantineProvider"
-
-const uiSVG = SVGLibrary
 export const ComponentsProvider = MantineProvider as (
 	// eslint-disable-next-line
 	props: MantineProviderProps
@@ -35,7 +34,7 @@ const withMantine = (Component: any) => (props: any) => {
 	return (
 		<MantineProvider>
 			<Component {...props} />
-  </MantineProvider>
+		</MantineProvider>
 	)
 }
 
@@ -59,22 +58,22 @@ const components = {
 	SVG: uiSVG
 }
 
-export const { OptionalInputLabel } = components
-export const { RichTextEditor } = components
-export const { Table } = components
-export const { Button } = components
-export const { DatePicker } = components
-export const { DateRangePicker } = components
-export const { Flexbox } = components
-export const { Image } = components
-export const { NumberInput } = components
-export const { RadioGroup } = components
-export const { Radio } = components
-export const { Textarea } = components
-export const { TextInput } = components
-export const { TimeInput } = components
-export const { Select } = components
-export const { SVG } = components
+export const OptionalInputLabel = components.OptionalInputLabel
+export const RichTextEditor = components.RichTextEditor
+export const Table = components.Table
+export const Button = components.Button
+export const DatePicker = components.DatePicker
+export const DateRangePicker = components.DateRangePicker
+export const Flexbox = components.Flexbox
+export const Image = components.Image
+export const NumberInput = components.NumberInput
+export const RadioGroup = components.RadioGroup
+export const Radio = components.Radio
+export const Textarea = components.Textarea
+export const TextInput = components.TextInput
+export const TimeInput = components.TimeInput
+export const Select = components.Select
+export const SVG = components.SVG
 
 export * from "@mantine/core"
 export * from "@mantine/dates"

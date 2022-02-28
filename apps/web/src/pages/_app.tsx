@@ -1,7 +1,7 @@
 // import { Provider } from "react-redux"
 // import { store } from "@Redux/store"
 import { Global } from "@mantine/core"
-import { createInputStyles, theme, colors, ComponentsProvider } from "ui"
+import { createInputStyles, theme, colors, ComponentsProvider } from "@doggo/ui"
 import { NextPage } from "next"
 import Head from "next/head"
 import { QueryClient, QueryClientProvider } from "react-query"

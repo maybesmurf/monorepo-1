@@ -10,7 +10,7 @@ interface Props extends Omit<DateRangePickerProps, "error"> {
 	invalidText?: string
 }
 
-export function DateRangePicker({ invalid, invalidText, ...props }: Props) {
+export const DateRangePicker = ({ invalid, invalidText, ...props }: Props) => {
 	const { colors } = useMantineTheme()
 
 	// The Mantine DateRangePicker element has both an invalid and error prop.
@@ -18,26 +18,26 @@ export function DateRangePicker({ invalid, invalidText, ...props }: Props) {
 	// Therefore, we're using the error prop to determine if the DateRangePicker is invalid.
 	// Additionally, the styling infromation must be handled in the Styles API here.
 	return (
-  <div>
-  <MantineDatePicker
-  firstDayOfWeek="sunday"
-  error={invalid}
-  styles={{
+		<div>
+			<MantineDatePicker
+				firstDayOfWeek="sunday"
+				error={invalid}
+				styles={{
 					error: {
 						backgroundColor: `${colors.red[6]}`,
 						borderColor: `${colors.red[6]}`
 					}
 				}}
-  {...props}
+				{...props}
 			/>
-  {invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
-  {invalidText && invalid && (
+			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
+			{invalidText && invalid && (
 				<Text
-    color={colors.red[6]}
-    styles={{ root: { width: "100%", marginTop: ".5rem" } }}
-  >
-    {invalidText}
-  </Text>
+					color={colors.red[6]}
+					styles={{ root: { width: "100%", marginTop: ".5rem" } }}
+				>
+					{invalidText}
+				</Text>
 			)}
 		</div>
 	)
