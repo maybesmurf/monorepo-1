@@ -1,6 +1,5 @@
-import React from "react"
+import React, { ReactNode } from "react"
 import { Container, ContainerProps } from "@mantine/core"
-import { ReactNode } from "react"
 
 type FlexProperties =
 	| "flex-start"
@@ -19,26 +18,26 @@ interface Props extends ContainerProps {
 	children: ReactNode
 }
 
-export const Flexbox = ({
+export function Flexbox({
 	direction = "row",
 	justifyContent = "flex-start",
 	alignItems = "flex-start",
 	fluid = true,
 	children,
 	...props
-}: Props) => {
+}: Props) {
 	return (
-		<Container
-			style={{
+  <Container
+  style={{
 				display: "flex",
 				flexDirection: direction,
 				justifyContent,
 				alignItems
 			}}
-			fluid={fluid}
-			{...props}
+  fluid={fluid}
+  {...props}
 		>
-			{children}
+  {children}
 		</Container>
 	)
 }

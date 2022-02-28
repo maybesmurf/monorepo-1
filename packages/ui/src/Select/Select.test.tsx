@@ -10,7 +10,7 @@ describe("Button", () => {
 					{ value: "ng", label: "Angular" },
 					{ value: "svelte", label: "Svelte" }
 				]}
-			/>
+  />
 		)
 	})
 
@@ -24,7 +24,7 @@ describe("Button", () => {
 				]}
 				invalid
 				invalidText="Test invalid text"
-			/>
+  />
 		)
 
 		expect(screen.getByText("Test invalid text")).toBeInTheDocument()

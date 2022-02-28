@@ -11,12 +11,12 @@ describe("Button", () => {
 				required
 				invalid={!false}
 				invalidText="Please select a framework/library"
-			>
+  >
 				<Radio value="react">React</Radio>
 				<Radio value="svelte">Svelte</Radio>
 				<Radio value="ng">Angular</Radio>
 				<Radio value="vue">Vue</Radio>
-			</RadioGroup>
+  </RadioGroup>
 		)
 	})
 
@@ -24,7 +24,7 @@ describe("Button", () => {
 		render(
 			<RadioGroup value="" label="Select your favorite framework/library" invalid invalidText="Test invalid text">
 				<Radio value="react">React</Radio>
-			</RadioGroup>
+  </RadioGroup>
 		)
 
 		expect(screen.getByText("Test invalid text")).toBeInTheDocument()

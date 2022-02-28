@@ -11,7 +11,7 @@ interface Props extends MantineButtonProps {
 	children?: ReactNode
 }
 
-export const Button = ({ id, asLink, children, ...props }: Props) => {
+export function Button({ id, asLink, children, ...props }: Props) {
 	if (asLink) {
 		return (
 			<MantineButton
@@ -19,20 +19,19 @@ export const Button = ({ id, asLink, children, ...props }: Props) => {
 				component="a"
 				radius={props.size === "xs" ? "md" : "lg"}
 				{...props}
-			>
+  >
 				{children}
-			</MantineButton>
-		)
-	} else {
-		return (
-			<MantineButton
-				id={id}
-				component="button"
-				radius={props.size === "xs" ? "md" : "lg"}
-				{...props}
-			>
-				{children}
-			</MantineButton>
+  </MantineButton>
 		)
 	}
+	return (
+  <MantineButton
+  id={id}
+  component="button"
+  radius={props.size === "xs" ? "md" : "lg"}
+  {...props}
+		>
+  {children}
+		</MantineButton>
+	)
 }

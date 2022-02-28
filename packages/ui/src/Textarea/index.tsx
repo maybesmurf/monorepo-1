@@ -12,17 +12,17 @@ interface Props extends TextareaProps {
 	invalidText?: string
 }
 
-export const Textarea = ({ invalid, invalidText, ...props }: Props) => {
+export function Textarea({ invalid, invalidText, ...props }: Props) {
 	const { colors } = useMantineTheme()
 
 	return (
-		<div>
-			<MantineTextarea {...props} />
-			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
-			{invalidText && invalid && (
+  <div>
+  <MantineTextarea {...props} />
+  {invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
+  {invalidText && invalid && (
 				<Text color={colors.red[6]} styles={{ root: { marginTop: ".5rem" } }}>
-					{invalidText}
-				</Text>
+    {invalidText}
+  </Text>
 			)}
 		</div>
 	)

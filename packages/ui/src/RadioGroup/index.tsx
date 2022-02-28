@@ -15,17 +15,17 @@ interface Props extends RadioGroupProps {
 
 export const Radio = MantineRadio
 
-export const RadioGroup = ({ invalid, invalidText, ...props }: Props) => {
+export function RadioGroup({ invalid, invalidText, ...props }: Props) {
 	const { colors } = useMantineTheme()
 
 	return (
-		<div>
-			<MantineRadioGroup {...props} />
-			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
-			{invalidText && invalid && (
+  <div>
+  <MantineRadioGroup {...props} />
+  {invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
+  {invalidText && invalid && (
 				<Text color={colors.red[6]} styles={{ root: { marginTop: ".5rem" } }}>
-					{invalidText}
-				</Text>
+    {invalidText}
+  </Text>
 			)}
 		</div>
 	)

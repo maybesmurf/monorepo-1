@@ -15,10 +15,10 @@
 		"ci:test": "jest .*\\.unit\\.test\\.ts"
 	},
 	"dependencies": {
-		"@doggo/config": "file:packages/config",
-		"@doggo/logger": "file:packages/logger",
-		"@doggo/types": "file:packages/types",
-		"@doggo/ui": "file:packages/ui",
+		"@doggo/config": "*",
+		"@doggo/logger": "*",
+		"@doggo/types": "*",
+		"@doggo/ui": "*",
 		"@mantine/core": "^3.6.9",
 		"@mantine/dates": "^3.6.9",
 		"@mantine/hooks": "^3.6.9",
