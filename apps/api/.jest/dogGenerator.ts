@@ -1,4 +1,4 @@
-import { Dog } from "@prisma/client"
+import { Dog } from "@doggo/prisma"
 
 // Generate a dog for testing
 // Overrides can be used for input validation or situations where you want a specific value

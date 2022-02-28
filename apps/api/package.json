@@ -2,31 +2,28 @@
 	"name": "api",
 	"version": "0.1.1",
 	"scripts": {
-		"build": "rm -rf build && prisma generate && tsc -p tsconfig.json",
-		"compile": "tsc && node ./build/src/index.js",
-		"dev": "prisma migrate dev && concurrently \"prisma studio\" \"nodemon -e ts\"",
-		"start": "node ./build/src/index.js && prisma migrate deploy",
-		"test": "prisma generate && jest --coverage",
+		"build": "rm -rf dist && tsc -p tsconfig.json",
+		"compile": "tsc && node ./dist/src/index.js",
+		"dev": "nodemon -e ts",
+		"start": "node ./dist/src/index.js",
+		"test": "jest --coverage",
 		"test:watch": "jest --watch --coverage",
 		"lint": "eslint \"**/*.ts\" --ignore-pattern node_modules/",
-		"clean": "rm -rf .turbo && rm -rf coverage && rm -rf build && rm -rf node_modules",
+		"clean": "rm -rf .turbo && rm -rf coverage && rm -rf dist && rm -rf node_modules",
 		"type-check": "tsc --pretty --noEmit",
-		"ci:test": "cross-env DATABASE_URL=test prisma generate && jest .*\\.unit\\.test\\.ts"
+		"ci:test": "jest .*\\.unit\\.test\\.ts"
 	},
 	"_moduleAliases": {
-		"@Root": "build/src",
-		"@Utils": "build/src/utils",
-		"@Libs": "build/src/libs",
-		"@v1": "build/src/v1"
-	},
-	"prisma": {
-		"seed": "ts-node prisma/seed.ts"
+		"@Root": "dist/src",
+		"@Utils": "dist/src/utils",
+		"@Libs": "dist/src/libs",
+		"@v1": "dist/src/v1"
 	},
 	"dependencies": {
 		"@doggo/logger": "*",
+		"@doggo/prisma": "*",
 		"@doggo/ui": "*",
 		"@faker-js/faker": "^5.5.3",
-		"@prisma/client": "^3.8.1",
 		"@sentry/node": "^6.17.3",
 		"@sentry/tracing": "^6.16.1",
 		"@typescript-eslint/eslint-plugin": "^5.12.1",
@@ -39,8 +36,6 @@
 		"joi": "^17.6.0",
 		"module-alias": "^2.2.2",
 		"nodemon": "^2.0.15",
-		"prisma": "^3.7.0",
-		"types": "file:packages/types",
 		"typescript": "^4.5.5"
 	},
 	"devDependencies": {

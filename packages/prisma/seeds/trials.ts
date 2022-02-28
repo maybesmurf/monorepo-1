@@ -3,22 +3,33 @@
 // @ts-ignore
 import faker from "@faker-js/faker"
 import { AcceptanceMethod } from "@prisma/client"
-import { getRandomValueFromArray } from "../../src/utils/randomFromArray"
-import { users } from "../seeds/users"
+import { getRandomValueFromArray } from "../../../apps/api/src/utils/randomFromArray"
+import { users } from "./users"
 
 export const createTrials = (clubIds: string[]) => {
 	const trials = [...Array(2)].map(() => ({
 		hostingClubId: getRandomValueFromArray(clubIds),
 		akcEventNumber: faker.datatype.uuid(),
-		venue: faker.address.cardinalDirection() + "" + faker.address.streetName() + "Park",
+		venue:
+			faker.address.cardinalDirection() +
+			"" +
+			faker.address.streetName() +
+			"Park",
 		venueStreetAddress: faker.address.streetAddress(),
 		venueCity: faker.address.city(),
 		venueState: faker.address.stateAbbr(),
 		venuePostalCode: faker.address.zipCode(),
-		type: getRandomValueFromArray(["Outdoor on Grass", "Indoor on Turf", "Indoor on Grass"]),
+		type: getRandomValueFromArray([
+			"Outdoor on Grass",
+			"Indoor on Turf",
+			"Indoor on Grass"
+		]),
 		signUpOpenDatetime: faker.date.recent(),
 		signUpCloseDateTime: faker.date.soon(),
-		acceptanceMethod: getRandomValueFromArray<AcceptanceMethod>(["RANDOMDRAW", "FIRSTRECEIVED"]),
+		acceptanceMethod: getRandomValueFromArray<AcceptanceMethod>([
+			"RANDOMDRAW",
+			"FIRSTRECEIVED"
+		]),
 		checksPayableTo: faker.company.companyName(),
 		secretaryId: getRandomValueFromArray(users.map((user) => user.id)),
 		trialChairmanName: faker.name.firstName() + " " + faker.name.lastName(),

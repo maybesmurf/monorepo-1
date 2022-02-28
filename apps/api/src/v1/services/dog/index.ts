@@ -1,6 +1,5 @@
 import { dogSchema } from "@Libs/joi/dog"
-import { prisma } from "@Libs/prisma"
-import { Dog, DogSex } from "@prisma/client"
+import { prisma, Dog, DogSex } from "@doggo/prisma"
 import CrudInterface, { ListParams } from "@Utils/crudInterface"
 import { ResponseError } from "@Utils/errorHandlers"
 
@@ -12,7 +11,8 @@ import { ResponseError } from "@Utils/errorHandlers"
 
 export default class DogService implements CrudInterface<Dog> {
 	async get(params: { dogId: string }): Promise<Dog | null> {
-		if (!params?.dogId) throw new ResponseError("Dog ID is required", { statusCode: 400 })
+		if (!params?.dogId)
+			throw new ResponseError("Dog ID is required", { statusCode: 400 })
 		const { dogId } = params
 
 		const dog = await prisma.dog.findUnique({ where: { id: dogId } })
@@ -29,10 +29,13 @@ export default class DogService implements CrudInterface<Dog> {
 	async create(dog: Dog): Promise<Dog> {
 		const { error, value } = dogSchema.validate(dog)
 		if (error) {
-			throw new ResponseError("Your dog is shaped funny. Check the schema of your dog payload.", {
-				statusCode: 400,
-				info: error
-			})
+			throw new ResponseError(
+				"Your dog is shaped funny. Check the schema of your dog payload.",
+				{
+					statusCode: 400,
+					info: error
+				}
+			)
 		}
 
 		value.birthdate = dog.birthdate ? new Date(dog.birthdate) : null
@@ -47,7 +50,8 @@ export default class DogService implements CrudInterface<Dog> {
 	}
 
 	async update(params: Dog): Promise<Dog | null> {
-		if (!params?.id) throw new ResponseError("Dog ID is required", { statusCode: 400 })
+		if (!params?.id)
+			throw new ResponseError("Dog ID is required", { statusCode: 400 })
 		const { id, ...dog } = params
 		return await prisma.dog.update({ where: { id }, data: dog })
 	}

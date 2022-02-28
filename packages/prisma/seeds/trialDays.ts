@@ -2,7 +2,7 @@
 // You should still be able to use faker types in VSCode.
 // @ts-ignore
 import faker from "@faker-js/faker"
-import { getRandomValueFromArray } from "../../src/utils/randomFromArray"
+import { getRandomValueFromArray } from "../../../apps/api/src/utils/randomFromArray"
 
 export const createTrialDays = (trialIds: string[]) => {
 	const trialDays = [...Array(4)].map(() => ({

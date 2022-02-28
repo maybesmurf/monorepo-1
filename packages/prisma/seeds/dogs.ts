@@ -4,7 +4,7 @@
 import faker from "@faker-js/faker"
 import { DogSex } from "@prisma/client"
 import { users } from "./users"
-import { getRandomValueFromArray } from "../../src/utils/randomFromArray"
+import { getRandomValueFromArray } from "../../../apps/api/src/utils/randomFromArray"
 
 export const dogs = [...Array(10)].map(() => ({
 	callName: faker.name.firstName(),

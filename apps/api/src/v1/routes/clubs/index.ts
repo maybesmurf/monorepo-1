@@ -1,5 +1,5 @@
 import faker from "@faker-js/faker"
-import { prisma } from "@Libs/prisma"
+import { prisma } from "@doggo/prisma"
 import express from "express"
 const router = express.Router()
 
@@ -7,7 +7,8 @@ const router = express.Router()
 router.post("/", async (req, response) => {
 	const resp = await prisma.club.create({
 		data: {
-			name: faker.name.lastName() + "'s " + faker.company.companyName() + " Club"
+			name:
+				faker.name.lastName() + "'s " + faker.company.companyName() + " Club"
 		}
 	})
 

@@ -1,5 +1,5 @@
 import { dogSchema } from "@Libs/joi/dog"
-import { Dog, DogSex } from "@prisma/client"
+import { Dog, DogSex } from "@doggo/prisma"
 import { ResponseError } from "@Utils/errorHandlers"
 import { setPagerDefaults } from "@Utils/setPagerDefaults"
 import { RequestHandler } from "express"
@@ -19,11 +19,12 @@ const getDog: RequestHandler = async (req, res, next) => {
 	return res.status(200).json(dog)
 }
 
-const listDogs: RequestHandler<{}, any, any, { skip?: string; take?: string; sex: DogSex }> = async (
-	req,
-	res,
-	next
-) => {
+const listDogs: RequestHandler<
+	{},
+	any,
+	any,
+	{ skip?: string; take?: string; sex: DogSex }
+> = async (req, res, next) => {
 	const { skip, take, ...where } = setPagerDefaults(req.query, 0, 10)
 
 	const dogs = await dogService.list({ where, skip, take })

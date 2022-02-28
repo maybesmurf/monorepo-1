@@ -1,6 +1,6 @@
 import faker from "@faker-js/faker"
-import { prisma } from "@Libs/prisma"
-import { AcceptanceMethod } from "@prisma/client"
+import { prisma } from "@doggo/prisma"
+import { AcceptanceMethod } from "@doggo/prisma"
 import { getRandomValueFromArray } from "@Utils/randomFromArray"
 import express from "express"
 const router = express.Router()
@@ -13,15 +13,26 @@ router.post("/", async (req, response) => {
 		data: {
 			hostingClubId,
 			akcEventNumber: faker.datatype.uuid(),
-			venue: faker.address.cardinalDirection() + "" + faker.address.streetName() + "Park",
+			venue:
+				faker.address.cardinalDirection() +
+				"" +
+				faker.address.streetName() +
+				"Park",
 			venueStreetAddress: faker.address.streetAddress(),
 			venueCity: faker.address.city(),
 			venueState: faker.address.stateAbbr(),
 			venuePostalCode: faker.address.zipCode(),
-			type: getRandomValueFromArray(["Outdoor on Grass", "Indoor on Turf", "Indoor on Grass"]),
+			type: getRandomValueFromArray([
+				"Outdoor on Grass",
+				"Indoor on Turf",
+				"Indoor on Grass"
+			]),
 			signUpOpenDatetime: faker.date.recent(),
 			signUpCloseDateTime: faker.date.soon(),
-			acceptanceMethod: getRandomValueFromArray<AcceptanceMethod>(["RANDOMDRAW", "FIRSTRECEIVED"]),
+			acceptanceMethod: getRandomValueFromArray<AcceptanceMethod>([
+				"RANDOMDRAW",
+				"FIRSTRECEIVED"
+			]),
 			checksPayableTo: faker.company.companyName(),
 			secretaryId,
 			trialChairmanName: faker.name.firstName() + " " + faker.name.lastName(),
