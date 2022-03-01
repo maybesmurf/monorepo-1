@@ -1,6 +1,7 @@
-import DogService from "./index"
 import { buildDog } from "@Root/../.jest/dogGenerator"
-import { prisma, DogSex } from "@doggo/prisma"
+import { prisma } from "@doggo/prisma"
+import { DogSex } from "@doggo/prisma/client"
+import DogService from "./index"
 
 const dogService = new DogService()
 

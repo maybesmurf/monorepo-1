@@ -1,8 +1,9 @@
 import faker from "@faker-js/faker"
 import { prisma } from "@doggo/prisma"
-import { AcceptanceMethod } from "@doggo/prisma"
+import { AcceptanceMethod } from "@doggo/prisma/client"
 import { getRandomValueFromArray } from "@Utils/randomFromArray"
 import express from "express"
+
 const router = express.Router()
 
 // Write a new row

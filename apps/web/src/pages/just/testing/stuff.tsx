@@ -3,7 +3,7 @@ import type { NextPage } from "next"
 import { useQuery } from "react-query"
 import fetch from "@Utils/fetch"
 import { Title, Table, Button } from "@mantine/core"
-import { Dog } from "types"
+import { Dog } from "@doggo/prisma/client"
 
 const MantineTesting: NextPage = () => {
 	const [fetchIt, setFetchIt] = useState(false)

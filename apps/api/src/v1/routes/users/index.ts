@@ -1,6 +1,8 @@
 import faker from "@faker-js/faker"
-import { prisma, State } from "@doggo/prisma"
+import { prisma } from "@doggo/prisma"
+import { State } from "@doggo/prisma/client"
 import express from "express"
+
 const router = express.Router()
 
 // Write a new row

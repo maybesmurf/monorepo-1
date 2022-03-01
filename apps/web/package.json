@@ -17,6 +17,7 @@
 	"dependencies": {
 		"@doggo/config": "*",
 		"@doggo/logger": "*",
+		"@doggo/prisma": "*",
 		"@doggo/types": "*",
 		"@doggo/ui": "*",
 		"@mantine/core": "^3.6.9",

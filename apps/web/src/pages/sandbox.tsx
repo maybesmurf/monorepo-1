@@ -1,5 +1,4 @@
 import { RichTextEditor } from "@doggo/ui"
-import {} from '@doggo/config'
 import { useState } from "react"
 
 const initialValue = "<p>Your initial <b>html value</b> or an empty string to init editor without value</p>"
