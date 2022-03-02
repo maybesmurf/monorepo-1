@@ -1,10 +1,14 @@
 import { PrismaClient } from "@prisma/client"
 
-export const prisma =
-	globalThis.prisma ||
-	new PrismaClient({
-		log: ["query", "error", "warn"]
-	})
+const client = new PrismaClient({
+	// log: ["query", "error", "warn"]
+})
+
+let globalThis = {
+	prisma: undefined as typeof client | undefined
+}
+
+export const prisma = globalThis.prisma || client
 
 if (process.env.NODE_ENV !== "production") {
 	globalThis.prisma = prisma

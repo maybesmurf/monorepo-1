@@ -3,7 +3,7 @@
 // @ts-ignore
 import faker from "@faker-js/faker"
 import { AcceptanceMethod } from "@prisma/client"
-import { getRandomValueFromArray } from "../../../apps/api/src/utils/randomFromArray"
+import { getRandomValueFromArray } from "../utils/randomFromArray"
 import { users } from "./users"
 
 export const createTrials = (clubIds: string[]) => {

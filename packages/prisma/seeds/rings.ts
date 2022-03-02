@@ -1,4 +1,4 @@
-import { getRandomValueFromArray } from "../../src/utils/randomFromArray"
+import { getRandomValueFromArray } from "../utils/randomFromArray"
 
 export const createRings = (trialDayIds: string[]) => {
 	const rings = [...Array(4)].map(() => ({

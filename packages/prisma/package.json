@@ -2,7 +2,9 @@
 	"name": "@doggo/prisma",
 	"version": "0.1.1",
 	"private": true,
+	"type": "module",
 	"scripts": {
+		"dev": "tsc -w",
 		"clean": "rm -rf .turbo && rm -rf node_modules",
 		"db-deploy": "prisma migrate deploy",
 		"db-migrate": "prisma migrate dev",
