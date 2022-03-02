@@ -9,6 +9,7 @@ import { Carat } from "./Carat"
 import { Clock } from "./Clock"
 import { Heart } from "./Heart"
 import { Marker } from "./Marker"
+import { DogBowl } from "./DogBowl"
 
 export const SVG = {
 	Box,
@@ -21,5 +22,6 @@ export const SVG = {
 	Carat,
 	Clock,
 	Heart,
-	Marker
+	Marker,
+	DogBowl
 }

@@ -36,6 +36,7 @@ export const Flexbox = ({
 				flexDirection: direction,
 				justifyContent,
 				alignItems,
+				width: fluid ? "100%" : "initial",
 				...style
 			}}
 			fluid={fluid}

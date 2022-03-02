@@ -18,6 +18,7 @@ export {
 	AppShell,
 	Navbar,
 	List,
+	SimpleGrid,
 	Collapse
 } from "@mantine/core"
 export type { MantineSize } from "@mantine/core"
