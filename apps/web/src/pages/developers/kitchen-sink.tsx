@@ -23,7 +23,7 @@ import {
 	TextInput,
 	TimeInput,
 	Table
-} from "@doggo/ui"
+} from "@Components/shared"
 
 const SELECT_DATA = [
 	{ value: "rick", label: "Rick", group: "Used to be a pickle" },

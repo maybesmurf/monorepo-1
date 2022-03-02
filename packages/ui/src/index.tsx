@@ -40,11 +40,11 @@ const withMantine = (Component: any) => (props: any) => {
 
 /** Components to be wrapped. We are doing this so that the Mantine hooks are available within these components. */
 const components = {
-	OptionalInputLabel: withMantine(uiOptionalInputLabel),
+	uiOptionalInputLabel: uiOptionalInputLabel,
 	RichTextEditor: withMantine(uiRichTextEditor),
 	Table: withMantine(uiTable),
-	Button: withMantine(uiButton),
-	DatePicker: withMantine(uiDatePicker),
+	uiButton: uiButton,
+	uiDatePicker: uiDatePicker,
 	DateRangePicker: withMantine(uiDateRangePicker),
 	Flexbox: withMantine(uiFlexbox),
 	Image: withMantine(uiImage),
@@ -54,15 +54,15 @@ const components = {
 	Textarea: withMantine(uiTextarea),
 	TextInput: withMantine(uiTextInput),
 	TimeInput: withMantine(uiTimeInput),
-	Select: withMantine(uiSelect),
+	uiSelect: uiSelect,
 	SVG: uiSVG
 }
 
-export const OptionalInputLabel = components.OptionalInputLabel
+export const OptionalInputLabel = components.uiOptionalInputLabel
 export const RichTextEditor = components.RichTextEditor
 export const Table = components.Table
-export const Button = components.Button
-export const DatePicker = components.DatePicker
+export const Button = components.uiButton
+export const DatePicker = components.uiDatePicker
 export const DateRangePicker = components.DateRangePicker
 export const Flexbox = components.Flexbox
 export const Image = components.Image
@@ -72,7 +72,7 @@ export const Radio = components.Radio
 export const Textarea = components.Textarea
 export const TextInput = components.TextInput
 export const TimeInput = components.TimeInput
-export const Select = components.Select
+export const Select = components.uiSelect
 export const SVG = components.SVG
 
 export * from "@mantine/core"

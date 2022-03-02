@@ -1,7 +1,10 @@
 // import { Provider } from "react-redux"
 // import { store } from "@Redux/store"
 import { Global } from "@mantine/core"
-import { createInputStyles, theme, colors, ComponentsProvider } from "@doggo/ui"
+import { colors } from "@Styles/colors"
+import { createInputStyles } from "@Styles/createInputStyles"
+import { theme } from "@Styles/theme"
+import { MantineProvider } from "@mantine/core"
 import { NextPage } from "next"
 import Head from "next/head"
 import { QueryClient, QueryClientProvider } from "react-query"
@@ -17,7 +20,7 @@ const queryClient = new QueryClient({
 
 const DISABLED_BUTTON_STYLES = {
 	color: `${colors.gray[5]} !important`,
-	backgroundColor: `${colors.gray[0]} !important`
+	backgroundColor: `${colors.gray[3]} !important`
 }
 
 const MyApp = ({ Component, pageProps }: any) => {
@@ -28,7 +31,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 			<Head>
 				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 			</Head>
-			<ComponentsProvider
+			<MantineProvider
 				withGlobalStyles
 				withNormalizeCSS
 				theme={theme}
@@ -273,28 +276,30 @@ const MyApp = ({ Component, pageProps }: any) => {
 				}}
 			>
 				<Global
-					styles={({ colors, other }) => ({
-						"*": {
-							boxSizing: "border-box",
-							letterSpacing: ".03rem"
-						},
-						"body": {
-							backgroundColor: colors.yellow[0]
-						},
-						".ql-editor": {
-							borderBottomLeftRadius: "8px",
-							borderBottomRightRadius: "8px",
-							outline: `1px solid ${colors.gray[1]} !important`,
-							backgroundColor: colors.yellow[1]
-						},
-						".ql-editor.focus-visible": {
-							backgroundColor: other.colors.white
+					styles={({ colors, other }) => {
+						return {
+							"*": {
+								boxSizing: "border-box",
+								letterSpacing: ".03rem"
+							},
+							"body": {
+								backgroundColor: colors.yellow[0]
+							},
+							".ql-editor": {
+								borderBottomLeftRadius: "8px",
+								borderBottomRightRadius: "8px",
+								outline: `1px solid ${colors.gray[1]} !important`,
+								backgroundColor: colors.yellow[1]
+							},
+							".ql-editor.focus-visible": {
+								backgroundColor: other.colors.white
+							}
 						}
-					})}
+					}}
 				/>
 				{getLayout(<Component {...pageProps} />)}
 				<ReactQueryDevtools />
-			</ComponentsProvider>
+			</MantineProvider>
 		</>
 	)
 }

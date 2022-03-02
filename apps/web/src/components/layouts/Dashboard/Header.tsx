@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
-import { Image } from "@doggo/ui"
+import { Image } from "@Components/shared"
 // import { Image } from "src/components/shared"
-import { MediaQuery, Burger, Header, useMantineTheme, Center } from "@doggo/ui"
+import { MediaQuery, Burger, Header, useMantineTheme, Center } from "@Components/shared"
 import { imageDict } from "@Utils/imageDict"
 
 interface Props {

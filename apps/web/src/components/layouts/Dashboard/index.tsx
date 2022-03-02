@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react"
-import { AppShell } from "@doggo/ui"
+import { AppShell } from "@Components/shared"
 import Header from "./Header"
 import Navbar from "./Navbar"
 

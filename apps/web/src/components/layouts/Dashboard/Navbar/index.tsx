@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
-import { Navbar, List, useMantineTheme } from "@doggo/ui"
+import { Navbar, List, useMantineTheme } from "@Components/shared"
 import ListItem from "./ListItem"
-import { SVG } from "@doggo/ui"
+import { SVG } from "@Components/shared"
 
 interface Props {
 	opened: boolean
