@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Card, Flexbox, Image, SVG } from "@Components/shared"
 import { format } from "date-fns"
 import { Text, Title, useMantineTheme } from "@mantine/core"
-import { useViewportSize } from "@mantine/hooks"
 
 interface Props {
 	userRole: "host" | "judge" | "dog owner"
@@ -19,12 +18,6 @@ interface Props {
 	onClick?: Function
 }
 
-const MOBILE_STYLES = {
-	display: "flex",
-	flexDirection: "row",
-	paddingBottom: 0
-}
-
 export const EventCard = ({
 	userRole,
 	favorite,
@@ -37,9 +30,7 @@ export const EventCard = ({
 	onClick
 }: Props) => {
 	const [isHovered, setIsHovered] = useState(false)
-	const { width } = useViewportSize()
 	const { colors, spacing, radius, shadows, fontSizes } = useMantineTheme()
-	const isMobile = width < 450
 
 	const CARD_STYLES = {
 		paddingTop: 0,
@@ -55,15 +46,13 @@ export const EventCard = ({
 			radius="md"
 			padding="xs"
 			shadow="sm"
-			style={isMobile ? { ...CARD_STYLES, ...MOBILE_STYLES } : CARD_STYLES}
+			style={CARD_STYLES}
 		>
 			<div
 				style={{
 					position: "absolute",
-					top: isMobile ? "initial" : "10px",
-					bottom: isMobile ? "10px" : "initial",
-					right: isMobile ? "initial" : "10px",
-					left: isMobile ? "10px" : "initial",
+					top: "10px",
+					right: "10px",
 					zIndex: "1",
 					padding: `0 ${spacing.lg}px`,
 					borderRadius: radius.lg,
@@ -74,11 +63,11 @@ export const EventCard = ({
 			>
 				<Text>{userRole?.toUpperCase()}</Text>
 			</div>
-			<Card.Section style={{ width: isMobile ? "45%" : "initial" }}>
+			<Card.Section>
 				<Image src={imageUrl} alt={imageAlt} width="100%" height="200px" />
 			</Card.Section>
 			<Flexbox
-				style={{ paddingLeft: isMobile ? spacing.lg : spacing.xs, paddingRight: isMobile ? spacing.lg : spacing.xs }}
+				style={{ paddingLeft: spacing.xs, paddingRight: spacing.xs }}
 				direction="column"
 				alignItems="flex-start"
 				justifyContent="space-around"
