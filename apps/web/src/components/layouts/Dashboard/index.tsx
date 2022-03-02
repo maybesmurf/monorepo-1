@@ -21,7 +21,7 @@ const Layout = ({ children }: Props) => {
 			fixed
 			styles={{
 				main: {
-					padding: isXlViewport ? `${other.spacing.xxxl}` : spacing.xs,
+					padding: isXlViewport ? `${other.spacing.xxxl}` : spacing.lg,
 					paddingTop: other.spacing.xxl,
 					paddingBottom: spacing.md
 				}

@@ -1,7 +1,44 @@
 import Link from "next/link"
-import { Flexbox, SimpleGrid, Title, Text } from "@Components/shared"
+import { EventCard } from "@Components/molecules"
+import { Flexbox, SimpleGrid, Title, Text, Group } from "@Components/shared"
 import { getLayout } from "@Components/layouts/Dashboard"
 import { Placeholder } from "@Components/shared/Placeholder"
+
+const UPCOMING_EVENTS = [
+	{
+		dateRange: { start: new Date(), end: new Date() },
+		eventTitle: "something",
+		imageAlt: "testalt",
+		imageUrl: "/jump-pup.png",
+		status: "registered" as "registered",
+		userRole: "host" as "host",
+		favorite: true,
+		location: "somewher",
+		onClick: () => {}
+	},
+	{
+		dateRange: { start: new Date(), end: new Date() },
+		eventTitle: "something",
+		imageAlt: "testalt",
+		imageUrl: "/jump-pup.png",
+		status: "registered" as "registered",
+		userRole: "host" as "host",
+		favorite: true,
+		location: "somewher",
+		onClick: () => {}
+	},
+	{
+		dateRange: { start: new Date(), end: new Date() },
+		eventTitle: "something",
+		imageAlt: "testalt",
+		imageUrl: "/jump-pup.png",
+		status: "registered" as "registered",
+		userRole: "host" as "host",
+		favorite: true,
+		location: "somewher",
+		onClick: () => {}
+	}
+]
 
 const DashboardPage = () => {
 	return (
@@ -17,12 +54,22 @@ const DashboardPage = () => {
 					<Text style={{ fontWeight: "600", cursor: "pointer" }}>See All</Text>
 				</Link>
 			</Flexbox>
+			<Group position="center" spacing="lg">
+				{UPCOMING_EVENTS.map((event) => {
+					return <EventCard key={event.location} {...event} />
+				})}
+			</Group>
 			<Flexbox style={{ padding: 0 }} fluid direction="row" alignItems="center" justifyContent="space-between">
 				<Title order={2}>Events Nearby</Title>
 				<Link href="/dashboard/my-events/near-me" passHref>
 					<Text style={{ fontWeight: "600", cursor: "pointer" }}>See All</Text>
 				</Link>
 			</Flexbox>
+			<Group position="center" spacing="lg">
+				{UPCOMING_EVENTS.map((event) => {
+					return <EventCard key={event.location} {...event} />
+				})}
+			</Group>
 		</SimpleGrid>
 	)
 }
