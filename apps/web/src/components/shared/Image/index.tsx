@@ -12,28 +12,21 @@ interface Props {
 	alt?: string
 	width: string
 	height?: string
-	mantineFit?: "cover" | "contain"
+	fit?: "cover" | "contain"
 }
 
-export const Image = ({
-	external = false,
-	src,
-	alt = "",
-	width = "auto",
-	height = "100%",
-	mantineFit = "cover"
-}: Props) => {
+export const Image = ({ external = false, src, alt = "", width = "auto", height = "100%", fit = "cover" }: Props) => {
 	if (external) {
 		return (
 			<div style={{ position: "relative", width, height, overflow: "hidden" }}>
-				<MantineImage src={src} alt={alt} fit={mantineFit} />
+				<MantineImage src={src} alt={alt} fit={fit} />
 			</div>
 		)
 	}
 
 	return (
 		<div style={{ position: "relative", width, height, overflow: "hidden" }}>
-			<NextImage src={src} alt={alt} layout="fill" />
+			<NextImage src={src} alt={alt} layout="fill" objectFit="cover" objectPosition="50% 50%" />
 		</div>
 	)
 }

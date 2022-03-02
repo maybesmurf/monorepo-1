@@ -7,6 +7,8 @@ import { AwardRibbon } from "./AwardRibbon"
 import { Checkmark } from "./Checkmark"
 import { Carat } from "./Carat"
 import { Clock } from "./Clock"
+import { Heart } from "./Heart"
+import { Marker } from "./Marker"
 
 export const SVG = {
 	Box,
@@ -17,5 +19,7 @@ export const SVG = {
 	AwardRibbon,
 	Checkmark,
 	Carat,
-	Clock
+	Clock,
+	Heart,
+	Marker
 }
