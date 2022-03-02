@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { signUp } from "@Firebase/auth/signUp"
+import { signUp } from "lib/firebase/auth/signUp"
 
 const SignUp = () => {
 	const [username, setUsername] = useState("")

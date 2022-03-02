@@ -1,4 +1,4 @@
-import { prisma } from "@doggo/prisma"
+import { prisma } from "@Prisma"
 import DogController from "@v1/controllers/dog"
 
 import express from "express"

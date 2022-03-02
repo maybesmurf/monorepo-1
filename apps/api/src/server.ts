@@ -7,7 +7,8 @@ moduleAlias.addAliases({
 	"@Root": __dirname + "/",
 	"@Libs": __dirname + "/libs",
 	"@v1": __dirname + "/v1",
-	"@Utils": __dirname + "/utils"
+	"@Utils": __dirname + "/utils",
+	"@Prisma": __dirname + "/libs/prisma/index"
 })
 
 import { errorHandler, ResponseError } from "@Utils/errorHandlers"

@@ -36,6 +36,9 @@
 		},
 		"type-check": {
 			"outputs": []
+		},
+		"prisma:generate": {
+			"cache": false
 		}
 	}
 }

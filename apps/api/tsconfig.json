@@ -17,6 +17,7 @@
 			"@Root/*": ["./*"],
 			"@Utils/*": ["./utils/*"],
 			"@Libs/*": ["./libs/*"],
+			"@Prisma": ["./libs/prisma/index"],
 			"@v1/*": ["./v1/*"],
 			"@Jest/*": ["./.jest/*"]
 		}

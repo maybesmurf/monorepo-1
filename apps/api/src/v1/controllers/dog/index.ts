@@ -1,5 +1,5 @@
 import { dogSchema } from "@Libs/joi/dog"
-import { Dog, DogSex } from "@doggo/prisma/client"
+import { Dog, DogSex } from "@Prisma/client"
 import { ResponseError } from "@Utils/errorHandlers"
 import { setPagerDefaults } from "@Utils/setPagerDefaults"
 import { RequestHandler } from "express"

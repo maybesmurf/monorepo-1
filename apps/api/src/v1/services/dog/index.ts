@@ -1,6 +1,6 @@
 import { dogSchema } from "@Libs/joi/dog"
-import { prisma } from "@doggo/prisma"
-import { Dog, DogSex } from "@doggo/prisma/client"
+import { prisma } from "@Prisma"
+import { Dog, DogSex } from "@Prisma/client"
 import CrudInterface, { ListParams } from "@Utils/crudInterface"
 import { ResponseError } from "@Utils/errorHandlers"
 

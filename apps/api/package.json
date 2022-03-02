@@ -1,6 +1,7 @@
 {
 	"name": "api",
 	"version": "0.1.1",
+	"type": "commonjs",
 	"scripts": {
 		"build": "rm -rf dist && tsc -p tsconfig.json",
 		"compile": "tsc && node ./dist/src/index.js",
@@ -11,19 +12,21 @@
 		"lint": "eslint \"**/*.ts\" --ignore-pattern node_modules/",
 		"clean": "rm -rf .turbo && rm -rf coverage && rm -rf dist && rm -rf node_modules",
 		"type-check": "tsc --pretty --noEmit",
-		"ci:test": "jest .*\\.unit\\.test\\.ts"
+		"ci:test": "jest .*\\.unit\\.test\\.ts",
+		"prisma:generate": "prisma generate --schema=../../packages/prisma/schema.prisma"
 	},
 	"_moduleAliases": {
 		"@Root": "dist/src",
 		"@Utils": "dist/src/utils",
 		"@Libs": "dist/src/libs",
-		"@v1": "dist/src/v1"
+		"@v1": "dist/src/v1",
+		"@Prisma": "dist/src/libs/prisma/index"
 	},
 	"dependencies": {
 		"@doggo/logger": "*",
-		"@doggo/prisma": "*",
 		"@doggo/ui": "*",
 		"@faker-js/faker": "5.5.3",
+		"@prisma/client": "3.9.2",
 		"@sentry/node": "6.17.3",
 		"@sentry/tracing": "6.16.1",
 		"@typescript-eslint/eslint-plugin": "5.12.1",
@@ -55,6 +58,7 @@
 		"eslint": "8.10.0",
 		"eslint-config-airbnb": "19.0.4",
 		"eslint-plugin-only-warn": "1.0.3",
+		"prisma": "3.9.2",
 		"jest": "27.4.7",
 		"supertest": "6.2.2",
 		"ts-jest": "27.1.3",
