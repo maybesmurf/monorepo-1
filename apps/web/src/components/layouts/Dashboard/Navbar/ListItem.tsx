@@ -22,7 +22,7 @@ const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
 					fullWidth
 					leftIcon={icon}
 					styles={{
-						icon: { marginRight: spacing.lg },
+						icon: { height: "100% !important", marginRight: spacing.lg },
 						inner: { justifyContent: "flex-start", color: colors.navy[9] }
 					}}
 				>

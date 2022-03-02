@@ -22,14 +22,14 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 			<List styles={{ root: { listStyle: "none" }, item: { paddingBottom: spacing.xs } }}>
 				<List.Item>
 					<ListItem
-						icon={<SVG.DogHouse width="2rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
+						icon={<SVG.DogHouse withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
 						buttonLabel="Dashboard"
 						path="/dashboard"
 					/>
 				</List.Item>
 				<List.Item>
 					<ListItem
-						icon={<SVG.Calendar width="2rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
+						icon={<SVG.Calendar withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
 						buttonLabel="My Events"
 						path="/dashboard/my-events"
 					>
@@ -38,7 +38,7 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 				</List.Item>
 				<List.Item>
 					<ListItem
-						icon={<SVG.Paw width="2rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
+						icon={<SVG.Paw withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
 						buttonLabel="My Dogs"
 						path="/dashboard/my-dogs"
 					/>
@@ -46,7 +46,7 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 
 				<List.Item>
 					<ListItem
-						icon={<SVG.AwardRibbon width="2rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
+						icon={<SVG.AwardRibbon withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
 						buttonLabel="Trophy Case"
 						path="/dashboard/trophy-case"
 					/>
