@@ -1,7 +1,5 @@
 import type { Dispatch, SetStateAction } from "react"
-import { Image } from "@Components/shared"
-// import { Image } from "src/components/shared"
-import { MediaQuery, Burger, Header, useMantineTheme, Center } from "@Components/shared"
+import { Image, Group, MediaQuery, Burger, Header, useMantineTheme, Center, SVG } from "@Components/shared"
 import { imageDict } from "@Utils/imageDict"
 
 interface Props {
@@ -26,11 +24,15 @@ const HeaderComp = ({ opened, setOpened }: Props) => {
 			}}
 		>
 			<Image src={imageDict.logoWithText.src} alt={imageDict.logoWithText.alt} width="9rem" height="3.75rem" />
-			<MediaQuery largerThan="sm" styles={{ display: "none" }}>
-				<Center>
-					<Burger opened={opened} onClick={() => setOpened((o) => !o)} size="sm" color={colors.gray[6]} mr="xl" />
-				</Center>
-			</MediaQuery>
+			<Group spacing="lg" position="right" noWrap style={{ color: colors.teal[6] }}>
+				<SVG.HelpCircle width="24px" style={{ cursor: "pointer" }} />
+				<SVG.Bell width="24px" style={{ cursor: "pointer" }} />
+				<MediaQuery largerThan="sm" styles={{ display: "none" }}>
+					<Center>
+						<Burger opened={opened} onClick={() => setOpened((o) => !o)} size="sm" color={colors.teal[6]} mr="xl" />
+					</Center>
+				</MediaQuery>
+			</Group>
 		</Header>
 	)
 }
