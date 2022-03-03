@@ -12,7 +12,7 @@ interface Props {
 const Layout = ({ children }: Props) => {
 	const [opened, setOpened] = useState(false)
 	const { other, spacing } = useMantineTheme()
-	const { width, height } = useViewportSize()
+	const { width } = useViewportSize()
 	const isXlViewport = width >= 1200
 
 	return (
@@ -28,7 +28,8 @@ const Layout = ({ children }: Props) => {
 				},
 				main: {
 					minHeight: "initial",
-					maxHeight: height - 100,
+					maxHeight: `calc(100vh - 100px)`,
+					marginTop: "100px",
 					overflow: "auto",
 					padding: isXlViewport ? `${other.spacing.xxxl}` : spacing.lg,
 					paddingTop: other.spacing.xxl,

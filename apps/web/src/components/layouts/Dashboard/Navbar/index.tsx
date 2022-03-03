@@ -18,10 +18,17 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 			hidden={!opened}
 			width={{ xs: 300, lg: 400 }}
 			styles={{
-				root: { display: "flex", flexDirection: "column", marginTop: "100px", backgroundColor: colors.yellow[0] }
+				root: {
+					display: "flex",
+					flexDirection: "column",
+					marginTop: "100px",
+					minHeight: "initial",
+					maxHeight: `calc(100vh - 100px)`,
+					backgroundColor: colors.yellow[0]
+				}
 			}}
 		>
-			<Navbar.Section>
+			<Navbar.Section style={{ flex: 1 }}>
 				<List />
 			</Navbar.Section>
 			<Navbar.Section>
