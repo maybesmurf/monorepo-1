@@ -9,7 +9,7 @@ interface Props {
 	children?: ReactNode
 }
 
-const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
+export const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
 	const { route } = useRouter()
 	const { colors, spacing } = useMantineTheme()
 
@@ -32,51 +32,4 @@ const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
 			<Collapse in={path === route}>{children}</Collapse>
 		</>
 	)
-}
-
-export default ListItem
-
-{
-	/* <Link href="/dashboard" passHref>
-<Button
-	component="a"
-	leftIcon={<SVG.Box width="25px" />}
-	color="yellow"
-	fullWidth
-	variant="subtle"
-	radius="xl"
-	size="md"
-	styles={{ root: { color: colors.gray[9] } }}
->
-	Dashboard
-</Button>
-</Link>
-<Link href="/dashboard/my-events" passHref>
-<Button
-	component="a"
-	leftIcon={<SVG.Box width="25px" />}
-	color="yellow"
-	fullWidth
-	variant="subtle"
-	radius="xl"
-	size="md"
-	styles={{ root: { color: colors.gray[9] } }}
->
-	My Events
-</Button>
-</Link>
-<Link href="/dashboard/my-dogs" passHref>
-<Button
-	component="a"
-	leftIcon={<SVG.Box width="25px" />}
-	color="yellow"
-	fullWidth
-	variant="subtle"
-	radius="xl"
-	size="md"
-	styles={{ root: { color: colors.gray[9] } }}
->
-	Dogs
-</Button>
-</Link> */
 }

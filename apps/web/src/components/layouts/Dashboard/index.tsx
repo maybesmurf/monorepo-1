@@ -12,7 +12,7 @@ interface Props {
 const Layout = ({ children }: Props) => {
 	const [opened, setOpened] = useState(false)
 	const { other, spacing } = useMantineTheme()
-	const { width } = useViewportSize()
+	const { width, height } = useViewportSize()
 	const isXlViewport = width >= 1200
 
 	return (
@@ -20,7 +20,16 @@ const Layout = ({ children }: Props) => {
 			navbarOffsetBreakpoint="sm"
 			fixed
 			styles={{
+				root: {
+					display: "flex",
+					flexDirection: "column",
+					maxHeight: "100vh",
+					overflow: "hidden"
+				},
 				main: {
+					minHeight: "initial",
+					maxHeight: height - 100,
+					overflow: "auto",
 					padding: isXlViewport ? `${other.spacing.xxxl}` : spacing.lg,
 					paddingTop: other.spacing.xxl,
 					paddingBottom: spacing.md

@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
-import { Navbar, List, useMantineTheme } from "@Components/shared"
-import ListItem from "./ListItem"
-import { SVG } from "@Components/shared"
+import { Navbar, useMantineTheme } from "@Components/shared"
+import { UserAvatar } from "./UserAvatar"
+import { List } from "./List"
 
 interface Props {
 	opened: boolean
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const NavbarComp = ({ opened, setOpened }: Props) => {
-	const { colors, spacing } = useMantineTheme()
+	const { colors } = useMantineTheme()
 
 	return (
 		<Navbar
@@ -17,41 +17,16 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 			hiddenBreakpoint="sm"
 			hidden={!opened}
 			width={{ xs: 300, lg: 400 }}
-			styles={{ root: { backgroundColor: colors.yellow[0] } }}
+			styles={{
+				root: { display: "flex", flexDirection: "column", marginTop: "100px", backgroundColor: colors.yellow[0] }
+			}}
 		>
-			<List styles={{ root: { listStyle: "none" }, item: { paddingBottom: spacing.xs } }}>
-				<List.Item>
-					<ListItem
-						icon={<SVG.DogHouse withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
-						buttonLabel="Dashboard"
-						path="/dashboard"
-					/>
-				</List.Item>
-				<List.Item>
-					<ListItem
-						icon={<SVG.Calendar withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
-						buttonLabel="My Events"
-						path="/dashboard/my-events"
-					>
-						My Events
-					</ListItem>
-				</List.Item>
-				<List.Item>
-					<ListItem
-						icon={<SVG.Paw withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
-						buttonLabel="My Dogs"
-						path="/dashboard/my-dogs"
-					/>
-				</List.Item>
-
-				<List.Item>
-					<ListItem
-						icon={<SVG.AwardRibbon withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
-						buttonLabel="Trophy Case"
-						path="/dashboard/trophy-case"
-					/>
-				</List.Item>
-			</List>
+			<Navbar.Section>
+				<List />
+			</Navbar.Section>
+			<Navbar.Section>
+				<UserAvatar />
+			</Navbar.Section>
 		</Navbar>
 	)
 }

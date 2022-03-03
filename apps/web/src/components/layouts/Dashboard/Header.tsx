@@ -14,6 +14,7 @@ const HeaderComp = ({ opened, setOpened }: Props) => {
 		<Header
 			height={100}
 			padding="lg"
+			fixed
 			styles={{
 				root: {
 					display: "flex",
@@ -35,7 +36,7 @@ const HeaderComp = ({ opened, setOpened }: Props) => {
 				<SVG.Bell width="24px" style={{ cursor: "pointer" }} />
 				<MediaQuery largerThan="sm" styles={{ display: "none" }}>
 					<Center>
-						<Burger opened={opened} onClick={() => setOpened((o) => !o)} size="sm" color={colors.teal[6]} mr="xl" />
+						<Burger opened={opened} onClick={() => setOpened((o) => !o)} size="sm" color={colors.teal[6]} />
 					</Center>
 				</MediaQuery>
 			</Group>
