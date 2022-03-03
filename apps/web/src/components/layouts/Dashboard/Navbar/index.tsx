@@ -2,6 +2,7 @@ import type { Dispatch, SetStateAction } from "react"
 import { Navbar, useMantineTheme } from "@Components/shared"
 import { UserAvatar } from "./UserAvatar"
 import { List } from "./List"
+import { NAVBAR_HEIGHT } from "../index"
 
 interface Props {
 	opened: boolean
@@ -21,9 +22,9 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 				root: {
 					display: "flex",
 					flexDirection: "column",
-					marginTop: "100px",
+					marginTop: NAVBAR_HEIGHT,
 					minHeight: "initial",
-					maxHeight: `calc(100vh - 100px)`,
+					maxHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
 					backgroundColor: colors.yellow[0]
 				}
 			}}

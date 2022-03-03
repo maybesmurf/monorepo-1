@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
 import { Image, Group, MediaQuery, Burger, Header, useMantineTheme, Center, SVG } from "@Components/shared"
 import { imageDict } from "@Utils/imageDict"
+import { NAVBAR_HEIGHT } from "./index"
 
 interface Props {
 	opened: boolean
@@ -12,7 +13,7 @@ const HeaderComp = ({ opened, setOpened }: Props) => {
 
 	return (
 		<Header
-			height={100}
+			height={NAVBAR_HEIGHT}
 			padding="lg"
 			fixed
 			styles={{

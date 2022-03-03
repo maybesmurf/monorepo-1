@@ -9,6 +9,8 @@ interface Props {
 	children: ReactNode
 }
 
+export const NAVBAR_HEIGHT = 100
+
 const Layout = ({ children }: Props) => {
 	const [opened, setOpened] = useState(false)
 	const { other, spacing } = useMantineTheme()
@@ -29,7 +31,7 @@ const Layout = ({ children }: Props) => {
 				main: {
 					minHeight: "initial",
 					maxHeight: `calc(100vh - 100px)`,
-					marginTop: "100px",
+					marginTop: NAVBAR_HEIGHT,
 					overflow: "auto",
 					padding: isXlViewport ? `${other.spacing.xxxl}` : spacing.lg,
 					paddingTop: other.spacing.xxl,
