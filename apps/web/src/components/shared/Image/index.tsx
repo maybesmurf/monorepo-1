@@ -26,7 +26,7 @@ export const Image = ({ external = false, src, alt = "", width = "auto", height 
 
 	return (
 		<div style={{ position: "relative", width, height, overflow: "hidden" }}>
-			<NextImage src={src} alt={alt} layout="fill" objectFit="cover" objectPosition="50% 50%" />
+			<NextImage src={src} alt={alt} layout="fill" objectFit={fit || "cover"} objectPosition="50% 50%" />
 		</div>
 	)
 }
