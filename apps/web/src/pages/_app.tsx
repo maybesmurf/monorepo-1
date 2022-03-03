@@ -36,6 +36,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 				withNormalizeCSS
 				theme={theme}
 				styles={{
+					Title: ({ colors }) => ({ root: { color: colors.navy[9] } }),
 					Alert: ({ colors, spacing }) => ({
 						light: {
 							borderRadius: spacing.lg
