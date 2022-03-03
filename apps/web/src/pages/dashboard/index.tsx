@@ -7,7 +7,7 @@ import { Placeholder } from "@Components/shared/Placeholder"
 const UPCOMING_EVENTS = [
 	{
 		dateRange: { start: new Date(), end: new Date() },
-		eventTitle: "something",
+		eventTitle: "s",
 		imageAlt: "testalt",
 		imageUrl: "/jump-pup.png",
 		status: "registered" as "registered",
@@ -18,7 +18,7 @@ const UPCOMING_EVENTS = [
 	},
 	{
 		dateRange: { start: new Date(), end: new Date() },
-		eventTitle: "something",
+		eventTitle: "somethingggggggggggggggggggggggggggggggggggggggggggggggggggg",
 		imageAlt: "testalt",
 		imageUrl: "/jump-pup.png",
 		status: "registered" as "registered",
@@ -29,7 +29,8 @@ const UPCOMING_EVENTS = [
 	},
 	{
 		dateRange: { start: new Date(), end: new Date() },
-		eventTitle: "something",
+		eventTitle:
+			"somethinsomethigng somethin seomthin somethin somethion msoehtinmso ejitohnsiojf ideasoj fiaoes jieas jfilasejf il;asejfas",
 		imageAlt: "testalt",
 		imageUrl: "/jump-pup.png",
 		status: "registered" as "registered",
@@ -54,7 +55,7 @@ const DashboardPage = () => {
 					<Text style={{ fontWeight: "600", cursor: "pointer" }}>See All</Text>
 				</Link>
 			</Flexbox>
-			<Group position="center" spacing="lg">
+			<Group position="left" spacing="lg">
 				{UPCOMING_EVENTS.map((event) => {
 					return <EventCard key={event.location} {...event} />
 				})}
@@ -65,7 +66,7 @@ const DashboardPage = () => {
 					<Text style={{ fontWeight: "600", cursor: "pointer" }}>See All</Text>
 				</Link>
 			</Flexbox>
-			<Group position="center" spacing="lg">
+			<Group position="left" spacing="lg">
 				{UPCOMING_EVENTS.map((event) => {
 					return <EventCard key={event.location} {...event} />
 				})}

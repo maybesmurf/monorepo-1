@@ -30,7 +30,7 @@ const Layout = ({ children }: Props) => {
 				},
 				main: {
 					minHeight: "initial",
-					maxHeight: `calc(100vh - 100px)`,
+					maxHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
 					marginTop: NAVBAR_HEIGHT,
 					overflow: "auto",
 					padding: isXlViewport ? `${other.spacing.xxxl}` : spacing.lg,

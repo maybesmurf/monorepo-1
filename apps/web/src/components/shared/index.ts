@@ -1,4 +1,6 @@
 export {
+	Avatar,
+	ScrollArea,
 	Title,
 	Group,
 	Container,

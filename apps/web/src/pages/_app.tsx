@@ -31,6 +31,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 			<Head>
 				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 			</Head>
+			{/* TODO: Any nice ways to get this cleaned up, abstracted away, or otherwise more readable? */}
 			<MantineProvider
 				withGlobalStyles
 				withNormalizeCSS
@@ -299,7 +300,7 @@ const MyApp = ({ Component, pageProps }: any) => {
 					}}
 				/>
 				{getLayout(<Component {...pageProps} />)}
-				<ReactQueryDevtools />
+				{/* <ReactQueryDevtools /> */}
 			</MantineProvider>
 		</>
 	)

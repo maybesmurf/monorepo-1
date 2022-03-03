@@ -33,6 +33,7 @@ const HeaderComp = ({ opened, setOpened }: Props) => {
 				fit="contain"
 			/>
 			<Group spacing="lg" position="right" noWrap style={{ color: colors.teal[6] }}>
+				{/* TODO: Give these SVG's their onClick! */}
 				<SVG.HelpCircle width="24px" style={{ cursor: "pointer" }} />
 				<SVG.Bell width="24px" style={{ cursor: "pointer" }} />
 				<MediaQuery largerThan="sm" styles={{ display: "none" }}>

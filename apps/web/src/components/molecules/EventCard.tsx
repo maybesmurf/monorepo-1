@@ -41,6 +41,7 @@ export const EventCard = ({
 
 	return (
 		<Card
+			onClick={() => onClick}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			radius="md"
