@@ -9,6 +9,7 @@ import { NextPage } from "next"
 import Head from "next/head"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
+import { SessionProvider } from "next-auth/react"
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -23,11 +24,11 @@ const DISABLED_BUTTON_STYLES = {
 	backgroundColor: `${colors.gray[3]} !important`
 }
 
-const MyApp = ({ Component, pageProps }: any) => {
+const MyApp = ({ Component, pageProps: { session, ...pageProps } }: any) => {
 	const getLayout = Component.getLayout || ((page: NextPage) => page)
 
 	return (
-		<>
+		<SessionProvider session={session}>
 			<Head>
 				<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
 			</Head>
@@ -300,9 +301,9 @@ const MyApp = ({ Component, pageProps }: any) => {
 					}}
 				/>
 				{getLayout(<Component {...pageProps} />)}
-				{/* <ReactQueryDevtools /> */}
+				<ReactQueryDevtools />
 			</MantineProvider>
-		</>
+		</SessionProvider>
 	)
 }
 

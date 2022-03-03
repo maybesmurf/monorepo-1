@@ -13,30 +13,29 @@ const UPCOMING_EVENTS = [
 		status: "registered" as "registered",
 		userRole: "host" as "host",
 		favorite: true,
-		location: "somewher",
+		location: "somewhere",
 		onClick: () => {}
 	},
 	{
 		dateRange: { start: new Date(), end: new Date() },
-		eventTitle: "somethingggggggggggggggggggggggggggggggggggggggggggggggggggg",
+		eventTitle: "something",
 		imageAlt: "testalt",
 		imageUrl: "/jump-pup.png",
 		status: "registered" as "registered",
 		userRole: "host" as "host",
 		favorite: true,
-		location: "somewher",
+		location: "somewhere",
 		onClick: () => {}
 	},
 	{
 		dateRange: { start: new Date(), end: new Date() },
-		eventTitle:
-			"somethinsomethigng somethin seomthin somethin somethion msoehtinmso ejitohnsiojf ideasoj fiaoes jieas jfilasejf il;asejfas",
+		eventTitle: "somethi lasejfas",
 		imageAlt: "testalt",
 		imageUrl: "/jump-pup.png",
 		status: "registered" as "registered",
 		userRole: "host" as "host",
 		favorite: true,
-		location: "somewher",
+		location: "somewhere",
 		onClick: () => {}
 	}
 ]
@@ -57,7 +56,7 @@ const DashboardPage = () => {
 			</Flexbox>
 			<Group position="left" spacing="lg">
 				{UPCOMING_EVENTS.map((event) => {
-					return <EventCard key={event.location} {...event} />
+					return <EventCard key={event.eventTitle} {...event} />
 				})}
 			</Group>
 			<Flexbox style={{ padding: 0 }} fluid direction="row" alignItems="center" justifyContent="space-between">
@@ -68,7 +67,7 @@ const DashboardPage = () => {
 			</Flexbox>
 			<Group position="left" spacing="lg">
 				{UPCOMING_EVENTS.map((event) => {
-					return <EventCard key={event.location} {...event} />
+					return <EventCard key={event.eventTitle} {...event} />
 				})}
 			</Group>
 		</SimpleGrid>
