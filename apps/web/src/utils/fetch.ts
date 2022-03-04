@@ -1,8 +1,10 @@
 const baseUri = process.env.NEXT_PUBLIC_API_PATH
 
-const get = async (url: string) => {
+// TODO: Get rid of this any
+const get = async (url: string, headers?: any) => {
 	const requestOptions = {
-		method: "GET"
+		method: "GET",
+		headers
 	}
 	return await fetch(baseUri + url, requestOptions).then(handleResponse)
 }

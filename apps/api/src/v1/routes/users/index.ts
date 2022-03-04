@@ -10,8 +10,6 @@ router.post("/", async (req, response) => {
 	const resp = await prisma.user.create({
 		data: {
 			id: faker.datatype.uuid(),
-			firstName: faker.name.firstName(),
-			lastName: faker.name.lastName(),
 			streetAddress: faker.address.streetAddress(),
 			city: faker.address.city(),
 			state: faker.address.stateAbbr() as State,

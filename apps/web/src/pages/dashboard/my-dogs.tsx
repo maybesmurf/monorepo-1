@@ -37,7 +37,7 @@ const Dogs = () => {
 				color="red"
 				radius="xl"
 				withCloseButton
-				onClose={() => console.log("ringdog pooped on the carpet")}
+				onClose={() => console.log("TODO")}
 				styles={{ root: { padding: spacing.xl } }}
 			>
 				Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia con.

@@ -12,8 +12,6 @@ export const UserAvatar = () => {
 	const { colors } = useMantineTheme()
 	const initials = `${DUMMY_USER.firstName[0]}${DUMMY_USER.lastName[0]}`
 
-	console.log(session)
-
 	return (
 		<>
 			<button onClick={() => signIn()}>Sign in</button>
