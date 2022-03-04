@@ -10,11 +10,11 @@ interface Props {
 }
 
 const NavbarComp = ({ opened, setOpened }: Props) => {
-	const { colors } = useMantineTheme()
+	const { colors, spacing } = useMantineTheme()
 
 	return (
 		<Navbar
-			padding="lg"
+			padding={0}
 			hiddenBreakpoint="sm"
 			hidden={!opened}
 			width={{ xs: 300, lg: 400 }}
@@ -29,7 +29,7 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 				}
 			}}
 		>
-			<Navbar.Section style={{ flex: 1 }}>
+			<Navbar.Section style={{ flex: 1, padding: spacing.lg }}>
 				<List />
 			</Navbar.Section>
 			<Navbar.Section>

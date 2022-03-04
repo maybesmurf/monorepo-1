@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react"
 
 const TrophyCase = () => {
 	const session = useSession()
-	console.log(session)
 	const { data, refetch } = useQuery(
 		"trophy-case",
 		async () => {
