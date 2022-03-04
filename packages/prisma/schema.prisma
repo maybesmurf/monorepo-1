@@ -31,7 +31,7 @@ model Dog {
   preferredClasses     Boolean              @default(false)
   scores               Run[]
   trialEntries         TrialEntry[]
-  owners               DoggoUser[]
+  owners               User[]
 }
 
 model Account {
@@ -47,7 +47,6 @@ model Account {
   scope              String?
   id_token           String?  @db.Text
   session_state      String?
-
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
@@ -69,6 +68,21 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  akcJudgeId            String?
+  akcLicense            String?
+  akcSecretaryId        String?
+  city                  String?
+  emergencyContactName  String?
+  emergencyContactPhone String?
+  phone                 String?
+  postalCode            String?
+  state                 State?
+  streetAddress         String?
+  trialsAsJudge         JudgesByTrials[]
+  runs                  Run[]
+  trialsAsSecretary     Trial[]
+  trialEntries          TrialEntry[]
+  dogs                  Dog[]
 }
 
 model VerificationToken {
@@ -79,27 +93,27 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model DoggoUser {
-  id                    String           @id @unique
-  akcJudgeId            String?
-  akcLicense            String?
-  akcSecretaryId        String?
-  city                  String
-  email                 String
-  emergencyContactName  String?
-  emergencyContactPhone String?
-  firstName             String
-  lastName              String
-  phone                 String?
-  postalCode            String
-  state                 State
-  streetAddress         String
-  trialsAsJudge         JudgesByTrials[]
-  runs                  Run[]
-  trialsAsSecretary     Trial[]
-  trialEntries          TrialEntry[]
-  dogs                  Dog[]
-}
+// model DoggoUser {
+//   id                    String           @id @unique
+//   akcJudgeId            String?
+//   akcLicense            String?
+//   akcSecretaryId        String?
+//   city                  String
+//   email                 String
+//   emergencyContactName  String?
+//   emergencyContactPhone String?
+//   firstName             String
+//   lastName              String
+//   phone                 String?
+//   postalCode            String
+//   state                 State
+//   streetAddress         String
+//   trialsAsJudge         JudgesByTrials[]
+//   runs                  Run[]
+//   trialsAsSecretary     Trial[]
+//   trialEntries          TrialEntry[]
+//   dogs                  Dog[]
+// }
 
 model Trial {
   id                         String                    @id @default(uuid())
@@ -131,7 +145,7 @@ model Trial {
   juniorHandlerDiscount      Int?
   confirmationLetter         String
   hostingClub                Club                      @relation(fields: [hostingClubId], references: [id])
-  secretary                  DoggoUser                      @relation(fields: [secretaryId], references: [id])
+  secretary                  User                      @relation(fields: [secretaryId], references: [id])
   classesEntries             ClassEntriesByTrials[]
   classesAvailable           ClassTypeLevelsByTrials[]
   judges                     JudgesByTrials[]
@@ -142,7 +156,7 @@ model Trial {
 model JudgesByTrials {
   judgeId String
   trialId String
-  judge   DoggoUser   @relation(fields: [judgeId], references: [id])
+  judge   User   @relation(fields: [judgeId], references: [id])
   trial   Trial  @relation(fields: [trialId], references: [id])
 
   @@id([judgeId, trialId])
@@ -225,7 +239,7 @@ model Run {
   dog           Dog       @relation(fields: [dogId], references: [id])
   height        Height    @relation(fields: [heightId], references: [id])
   level         Level     @relation(fields: [levelId], references: [id])
-  scorekeeper   DoggoUser      @relation(fields: [scoreKeeperId], references: [id])
+  scorekeeper   User      @relation(fields: [scoreKeeperId], references: [id])
   trialDay      TrialDay  @relation(fields: [trialDayId], references: [id])
 }
 
@@ -238,7 +252,7 @@ model TrialEntry {
   isPreferred       Boolean                   @default(false)
   dog               Dog                       @relation(fields: [dogId], references: [id])
   trial             Trial                     @relation(fields: [trialId], references: [id])
-  user              DoggoUser                      @relation(fields: [userId], references: [id])
+  user              User                      @relation(fields: [userId], references: [id])
   classesEnteredIds ClassEntriesByTrials[]
   trialDays         TrialEntriesByTrialDays[]
 }

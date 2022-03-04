@@ -6,7 +6,7 @@
 	"scripts": {
 		"clean": "rm -rf .turbo && rm -rf node_modules",
 		"db-deploy": "prisma migrate deploy",
-		"db-migrate": "prisma migrate dev",
+		"db-migrate": "prisma db push --accept-data-loss",
 		"generate-types": "prisma generate",
 		"db-studio": "prisma studio"
 	},

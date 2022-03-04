@@ -18,5 +18,11 @@ export default NextAuth({
 			clientSecret: process.env.DISCORD_CLIENT_SECRET
 		})
 		// ...add more providers here
-	]
+	],
+	callbacks: {
+		async session({ token, user, session }) {
+			session.user = user
+			return session
+		}
+	}
 })
