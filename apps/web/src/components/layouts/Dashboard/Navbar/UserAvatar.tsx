@@ -8,7 +8,7 @@ const DUMMY_USER = {
 }
 
 export const UserAvatar = () => {
-	const { data: session } = useSession()
+	const session = useSession()
 	const { colors } = useMantineTheme()
 	const initials = `${DUMMY_USER.firstName[0]}${DUMMY_USER.lastName[0]}`
 
@@ -16,10 +16,10 @@ export const UserAvatar = () => {
 
 	return (
 		<>
-			{!session && <button onClick={() => signIn()}>Sign in</button>}
+			<button onClick={() => signIn()}>Sign in</button>
 			{session && (
 				<p>
-					Signed in as {session?.user?.email || "no one"}
+					Signed in as {session?.data?.user?.email || "no one"}
 					<button onClick={() => signOut()}>Log out</button>
 				</p>
 			)}

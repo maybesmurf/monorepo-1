@@ -31,10 +31,55 @@ model Dog {
   preferredClasses     Boolean              @default(false)
   scores               Run[]
   trialEntries         TrialEntry[]
-  owners               User[]
+  owners               DoggoUser[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model DoggoUser {
   id                    String           @id @unique
   akcJudgeId            String?
   akcLicense            String?
@@ -86,7 +131,7 @@ model Trial {
   juniorHandlerDiscount      Int?
   confirmationLetter         String
   hostingClub                Club                      @relation(fields: [hostingClubId], references: [id])
-  secretary                  User                      @relation(fields: [secretaryId], references: [id])
+  secretary                  DoggoUser                      @relation(fields: [secretaryId], references: [id])
   classesEntries             ClassEntriesByTrials[]
   classesAvailable           ClassTypeLevelsByTrials[]
   judges                     JudgesByTrials[]
@@ -97,7 +142,7 @@ model Trial {
 model JudgesByTrials {
   judgeId String
   trialId String
-  judge   User   @relation(fields: [judgeId], references: [id])
+  judge   DoggoUser   @relation(fields: [judgeId], references: [id])
   trial   Trial  @relation(fields: [trialId], references: [id])
 
   @@id([judgeId, trialId])
@@ -180,7 +225,7 @@ model Run {
   dog           Dog       @relation(fields: [dogId], references: [id])
   height        Height    @relation(fields: [heightId], references: [id])
   level         Level     @relation(fields: [levelId], references: [id])
-  scorekeeper   User      @relation(fields: [scoreKeeperId], references: [id])
+  scorekeeper   DoggoUser      @relation(fields: [scoreKeeperId], references: [id])
   trialDay      TrialDay  @relation(fields: [trialDayId], references: [id])
 }
 
@@ -193,7 +238,7 @@ model TrialEntry {
   isPreferred       Boolean                   @default(false)
   dog               Dog                       @relation(fields: [dogId], references: [id])
   trial             Trial                     @relation(fields: [trialId], references: [id])
-  user              User                      @relation(fields: [userId], references: [id])
+  user              DoggoUser                      @relation(fields: [userId], references: [id])
   classesEnteredIds ClassEntriesByTrials[]
   trialDays         TrialEntriesByTrialDays[]
 }

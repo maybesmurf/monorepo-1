@@ -9,6 +9,7 @@
 	"scripts": {
 		"prisma:generate": "\"turbo run prisma:generate\"",
 		"db-setup": "cd packages && cd prisma && npm run db-migrate",
+		"db-studio": "cd packages && cd prisma && npm run db-studio",
 		"docker:build": "docker-compose -f docker-compose.yml up --build",
 		"dev:docker": "docker-compose -f docker-compose.yml up -d",
 		"dev": "concurrently \"npm run dev:docker\" \"turbo run dev --parallel\"",
