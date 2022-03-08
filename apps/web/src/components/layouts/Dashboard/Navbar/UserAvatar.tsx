@@ -1,5 +1,7 @@
 import { Avatar, Text, SVG, Flexbox, useMantineTheme } from "@Components/shared"
 import { signIn, signOut, useSession } from "next-auth/react"
+import fetch from "@Utils/fetch"
+import Cookies from "js-cookie"
 
 const DUMMY_USER = {
 	firstName: "Amy",
@@ -12,14 +14,17 @@ export const UserAvatar = () => {
 	const { colors } = useMantineTheme()
 	const initials = `${DUMMY_USER.firstName[0]}${DUMMY_USER.lastName[0]}`
 
-	console.log(userData)
-
 	const [firstName, lastName] = userData?.user?.name ? userData.user.name.split(" ") : ["", ""]
+
+	const doFetch = () => {
+		fetch.get("/some-authy-boi").then((res) => console.log(res))
+	}
 
 	return (
 		<>
 			<button onClick={() => signIn()}>Sign in</button>
 			<button onClick={() => signOut()}>Log out</button>
+			<button onClick={doFetch}>da da ting</button>
 			<Flexbox
 				direction="row"
 				alignItems="center"

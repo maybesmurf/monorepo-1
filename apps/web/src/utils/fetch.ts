@@ -2,11 +2,14 @@ const baseUri = process.env.NEXT_PUBLIC_API_PATH
 
 // TODO: Get rid of this any
 const get = async (url: string, headers?: any) => {
-	const requestOptions = {
+	const opts = {
 		method: "GET",
 		headers
 	}
-	return await fetch(baseUri + url, requestOptions).then(handleResponse)
+	return await fetch(baseUri + url, {
+		credentials: "include",
+		headers: opts
+	}).then(handleResponse)
 }
 
 const post = async (url: string, body: any) => {

@@ -18,6 +18,7 @@ moduleAlias.addAliases({
 import { errorHandler, ResponseError } from "@Utils/errorHandlers"
 import cors from "cors"
 import express from "express"
+import cookieParser from "cookie-parser"
 import v1 from "@v1/index"
 import { prisma } from "@Prisma"
 
@@ -33,8 +34,14 @@ initSentry()
 
 // Sentry request handler must be first handler on app for Sentry reasons
 app.use(Sentry.Handlers.requestHandler())
-app.use(cors())
+app.use(
+	cors({
+		credentials: true,
+		origin: "http://localhost:3000"
+	})
+)
 app.use(express.json())
+app.use(cookieParser())
 
 app.use("/v1", v1)
 // Ping the server
@@ -43,13 +50,13 @@ app.get("/", async (req, res) =>
 )
 
 app.get("/some-authy-boi", async (req, res) => {
-	if (!req.headers.authorization) {
-		return res.status(401).json({ message: "No auth" })
+	const sessionToken = req.cookies["next-auth.session-token"]
+	if (!sessionToken) {
+		return res.status(401).json({ message: "No session provided" })
 	}
 
-	const [, token, expires] = req.headers.authorization.split(" ")
 	const result = await prisma.session.findFirst({
-		where: { userId: token, expires }
+		where: { sessionToken }
 	})
 
 	if (!result) {

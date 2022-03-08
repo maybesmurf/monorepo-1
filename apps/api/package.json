@@ -31,6 +31,7 @@
 		"@sentry/tracing": "6.16.1",
 		"@typescript-eslint/eslint-plugin": "5.12.1",
 		"cors": "2.8.5",
+		"cookie-parser": "1.4.6",
 		"cross-env": "7.0.3",
 		"dotenv": "10.0.0",
 		"eslint-plugin-jest": "26.1.1",
