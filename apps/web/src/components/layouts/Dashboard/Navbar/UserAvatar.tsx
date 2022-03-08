@@ -16,14 +16,14 @@ export const UserAvatar = () => {
 	const [firstName, lastName] = userData?.user?.name ? userData.user.name.split(" ") : ["", ""]
 
 	const doFetch = () => {
-		fetch.get("/some-authy-boi").then((res) => console.log(res))
+		fetch.get("/v1/auth").then((res) => console.log(res))
 	}
 
 	return (
 		<>
 			<button onClick={() => signIn()}>Sign in</button>
 			<button onClick={() => signOut()}>Log out</button>
-			<button onClick={doFetch}>da da ting</button>
+			<button onClick={doFetch}>Make authed request</button>
 			<Flexbox
 				direction="row"
 				alignItems="center"
