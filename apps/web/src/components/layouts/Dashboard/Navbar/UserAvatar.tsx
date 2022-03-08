@@ -1,7 +1,6 @@
 import { Avatar, Text, SVG, Flexbox, useMantineTheme } from "@Components/shared"
 import { signIn, signOut, useSession } from "next-auth/react"
 import fetch from "@Utils/fetch"
-import Cookies from "js-cookie"
 
 const DUMMY_USER = {
 	firstName: "Amy",
