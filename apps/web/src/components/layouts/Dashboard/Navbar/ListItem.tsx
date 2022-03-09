@@ -3,34 +3,37 @@ import { Button, Collapse, useMantineTheme } from "@Components/shared"
 import { useRouter } from "next/router"
 import Link from "next/link"
 interface Props {
-	isActive: boolean
+	// isActive: boolean
 	path: string
 	buttonLabel: string
 	icon: JSX.Element
 	children?: ReactNode
 }
 
-export const ListItem = ({ isActive, path, icon, buttonLabel, children }: Props) => {
+export const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
 	const { route } = useRouter()
-	const { colors, spacing, radius } = useMantineTheme()
+	const { colors, spacing } = useMantineTheme()
 
+	// TODO: What was the background she shows in the navbar? Active state or hover?
+	/* <div style={{ borderRadius: radius.sm, background: isActive ? colors.teal[1] : "transparent" }}> */
 	return (
-		<div style={{ borderRadius: radius.sm, background: isActive ? colors.teal[1] : "transparent" }}>
+		<>
 			<Link href={path} passHref>
-				<Button
-					variant="subtle"
-					asLink
-					fullWidth
-					leftIcon={icon}
-					styles={{
-						icon: { height: "100% !important", marginRight: spacing.lg },
-						inner: { justifyContent: "flex-start", color: colors.navy[9] }
-					}}
-				>
-					{buttonLabel}
-				</Button>
+				<a style={{ textDecoration: "none" }}>
+					<Button
+						variant="subtle"
+						fullWidth
+						leftIcon={icon}
+						styles={{
+							icon: { height: "100% !important", marginRight: spacing.lg },
+							inner: { justifyContent: "flex-start", color: colors.navy[9] }
+						}}
+					>
+						{buttonLabel}
+					</Button>
+				</a>
 			</Link>
 			<Collapse in={path === route}>{children}</Collapse>
-		</div>
+		</>
 	)
 }
