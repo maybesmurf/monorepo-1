@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react"
-import { Flexbox } from "./Flexbox"
+import { Group } from "./"
 
 interface Props {
 	children: ReactNode
@@ -8,14 +8,9 @@ interface Props {
 /** This component contains an optional tag on the right side of the label. */
 export const OptionalInputLabel = ({ children }: Props) => {
 	return (
-		<Flexbox
-			direction="row"
-			justifyContent="space-between"
-			alignItems="center"
-			styles={{ root: { padding: 0 } }}
-		>
+		<Group position="apart">
 			<span>{children}</span>
 			<span style={{ fontStyle: "italic", fontWeight: "400" }}>Optional</span>
-		</Flexbox>
+		</Group>
 	)
 }

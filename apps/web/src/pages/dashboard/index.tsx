@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { EventCard } from "@Components/molecules"
-import { Flexbox, SimpleGrid, Title, Text, Container, Button, useMantineTheme } from "@Components/shared"
+import { SimpleGrid, Grid, Group, Title, Text, Button, useMantineTheme } from "@Components/shared"
 import { getLayout } from "@Components/layouts/Dashboard"
 import { Placeholder } from "@Components/shared/Placeholder"
 import { useAuthSession } from "@Hooks/useAuthSession"
@@ -42,7 +42,7 @@ const UPCOMING_EVENTS = [
 ]
 
 const DashboardPage = () => {
-	const { colors } = useMantineTheme()
+	const { colors, radius } = useMantineTheme()
 	const { authUser } = useAuthSession()
 
 	return (
@@ -52,13 +52,12 @@ const DashboardPage = () => {
 			<Placeholder message="You have no upcoming events." />
 			<Title order={2}>Latest Results</Title>
 			<Placeholder message="You have no upcoming events." />
-			<Flexbox style={{ padding: 0 }} fluid direction="row" alignItems="center" justifyContent="space-between">
+			<Group position="apart">
 				<Title order={2}>Upcoming Events</Title>
 				<Link href="/dashboard/my-events/upcoming" passHref>
 					<Text style={{ fontWeight: "600", cursor: "pointer" }}>See All</Text>
 				</Link>
-			</Flexbox>
-
+			</Group>
 			<SimpleGrid
 				breakpoints={[
 					{
@@ -82,22 +81,34 @@ const DashboardPage = () => {
 			</SimpleGrid>
 
 			<Title order={2}>Host a Trial</Title>
-			<Container fluid style={{ textAlign: "center", background: colors.teal[1], padding: "2rem" }}>
-				<Title order={3}>Ready to host your own event?</Title>
-				<Text style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
-					Be sure to have your trial details handy (i.e. addresses, contact information, pricing, and class offerings).
-				</Text>
-				<Button asLink size="sm" radius="lg">
-					Create a Trial
-				</Button>
-			</Container>
+			<Grid
+				gutter="xl"
+				justify="flex-end"
+				align="center"
+				style={{ background: colors.teal[1], padding: "2rem", borderRadius: radius.lg }}
+			>
+				<Grid.Col md={6}>
+					<Title order={3} style={{ textAlign: "center" }}>
+						Ready to host your own event?
+					</Title>
+					<Text style={{ paddingTop: "1rem", paddingBottom: "2rem", width: "75%", margin: "0 auto" }}>
+						Be sure to have your trial details handy (i.e. addresses, contact information, pricing, and class
+						offerings).
+					</Text>
+				</Grid.Col>
+				<Grid.Col md={6} style={{ textAlign: "center" }}>
+					<Button asLink size="sm" radius="lg">
+						Create a Trial
+					</Button>
+				</Grid.Col>
+			</Grid>
 
-			<Flexbox style={{ padding: 0 }} fluid direction="row" alignItems="center" justifyContent="space-between">
+			<Group position="apart">
 				<Title order={2}>Events Nearby</Title>
 				<Link href="/dashboard/my-events/near-me" passHref>
 					<Text style={{ fontWeight: "600", cursor: "pointer" }}>See All</Text>
 				</Link>
-			</Flexbox>
+			</Group>
 			<SimpleGrid
 				breakpoints={[
 					{

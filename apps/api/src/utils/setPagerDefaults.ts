@@ -7,10 +7,8 @@ export const setPagerDefaults = <T extends { skip?: string; take?: string }>(
 	query: T,
 	skipDefault: number,
 	takeDefault: number
-) => {
-	return {
-		...query,
-		skip: Number(query.skip ?? skipDefault),
-		take: Number(query.take ?? takeDefault)
-	}
-}
+) => ({
+	...query,
+	skip: Number(query.skip ?? skipDefault),
+	take: Number(query.take ?? takeDefault)
+})

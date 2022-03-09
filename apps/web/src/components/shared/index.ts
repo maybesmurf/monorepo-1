@@ -20,6 +20,7 @@ export {
 	AppShell,
 	Navbar,
 	List,
+	Grid,
 	SimpleGrid,
 	Collapse
 } from "@mantine/core"
@@ -28,7 +29,6 @@ export type { MantineSize } from "@mantine/core"
 export { Button } from "./Button"
 export { DatePicker } from "./DatePicker"
 export { DateRangePicker } from "./DateRangePicker"
-export { Flexbox } from "./Flexbox"
 export { Image } from "./Image"
 export { NumberInput } from "./NumberInput"
 export { RadioGroup, Radio } from "./RadioGroup"

@@ -20,6 +20,7 @@ interface Props extends ContainerProps {
 	alignItems: FlexProperties
 	children: ReactNode
 	onClick?: (event: MouseEvent<HTMLDivElement>) => void
+	bg?: MantineColor
 	hoverbg?: MantineColor
 	style?: CSSProperties
 }
@@ -46,7 +47,7 @@ export const Flexbox = ({
 				justifyContent,
 				alignItems,
 				width: fluid ? "100%" : "initial",
-				backgroundColor: hovered ? props.hoverbg : "transparent",
+				backgroundColor: hovered ? props.hoverbg || props.bg : props.bg,
 				...style
 			}}
 			fluid={fluid}

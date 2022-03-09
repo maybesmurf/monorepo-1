@@ -1,9 +1,8 @@
-import { Avatar, Text, SVG, Flexbox, useMantineTheme } from "@Components/shared"
+import { Avatar, Text, SVG, Group, useMantineTheme } from "@Components/shared"
 import { useAuthSession } from "@Hooks/useAuthSession"
-import { signIn, signOut } from "next-auth/react"
+import { signOut } from "next-auth/react"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
-import fetch from "@Utils/fetch"
 
 const DUMMY_USER = {
 	firstName: "Amy",
@@ -25,20 +24,12 @@ export const UserAvatar = () => {
 		}
 	}, [authStatus, router])
 
-	const doFetch = () => {
-		fetch.get("/v1/auth").then((res) => console.log(res))
-	}
-
 	return (
 		<>
-			<button onClick={() => signIn()}>Sign in</button>
 			<button onClick={() => signOut()}>Log out</button>
-			<button onClick={doFetch}>Make authed request</button>
-			<Flexbox
+			<Group
 				direction="row"
-				alignItems="center"
-				justifyContent="center"
-				hoverbg={colors.yellow[1]}
+				position="apart"
 				onClick={() => console.log("TODO")}
 				style={{ cursor: "pointer", padding: "1rem" }}
 			>
@@ -49,10 +40,9 @@ export const UserAvatar = () => {
 				>
 					{initials}
 				</Avatar>
-				<Flexbox
+				<Group
 					direction="column"
-					alignItems="flex-start"
-					justifyContent="flex-start"
+					position="apart"
 					style={{
 						flex: 1,
 						overflow: "hidden",
@@ -66,9 +56,9 @@ export const UserAvatar = () => {
 					<Text size="sm" color={colors.teal[8]}>
 						{authUser?.email ? authUser.email : ""}
 					</Text>
-				</Flexbox>
+				</Group>
 				<SVG.Carat width="18px" height="24px" stroke={colors.teal[6]} style={{ transform: "rotate(-90deg)" }} />
-			</Flexbox>
+			</Group>
 		</>
 	)
 }

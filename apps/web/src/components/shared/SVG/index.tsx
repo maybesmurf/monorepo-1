@@ -1,7 +1,7 @@
 import { Box } from "./Box"
 import { AlertCircle } from "./AlertCircle"
-import { DogHouse } from "./DogHouse"
 import { Calendar } from "./Calendar"
+import { DogHouse } from "./DogHouse"
 import { Paw } from "./Paw"
 import { AwardRibbon } from "./AwardRibbon"
 import { Checkmark } from "./Checkmark"
@@ -16,8 +16,8 @@ import { Bell } from "./Bell"
 export const SVG = {
 	Box,
 	AlertCircle,
-	DogHouse,
 	Calendar,
+	DogHouse,
 	Paw,
 	AwardRibbon,
 	Checkmark,

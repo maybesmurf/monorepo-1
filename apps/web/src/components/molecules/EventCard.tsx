@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { Card, Flexbox, Image, SVG } from "@Components/shared"
+import { Card, Group, Image, SVG } from "@Components/shared"
 import { format } from "date-fns"
 import { Text, Title, useMantineTheme } from "@mantine/core"
+import { useElementSize } from "@mantine/hooks"
 
 interface Props {
 	userRole: "host" | "judge" | "dog owner"
@@ -31,18 +32,18 @@ export const EventCard = ({
 }: Props) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const { colors, spacing, radius, shadows, fontSizes } = useMantineTheme()
+	const { ref, width } = useElementSize()
 
 	const CARD_STYLES = {
 		paddingTop: 0,
 		cursor: "pointer",
 		boxShadow: isHovered ? shadows.sm : shadows.xs,
 		transition: ".15s"
-		// flex: 1
-		// minWidth: "250px"
 	}
 
 	return (
 		<Card
+			ref={ref}
 			onClick={() => onClick}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
@@ -69,65 +70,38 @@ export const EventCard = ({
 			<Card.Section>
 				<Image src={imageUrl} alt={imageAlt} width="100%" height="200px" />
 			</Card.Section>
-			<Flexbox
-				style={{ paddingLeft: spacing.xs, paddingRight: spacing.xs }}
-				direction="column"
-				alignItems="flex-start"
-				justifyContent="space-around"
-			>
-				<Flexbox
-					style={{ width: "100%", margin: 0, paddingTop: spacing.md }}
-					padding={0}
-					alignItems="center"
-					direction="row"
-					justifyContent="space-between"
-				>
-					<Flexbox
-						style={{ marginLeft: 0, paddingLeft: 0 }}
-						alignItems="center"
-						direction="row"
-						justifyContent="flex-start"
-					>
+			<Group direction="column">
+				<Group style={{ width: "100%", margin: 0, paddingTop: spacing.md }} direction="row" position="apart">
+					<Group direction="row" spacing="xs">
 						<SVG.Calendar style={{ position: "relative", top: "-2px" }} width={fontSizes.md} stroke={colors.gray[3]} />
-						<Text style={{ paddingLeft: spacing.xs / 2, fontSize: fontSizes.xs, color: colors.gray[7] }}>
+						<Text style={{ fontSize: fontSizes.xs, color: colors.gray[7] }}>
 							{format(dateRange.start, "MMM")} {format(dateRange.start, "d")} - {format(dateRange.end, "MMM")}{" "}
 							{format(dateRange.end, "d")}
 						</Text>
-					</Flexbox>
+					</Group>
 					<SVG.Heart
 						width="28px"
 						stroke={favorite ? colors.red[4] : colors.teal[6]}
 						fill={favorite ? colors.red[4] : "transparent"}
 					/>
-				</Flexbox>
+				</Group>
+
 				<Title order={3} style={{ margin: `${spacing.sm}px 0`, fontSize: fontSizes.lg, color: colors.navy[9] }}>
 					{eventTitle}
 				</Title>
-				<Flexbox style={{ margin: 0, padding: 0 }} alignItems="center" direction="row" justifyContent="space-between">
-					<Flexbox
-						style={{ marginLeft: 0, paddingLeft: 0 }}
-						alignItems="center"
-						direction="row"
-						justifyContent="space-between"
-					>
+				<Group position="apart" spacing="xs" style={{ width: "100%", flexWrap: "nowrap" }}>
+					<Group position="apart" spacing="xs" style={{ flexWrap: "nowrap" }}>
 						<SVG.Marker width={fontSizes.sm} stroke={colors.gray[3]} />
-						<Text style={{ paddingLeft: spacing.xs / 2, color: colors.gray[7], fontSize: fontSizes.xs }}>
-							{location}
-						</Text>
-					</Flexbox>
-					<Flexbox
-						style={{ marginRight: 0, paddingRight: 0 }}
-						alignItems="center"
-						direction="row"
-						justifyContent="space-between"
-					>
+						<Text style={{ color: colors.gray[7], fontSize: fontSizes.xs }}>{location}</Text>
+					</Group>
+					<Group spacing="xs" style={{ flexWrap: "nowrap" }}>
 						<SVG.Checkmark width={fontSizes.sm} stroke={colors.yellow[8]} />
-						<Text style={{ marginLeft: spacing.xs / 2, color: colors.yellow[8] }}>
-							{status?.charAt(0).toUpperCase() + status?.slice(1)}
-						</Text>
-					</Flexbox>
-				</Flexbox>
-			</Flexbox>
+						{width > 250 && (
+							<Text style={{ color: colors.yellow[8] }}>{status?.charAt(0).toUpperCase() + status?.slice(1)}</Text>
+						)}
+					</Group>
+				</Group>
+			</Group>
 		</Card>
 	)
 }
