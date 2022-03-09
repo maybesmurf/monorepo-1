@@ -1,7 +1,6 @@
 import { ReactNode, useState } from "react"
-import { AppShell } from "@Components/shared"
 import Header from "./Header"
-import { useMantineTheme } from "@Components/shared"
+import { AppShell, useMantineTheme } from "@Components/shared"
 import { useViewportSize } from "@mantine/hooks"
 import Navbar from "./Navbar"
 

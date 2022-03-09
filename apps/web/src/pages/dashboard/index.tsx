@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { EventCard } from "@Components/molecules"
-import { Flexbox, SimpleGrid, Title, Text, Group } from "@Components/shared"
+import { Flexbox, SimpleGrid, Title, Text, Container, Button, useMantineTheme } from "@Components/shared"
 import { getLayout } from "@Components/layouts/Dashboard"
 import { Placeholder } from "@Components/shared/Placeholder"
 import { useAuthSession } from "@Hooks/useAuthSession"
@@ -42,6 +42,7 @@ const UPCOMING_EVENTS = [
 ]
 
 const DashboardPage = () => {
+	const { colors } = useMantineTheme()
 	const { authUser } = useAuthSession()
 
 	return (
@@ -57,22 +58,67 @@ const DashboardPage = () => {
 					<Text style={{ fontWeight: "600", cursor: "pointer" }}>See All</Text>
 				</Link>
 			</Flexbox>
-			<Group position="left" spacing="lg">
+
+			<SimpleGrid
+				breakpoints={[
+					{
+						minWidth: 0,
+						cols: 1
+					},
+					{
+						minWidth: 576,
+						cols: 2
+					},
+					{
+						minWidth: 950,
+						cols: 3
+					}
+				]}
+				cols={3}
+			>
 				{UPCOMING_EVENTS.map((event) => {
 					return <EventCard key={event.eventTitle} {...event} />
 				})}
-			</Group>
+			</SimpleGrid>
+
+			<Title order={2}>Host a Trial</Title>
+			<Container fluid style={{ textAlign: "center", background: colors.teal[1], padding: "2rem" }}>
+				<Title order={3}>Ready to host your own event?</Title>
+				<Text style={{ paddingTop: "1rem", paddingBottom: "2rem" }}>
+					Be sure to have your trial details handy (i.e. addresses, contact information, pricing, and class offerings).
+				</Text>
+				<Button asLink size="sm" radius="lg">
+					Create a Trial
+				</Button>
+			</Container>
+
 			<Flexbox style={{ padding: 0 }} fluid direction="row" alignItems="center" justifyContent="space-between">
 				<Title order={2}>Events Nearby</Title>
 				<Link href="/dashboard/my-events/near-me" passHref>
 					<Text style={{ fontWeight: "600", cursor: "pointer" }}>See All</Text>
 				</Link>
 			</Flexbox>
-			<Group position="left" spacing="lg">
+			<SimpleGrid
+				breakpoints={[
+					{
+						minWidth: 0,
+						cols: 1
+					},
+					{
+						minWidth: 576,
+						cols: 2
+					},
+					{
+						minWidth: 950,
+						cols: 3
+					}
+				]}
+				cols={3}
+			>
 				{UPCOMING_EVENTS.map((event) => {
 					return <EventCard key={event.eventTitle} {...event} />
 				})}
-			</Group>
+			</SimpleGrid>
 		</SimpleGrid>
 	)
 }

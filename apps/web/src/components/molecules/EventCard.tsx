@@ -37,6 +37,8 @@ export const EventCard = ({
 		cursor: "pointer",
 		boxShadow: isHovered ? shadows.sm : shadows.xs,
 		transition: ".15s"
+		// flex: 1
+		// minWidth: "250px"
 	}
 
 	return (
