@@ -18,7 +18,7 @@ const Layout = ({ children }: Props) => {
 
 	return (
 		<AppShell
-			navbarOffsetBreakpoint="sm"
+			navbarOffsetBreakpoint="xs"
 			fixed
 			styles={{
 				root: {

@@ -15,9 +15,11 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 	return (
 		<Navbar
 			padding={0}
+			fixed={opened ? true : false}
+			position={{ top: 0, bottom: 0, left: 0, right: 0 }}
 			hiddenBreakpoint="sm"
 			hidden={!opened}
-			width={{ xs: 300, lg: 400 }}
+			width={{ sm: 300 }}
 			styles={{
 				root: {
 					display: "flex",
