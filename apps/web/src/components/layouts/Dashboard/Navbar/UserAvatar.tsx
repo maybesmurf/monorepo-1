@@ -56,9 +56,10 @@ export const UserAvatar = ({ setNavbarIsOpen }: Props) => {
 					</Avatar>
 					<Group
 						direction="column"
-						position="apart"
+						position="left"
 						style={{
 							flex: 1,
+							gap: 0,
 							overflow: "hidden",
 							// TODO: Make a <Mask /> component
 							WebkitMaskImage: `linear-gradient(to right, black 80%, transparent 100%)`

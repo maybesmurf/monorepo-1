@@ -85,7 +85,7 @@ const DashboardPage = () => {
 				gutter="xl"
 				justify="flex-end"
 				align="center"
-				style={{ background: colors.teal[1], padding: "2rem", borderRadius: radius.lg }}
+				style={{ background: colors.teal[1], margin: 0, padding: "2rem", borderRadius: radius.lg }}
 			>
 				<Grid.Col md={6}>
 					<Title order={3} style={{ textAlign: "center" }}>
