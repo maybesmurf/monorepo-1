@@ -46,7 +46,10 @@ export const ListItem = ({ path, icon, buttonLabel, subItems }: Props) => {
 											variant="subtle"
 											fullWidth
 											styles={{
-												inner: { justifyContent: "flex-start", color: colors.navy[9] }
+												inner: {
+													justifyContent: "flex-start",
+													color: colors.navy[9]
+												}
 											}}
 										>
 											{item.title}

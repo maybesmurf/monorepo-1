@@ -12,6 +12,7 @@ export {
 	Chips,
 	Chip,
 	Space,
+	Affix,
 	Card,
 	useMantineTheme,
 	MediaQuery,
