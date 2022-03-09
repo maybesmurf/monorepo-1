@@ -13,6 +13,8 @@ export {
 	Chip,
 	Space,
 	Affix,
+	Popover,
+	Menu,
 	Card,
 	useMantineTheme,
 	MediaQuery,

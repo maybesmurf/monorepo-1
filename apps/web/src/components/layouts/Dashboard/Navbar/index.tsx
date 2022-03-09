@@ -25,6 +25,7 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 					display: "flex",
 					flexDirection: "column",
 					marginTop: NAVBAR_HEIGHT,
+					width: "initial",
 					minHeight: "initial",
 					maxHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
 					backgroundColor: colors.yellow[0]

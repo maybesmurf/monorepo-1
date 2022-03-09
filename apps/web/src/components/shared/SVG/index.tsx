@@ -12,6 +12,8 @@ import { Marker } from "./Marker"
 import { DogBowl } from "./DogBowl"
 import { HelpCircle } from "./HelpCircle"
 import { Bell } from "./Bell"
+import { Cog } from "./Cog"
+import { Exit } from "./Exit"
 
 export const SVG = {
 	Box,
@@ -27,5 +29,7 @@ export const SVG = {
 	Marker,
 	DogBowl,
 	Bell,
-	HelpCircle
+	HelpCircle,
+	Cog,
+	Exit
 }

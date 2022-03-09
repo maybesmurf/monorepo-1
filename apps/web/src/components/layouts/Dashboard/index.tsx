@@ -11,7 +11,7 @@ interface Props {
 export const NAVBAR_HEIGHT = 100
 
 const Layout = ({ children }: Props) => {
-	const [opened, setOpened] = useState(false)
+	const [navbarIsOpen, setNavbarIsOpen] = useState(false)
 	const { other, spacing } = useMantineTheme()
 	const { width } = useViewportSize()
 	const isXlViewport = width >= 1200
@@ -37,8 +37,8 @@ const Layout = ({ children }: Props) => {
 					paddingBottom: spacing.md
 				}
 			}}
-			header={<Header opened={opened} setOpened={setOpened} />}
-			navbar={<Navbar opened={opened} setOpened={setOpened} />}
+			header={<Header opened={navbarIsOpen} setOpened={setNavbarIsOpen} />}
+			navbar={<Navbar opened={navbarIsOpen} setOpened={setNavbarIsOpen} />}
 		>
 			{children}
 		</AppShell>
