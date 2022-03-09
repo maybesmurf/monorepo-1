@@ -1,41 +1,50 @@
 const baseUri = process.env.NEXT_PUBLIC_API_PATH
 
 // TODO: Get rid of this any
-const get = async (url: string, headers?: any) => {
+const get = async (url: string, headers?: HeadersInit) => {
 	const opts = {
 		method: "GET",
 		headers
 	}
 	return await fetch(baseUri + url, {
 		credentials: "include",
-		headers: opts
+		...opts
 	}).then(handleResponse)
 }
 
-const post = async (url: string, body: any) => {
-	const requestOptions = {
+const post = async (url: string, body: HeadersInit) => {
+	const opts = {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(body)
 	}
-	return await fetch(baseUri + url, requestOptions).then(handleResponse)
+	return await fetch(baseUri + url, {
+		credentials: "include",
+		...opts
+	}).then(handleResponse)
 }
 
-const put = async (url: string, body: any) => {
-	const requestOptions = {
+const put = async (url: string, body: HeadersInit) => {
+	const opts = {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(body)
 	}
-	return await fetch(baseUri + url, requestOptions).then(handleResponse)
+	return await fetch(baseUri + url, {
+		credentials: "include",
+		...opts
+	}).then(handleResponse)
 }
 
 // prefixed with underscored because delete is a reserved word in javascript
 const _delete = async (url: string) => {
-	const requestOptions = {
+	const opts = {
 		method: "DELETE"
 	}
-	return await fetch(baseUri + url, requestOptions).then(handleResponse)
+	return await fetch(baseUri + url, {
+		credentials: "include",
+		...opts
+	}).then(handleResponse)
 }
 
 // helper functions
