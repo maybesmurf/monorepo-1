@@ -33,7 +33,7 @@ export const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
 					</Button>
 				</a>
 			</Link>
-			<Collapse in={path === route}>{children}</Collapse>
+			<Collapse in={route.includes(path)}>{children}</Collapse>
 		</>
 	)
 }

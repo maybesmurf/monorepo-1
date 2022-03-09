@@ -33,7 +33,8 @@ export const NavList = () => {
 					buttonLabel="My Dogs"
 					path="/dashboard/my-dogs"
 				/>
-
+			</List.Item>
+			<List.Item>
 				<ListItem
 					// isActive={router.pathname.includes("/trophy-case")}
 					icon={<SVG.AwardRibbon withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
