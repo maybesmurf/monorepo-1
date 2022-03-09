@@ -38,7 +38,7 @@ const Layout = ({ children }: Props) => {
 				}
 			}}
 			header={<Header opened={navbarIsOpen} setOpened={setNavbarIsOpen} />}
-			navbar={<Navbar opened={navbarIsOpen} setOpened={setNavbarIsOpen} />}
+			navbar={<Navbar navbarIsOpen={navbarIsOpen} setNavbarIsOpen={setNavbarIsOpen} />}
 		>
 			{children}
 		</AppShell>

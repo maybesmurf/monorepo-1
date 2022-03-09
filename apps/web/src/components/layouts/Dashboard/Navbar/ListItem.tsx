@@ -1,7 +1,9 @@
 import { Button, Collapse, List, useMantineTheme } from "@Components/shared"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import { Dispatch, SetStateAction } from "react"
 interface Props {
+	setNavbarIsOpen: Dispatch<SetStateAction<boolean>>
 	// isActive: boolean
 	path: string
 	buttonLabel: string
@@ -12,7 +14,7 @@ interface Props {
 	}>
 }
 
-export const ListItem = ({ path, icon, buttonLabel, subItems }: Props) => {
+export const ListItem = ({ path, icon, buttonLabel, subItems, setNavbarIsOpen }: Props) => {
 	const { route } = useRouter()
 	const { colors, spacing } = useMantineTheme()
 
@@ -21,7 +23,7 @@ export const ListItem = ({ path, icon, buttonLabel, subItems }: Props) => {
 	return (
 		<>
 			<Link href={path} passHref>
-				<a style={{ textDecoration: "none" }}>
+				<a style={{ textDecoration: "none" }} onClick={() => (!subItems ? setNavbarIsOpen(false) : null)}>
 					<Button
 						variant="subtle"
 						fullWidth
@@ -41,7 +43,7 @@ export const ListItem = ({ path, icon, buttonLabel, subItems }: Props) => {
 						return (
 							<List.Item key={item.path}>
 								<Link href={path + item.path} passHref>
-									<a style={{ textDecoration: "none" }}>
+									<a style={{ textDecoration: "none" }} onClick={() => setNavbarIsOpen(false)}>
 										<Button
 											variant="subtle"
 											fullWidth

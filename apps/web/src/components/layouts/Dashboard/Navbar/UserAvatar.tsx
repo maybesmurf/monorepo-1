@@ -2,7 +2,7 @@ import { Avatar, Text, Menu, SVG, Group, useMantineTheme } from "@Components/sha
 import { useAuthSession } from "@Hooks/useAuthSession"
 import { signOut } from "next-auth/react"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useEffect, useState, Dispatch, SetStateAction } from "react"
 
 const DUMMY_USER = {
 	firstName: "Amy",
@@ -10,7 +10,11 @@ const DUMMY_USER = {
 	email: "asmith@gmail.com"
 }
 
-export const UserAvatar = () => {
+interface Props {
+	setNavbarIsOpen: Dispatch<SetStateAction<boolean>>
+}
+
+export const UserAvatar = ({ setNavbarIsOpen }: Props) => {
 	const [menuIsOpen, setMenuIsOpen] = useState(false)
 	const router = useRouter()
 	const { authUser, authStatus } = useAuthSession()
@@ -31,7 +35,10 @@ export const UserAvatar = () => {
 			position="top"
 			size={250}
 			radius="md"
-			onClose={() => setMenuIsOpen(false)}
+			onClose={() => {
+				setNavbarIsOpen(false)
+				setMenuIsOpen(false)
+			}}
 			styles={{ root: { display: "block" }, item: { color: colors.teal[6] }, itemIcon: { width: "1rem" } }}
 			control={
 				<Group
