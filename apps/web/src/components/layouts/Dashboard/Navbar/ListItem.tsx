@@ -1,5 +1,4 @@
-import { ReactNode } from "react"
-import { Button, Collapse, useMantineTheme } from "@Components/shared"
+import { Button, Collapse, List, useMantineTheme } from "@Components/shared"
 import { useRouter } from "next/router"
 import Link from "next/link"
 interface Props {
@@ -7,10 +6,13 @@ interface Props {
 	path: string
 	buttonLabel: string
 	icon: JSX.Element
-	children?: ReactNode
+	subItems?: Array<{
+		title: string
+		path: string
+	}>
 }
 
-export const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
+export const ListItem = ({ path, icon, buttonLabel, subItems }: Props) => {
 	const { route } = useRouter()
 	const { colors, spacing } = useMantineTheme()
 
@@ -33,7 +35,29 @@ export const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
 					</Button>
 				</a>
 			</Link>
-			<Collapse in={route.includes(path)}>{children}</Collapse>
+			<Collapse in={route.includes(path)}>
+				<List styles={{ item: { listStyle: "none", marginLeft: "4.75rem", color: colors.navy[9] } }}>
+					{(subItems || []).map((item) => {
+						return (
+							<List.Item key={item.path}>
+								<Link href={path + item.path} passHref>
+									<a style={{ textDecoration: "none" }}>
+										<Button
+											variant="subtle"
+											fullWidth
+											styles={{
+												inner: { justifyContent: "flex-start", color: colors.navy[9] }
+											}}
+										>
+											{item.title}
+										</Button>
+									</a>
+								</Link>
+							</List.Item>
+						)
+					})}
+				</List>
+			</Collapse>
 		</>
 	)
 }

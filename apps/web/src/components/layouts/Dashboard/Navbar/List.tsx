@@ -22,9 +22,12 @@ export const NavList = () => {
 					icon={<SVG.Calendar withRect width="4rem" fill={colors.teal[1]} stroke={colors.teal[6]} />}
 					buttonLabel="My Events"
 					path="/dashboard/my-events"
-				>
-					My Events
-				</ListItem>
+					subItems={[
+						{ title: "Upcoming", path: "/upcoming" },
+						{ title: "Saved", path: "/saved" },
+						{ title: "Past", path: "/past" }
+					]}
+				/>
 			</List.Item>
 			<List.Item>
 				<ListItem
