@@ -3,6 +3,7 @@ import { EventCard } from "@Components/molecules"
 import { Flexbox, SimpleGrid, Title, Text, Group } from "@Components/shared"
 import { getLayout } from "@Components/layouts/Dashboard"
 import { Placeholder } from "@Components/shared/Placeholder"
+import { useAuthSession } from "@Hooks/useAuthSession"
 
 const UPCOMING_EVENTS = [
 	{
@@ -41,9 +42,11 @@ const UPCOMING_EVENTS = [
 ]
 
 const DashboardPage = () => {
+	const { authUser } = useAuthSession()
+
 	return (
 		<SimpleGrid cols={1} style={{ gap: "2rem" }}>
-			<Title order={1}>Welcome back, User!</Title>
+			<Title order={1}>Welcome back, {authUser?.name?.split(" ")[0]}!</Title>
 			<Title order={2}>Current Event</Title>
 			<Placeholder message="You have no upcoming events." />
 			<Title order={2}>Latest Results</Title>

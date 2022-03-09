@@ -3,18 +3,19 @@ import { Button, Collapse, useMantineTheme } from "@Components/shared"
 import { useRouter } from "next/router"
 import Link from "next/link"
 interface Props {
+	isActive: boolean
 	path: string
 	buttonLabel: string
 	icon: JSX.Element
 	children?: ReactNode
 }
 
-export const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
+export const ListItem = ({ isActive, path, icon, buttonLabel, children }: Props) => {
 	const { route } = useRouter()
-	const { colors, spacing } = useMantineTheme()
+	const { colors, spacing, radius } = useMantineTheme()
 
 	return (
-		<>
+		<div style={{ borderRadius: radius.sm, background: isActive ? colors.teal[1] : "transparent" }}>
 			<Link href={path} passHref>
 				<Button
 					variant="subtle"
@@ -30,6 +31,6 @@ export const ListItem = ({ path, icon, buttonLabel, children }: Props) => {
 				</Button>
 			</Link>
 			<Collapse in={path === route}>{children}</Collapse>
-		</>
+		</div>
 	)
 }

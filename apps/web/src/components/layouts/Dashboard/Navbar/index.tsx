@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
 import { Navbar, useMantineTheme } from "@Components/shared"
 import { UserAvatar } from "./UserAvatar"
-import { List } from "./List"
+import { NavList } from "./List"
 import { NAVBAR_HEIGHT } from "../index"
 
 interface Props {
@@ -30,7 +30,7 @@ const NavbarComp = ({ opened, setOpened }: Props) => {
 			}}
 		>
 			<Navbar.Section style={{ flex: 1, padding: spacing.lg }}>
-				<List />
+				<NavList />
 			</Navbar.Section>
 			<Navbar.Section>
 				<UserAvatar />

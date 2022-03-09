@@ -1,14 +1,15 @@
-import { signIn, useSession } from "next-auth/react"
+import { signIn } from "next-auth/react"
+import { useAuthSession } from "@Hooks/useAuthSession"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
 
 const Login = () => {
 	const router = useRouter()
-	const { status } = useSession()
+	const { authStatus } = useAuthSession()
 
 	useEffect(() => {
-		if (status === "authenticated") router.push("/dashboard")
-	}, [status, router])
+		if (authStatus === "authenticated") router.push("/dashboard")
+	}, [authStatus, router])
 
 	return (
 		<div>
