@@ -1,5 +1,7 @@
 import { Avatar, Text, SVG, Flexbox, useMantineTheme } from "@Components/shared"
 import { signIn, signOut, useSession } from "next-auth/react"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
 import fetch from "@Utils/fetch"
 
 const DUMMY_USER = {
@@ -9,11 +11,18 @@ const DUMMY_USER = {
 }
 
 export const UserAvatar = () => {
-	const { data: userData } = useSession()
+	const router = useRouter()
+	const { data: userData, status } = useSession()
 	const { colors } = useMantineTheme()
 	const initials = `${DUMMY_USER.firstName[0]}${DUMMY_USER.lastName[0]}`
 
 	const [firstName, lastName] = userData?.user?.name ? userData.user.name.split(" ") : ["", ""]
+
+	useEffect(() => {
+		if (status === "unauthenticated") {
+			router.push("/login")
+		}
+	}, [status, router])
 
 	const doFetch = () => {
 		fetch.get("/v1/auth").then((res) => console.log(res))
