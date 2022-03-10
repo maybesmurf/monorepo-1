@@ -60,7 +60,7 @@ const handleResponse = (response: any) => {
 			console.log(data)
 
 			const error = data || response.statusText
-			return Promise.reject(error)
+			return Promise.reject<FetchError>(error)
 		}
 
 		return data

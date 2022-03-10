@@ -86,7 +86,19 @@ export const EventCard = ({
 					/>
 				</Group>
 
-				<Title order={3} style={{ margin: `${spacing.sm}px 0`, fontSize: fontSizes.lg, color: colors.navy[9] }}>
+				<Title
+					order={3}
+					style={{
+						margin: 0,
+						minHeight: "76px",
+						fontSize: fontSizes.lg,
+						color: colors.navy[9],
+						display: "-webkit-box",
+						WebkitBoxOrient: "vertical",
+						WebkitLineClamp: "3",
+						overflow: "hidden"
+					}}
+				>
 					{eventTitle}
 				</Title>
 				<Group position="apart" spacing="xs" style={{ width: "100%", flexWrap: "nowrap" }}>

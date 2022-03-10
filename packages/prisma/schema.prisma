@@ -93,32 +93,11 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// model DoggoUser {
-//   id                    String           @id @unique
-//   akcJudgeId            String?
-//   akcLicense            String?
-//   akcSecretaryId        String?
-//   city                  String
-//   email                 String
-//   emergencyContactName  String?
-//   emergencyContactPhone String?
-//   firstName             String
-//   lastName              String
-//   phone                 String?
-//   postalCode            String
-//   state                 State
-//   streetAddress         String
-//   trialsAsJudge         JudgesByTrials[]
-//   runs                  Run[]
-//   trialsAsSecretary     Trial[]
-//   trialEntries          TrialEntry[]
-//   dogs                  Dog[]
-// }
-
 model Trial {
   id                         String                    @id @default(uuid())
-  hostingClubId              String
   akcEventNumber             String
+  title                     String
+  imageUrl                String
   venue                      String
   venueStreetAddress         String
   venueCity                  String
@@ -144,6 +123,7 @@ model Trial {
   catalogFee                 Int
   juniorHandlerDiscount      Int?
   confirmationLetter         String
+  hostingClubId              String
   hostingClub                Club                      @relation(fields: [hostingClubId], references: [id])
   secretary                  User                      @relation(fields: [secretaryId], references: [id])
   classesEntries             ClassEntriesByTrials[]

@@ -2,49 +2,63 @@
 // You should still be able to use faker types in VSCode.
 // @ts-ignore
 import faker from "@faker-js/faker"
-import { AcceptanceMethod } from "@prisma/client"
+import { AcceptanceMethod, Trial } from "@prisma/client"
 import { getRandomValueFromArray } from "../utils/randomFromArray"
 import { users } from "./users"
 
-export const generateTrials = (clubIds: string[]) => {
-	const trials = [...Array(20)].map(() => ({
-		hostingClubId: getRandomValueFromArray(clubIds),
-		akcEventNumber: faker.datatype.uuid(),
-		venue:
-			faker.address.cardinalDirection() +
-			"" +
-			faker.address.streetName() +
-			"Park",
-		venueStreetAddress: faker.address.streetAddress(),
-		venueCity: faker.address.city(),
-		venueState: faker.address.stateAbbr(),
-		venuePostalCode: faker.address.zipCode(),
-		type: getRandomValueFromArray([
-			"Outdoor on Grass",
-			"Indoor on Turf",
-			"Indoor on Grass"
-		]),
-		signUpOpenDatetime: faker.date.recent(),
-		signUpCloseDateTime: faker.date.soon(),
-		acceptanceMethod: getRandomValueFromArray<AcceptanceMethod>([
-			"RANDOMDRAW",
-			"FIRSTRECEIVED"
-		]),
-		checksPayableTo: faker.company.companyName(),
-		secretaryId: getRandomValueFromArray(users.map((user) => user.id)),
-		trialChairmanName: faker.name.firstName() + " " + faker.name.lastName(),
-		trialChairmanEmail: faker.internet.exampleEmail(),
-		trialChairmanStreetAddress: faker.address.streetAddress(),
-		trialChairmanCity: faker.address.city(),
-		trialChairmanState: faker.address.stateAbbr(),
-		trialChairmanPostalCode: faker.address.zipCode(),
-		costFirstEntry: Number(faker.finance.amount(14, 27, 0)),
-		costSecondEntry: Number(faker.finance.amount(14, 27, 0)),
-		costThirdEntry: Number(faker.finance.amount(14, 27, 0)),
-		costFourthEntry: Number(faker.finance.amount(14, 27, 0)),
-		catalogFee: Number(faker.finance.amount(4, 8, 0)),
-		confirmationLetter: "Hey, you're signed up!"
-	}))
+export const generateTrials = (clubIds: string[]): Trial[] => {
+	const trials = [...Array(20)].map(
+		(): Trial => ({
+			id: faker.datatype.uuid(),
+			imageUrl: `/images/trial-placeholders/${faker.datatype.number({
+				min: 1,
+				max: 9
+			})}.jpg`,
+			trialChairmanPhone: faker.phone.phoneNumber(),
+			title:
+				faker.address.cardinalDirection() +
+				" " +
+				faker.address.city() +
+				" Agility Trials",
+			hostingClubId: getRandomValueFromArray(clubIds),
+			akcEventNumber: faker.datatype.uuid(),
+			venue:
+				faker.address.cardinalDirection() +
+				"" +
+				faker.address.streetName() +
+				"Park",
+			venueStreetAddress: faker.address.streetAddress(),
+			venueCity: faker.address.city(),
+			venueState: faker.address.stateAbbr(),
+			venuePostalCode: faker.address.zipCode(),
+			type: getRandomValueFromArray([
+				"Outdoor on Grass",
+				"Indoor on Turf",
+				"Indoor on Grass"
+			]),
+			signUpOpenDatetime: faker.date.recent(),
+			signUpCloseDateTime: faker.date.soon(),
+			acceptanceMethod: getRandomValueFromArray<AcceptanceMethod>([
+				"RANDOMDRAW",
+				"FIRSTRECEIVED"
+			]),
+			checksPayableTo: faker.company.companyName(),
+			secretaryId: getRandomValueFromArray(users.map((user) => user.id)),
+			trialChairmanName: faker.name.firstName() + " " + faker.name.lastName(),
+			trialChairmanEmail: faker.internet.exampleEmail(),
+			trialChairmanStreetAddress: faker.address.streetAddress(),
+			trialChairmanCity: faker.address.city(),
+			trialChairmanState: faker.address.stateAbbr(),
+			trialChairmanPostalCode: faker.address.zipCode(),
+			costFirstEntry: Number(faker.finance.amount(14, 27, 0)),
+			costSecondEntry: Number(faker.finance.amount(14, 27, 0)),
+			costThirdEntry: Number(faker.finance.amount(14, 27, 0)),
+			costFourthEntry: Number(faker.finance.amount(14, 27, 0)),
+			catalogFee: Number(faker.finance.amount(4, 8, 0)),
+			confirmationLetter: "Hey, you're signed up!",
+			juniorHandlerDiscount: 0
+		})
+	)
 
 	return trials
 }
