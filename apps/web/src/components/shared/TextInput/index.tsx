@@ -10,7 +10,7 @@ export const TextInput = ({ invalid, invalidText, ...props }: Props) => {
 
 	return (
 		<div>
-			<MantineTextInput value={props.value} {...props} />
+			<MantineTextInput value={props.value} error={invalid} {...props} />
 			{invalidText && !invalid && <Space style={{ height: "2.0498125rem" }} />}
 			{invalidText && invalid && (
 				<Text color={colors.red[6]} styles={{ root: { marginTop: ".5rem" } }}>
