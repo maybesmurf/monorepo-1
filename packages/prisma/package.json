@@ -2,13 +2,13 @@
 	"name": "@doggo/prisma",
 	"version": "0.1.1",
 	"private": true,
-	"type": "module",
 	"scripts": {
 		"clean": "rm -rf .turbo && rm -rf node_modules",
 		"db-deploy": "prisma migrate deploy",
 		"db-migrate": "prisma db push --accept-data-loss",
 		"generate-types": "prisma generate",
-		"db-studio": "prisma studio"
+		"db-studio": "prisma studio",
+		"seed": "prisma db push --force-reset && ts-node ./seed.ts"
 	},
 	"devDependencies": {
 		"prisma": "3.9.2",

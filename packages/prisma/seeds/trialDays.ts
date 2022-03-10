@@ -5,7 +5,7 @@ import faker from "@faker-js/faker"
 
 import { getRandomValueFromArray } from "../utils/randomFromArray"
 
-export const createTrialDays = (trialIds: string[]) => {
+export const generateTrialDays = (trialIds: string[]) => {
 	const trialDays = [...Array(4)].map(() => ({
 		trialId: getRandomValueFromArray(trialIds),
 		date: faker.date.soon(),

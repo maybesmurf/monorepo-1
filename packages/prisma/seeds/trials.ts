@@ -6,8 +6,8 @@ import { AcceptanceMethod } from "@prisma/client"
 import { getRandomValueFromArray } from "../utils/randomFromArray"
 import { users } from "./users"
 
-export const createTrials = (clubIds: string[]) => {
-	const trials = [...Array(2)].map(() => ({
+export const generateTrials = (clubIds: string[]) => {
+	const trials = [...Array(20)].map(() => ({
 		hostingClubId: getRandomValueFromArray(clubIds),
 		akcEventNumber: faker.datatype.uuid(),
 		venue:
