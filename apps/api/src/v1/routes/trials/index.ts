@@ -3,6 +3,7 @@ import { prisma } from "@Prisma"
 import { AcceptanceMethod } from "@Prisma/client"
 import { getRandomValueFromArray } from "@Utils/randomFromArray"
 import express from "express"
+import { auth } from "@v1/middlewares/auth"
 
 const router = express.Router()
 
@@ -54,7 +55,7 @@ router.post("/", async (req, response) => {
 	return response.status(200).json(resp)
 })
 
-router.get("/", async (req, response) => {
+router.get("/", auth, async (req, response) => {
 	const all = await prisma.trial.findMany()
 	return response.status(200).json(all)
 })
@@ -71,4 +72,5 @@ router.delete("/", async (req, res) => {
 	return res.json({ message: update })
 })
 
+// Base route: /v1/trials
 export default router

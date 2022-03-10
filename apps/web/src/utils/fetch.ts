@@ -47,14 +47,18 @@ const _delete = async (url: string) => {
 	}).then(handleResponse)
 }
 
-// helper functions
-
+/** This response handler accounts for both success and failures.
+ *
+ * Failures are recognized by non-2xx status codes.
+ */
 const handleResponse = (response: any) => {
 	// Uses .text() so that there is no error for an empty response
 	return response.text().then((text: any) => {
 		const data = text && JSON.parse(text)
 
-		if (response.error) {
+		if (response.status >= 300 || response.error) {
+			console.log(data)
+
 			const error = data || response.statusText
 			return Promise.reject(error)
 		}

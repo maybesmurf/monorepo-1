@@ -13,6 +13,7 @@ export {
 	Chip,
 	Space,
 	Affix,
+	Loader,
 	Popover,
 	Menu,
 	Card,

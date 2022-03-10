@@ -1,11 +1,14 @@
 import { prisma } from "@Prisma"
+import { ResponseError } from "@Root/utils/errorHandlers"
 import { Request, Response, NextFunction } from "express"
 
 // eslint-disable-next-line consistent-return
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
 	const sessionToken = req.cookies["next-auth.session-token"]
 	if (!sessionToken) {
-		return res.status(401).json({ message: "No session provided" })
+		throw new ResponseError("You must be logged in to access this resource", {
+			statusCode: 400
+		})
 	}
 
 	const result = await prisma.session.findFirst({
@@ -13,7 +16,9 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
 	})
 
 	if (!result) {
-		return res.status(401).json({ message: "No valid sessions exist." })
+		throw new ResponseError("Invalid authentication provided.", {
+			statusCode: 401
+		})
 	}
 
 	next()
