@@ -31,6 +31,9 @@
 		"dev": {
 			"cache": false
 		},
+		"dx": {
+			"cache": false
+		},
 		"clean": {
 			"cache": false
 		},

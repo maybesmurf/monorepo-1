@@ -6,8 +6,8 @@
 	"scripts": {
 		"test": "jest --coverage",
 		"test:watch": "jest --watch --coverage",
-		"dev": "tsc -w",
-		"build": "tsc",
+		"build": "tsup src/**/index.ts --dts",
+		"dx": "tsup src/**/index.ts --watch --dts",
 		"lint": "eslint \"**/*.ts\" --fix",
 		"clean": "rm -rf .turbo && rm -rf dist && rm -rf coverage && rm -rf node_modules",
 		"type-check": "tsc --pretty --noEmit"
@@ -24,6 +24,7 @@
 		"eslint-plugin-jest": "26.1.1",
 		"jest": "27.5.1",
 		"ts-jest": "27.1.3",
+		"tsup": "5.12.0",
 		"typescript": "4.5.3"
 	},
 	"dependencies": {

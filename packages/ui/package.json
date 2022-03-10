@@ -15,6 +15,7 @@
 		"test:watch": "jest --watch --coverage",
 		"build:currently-ignored": "tsup src/index.tsx --format esm,cjs --dts --external react",
 		"dev:currently-ignored": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+		"dx:currently-ignored": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
 		"lint:currently-ignored": "eslint \"**/*.tsx\" --fix",
 		"clean:currently-ignored": "rm -rf .turbo  && rm -rf dist && rm -rf coverage && rm -rf node_modules",
 		"type-check:currently-ignored": "tsc --pretty --noEmit"

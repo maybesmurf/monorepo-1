@@ -16,6 +16,7 @@ const generateEntitySeedWithForeignKeys = (
 }
 
 const main = async () => {
+	console.time("Seed Script")
 	const createUsers = async () => {
 		for (const user of users) {
 			await prisma.user.create({
@@ -108,6 +109,7 @@ main()
 		process.exit(1)
 	})
 	.finally(async () => {
-		console.log("You have successfully seeded your database.")
+		console.timeEnd("Seed Script")
+		console.log("🐕🐾🦴 We've left you some treats in your database. 🦴🐾🐕")
 		await prisma.$disconnect()
 	})
