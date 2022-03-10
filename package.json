@@ -8,11 +8,12 @@
 	],
 	"scripts": {
 		"dx": "npm run dev:docker && turbo run dx",
-		"dx:seed": "cd packages && cd prisma && npm run dx:seed",
+		"dx:seed": "npm run dev:docker && cd packages && cd prisma && npm run dx:seed",
 		"dx:nuke": "docker-compose down --volumes --remove-orphans",
 		"db-format": "cd packages && cd prisma && npm run db-format",
 		"db-setup": "cd packages && cd prisma && npm run db-migrate",
 		"dev:docker": "docker-compose -f docker-compose.yml up -d",
+		"dev:down": "docker-compose -f docker-compose.yml down",
 		"dev:setup": "npm run dev:docker && npm run db-setup & npm run db-studio",
 		"dev": "concurrently \"npm run dev:docker\" \"turbo run dev --parallel\"",
 		"dev:turbo": "\"turbo run dev --parallel\"",

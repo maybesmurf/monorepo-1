@@ -11,3 +11,8 @@ services:
       - POSTGRES_PASSWORD=getTurbo
       - POSTGRES_DB=prisma
     restart: always
+    volumes:
+      - ./tables:/docker-entrypoint-initdb.d/
+      - data:/var/lib/postgresql/data
+volumes:
+  data:
