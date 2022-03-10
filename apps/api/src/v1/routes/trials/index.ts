@@ -1,5 +1,5 @@
 import faker from "@faker-js/faker"
-import { prisma } from "@Prisma"
+import { prisma } from "@doggo/prisma"
 import { AcceptanceMethod } from "@Prisma/client"
 import { getRandomValueFromArray } from "@Utils/randomFromArray"
 import express from "express"
@@ -56,7 +56,6 @@ router.post("/", async (req, response) => {
 })
 
 router.get("/", auth, async (req, response) => {
-	console.log(req.query)
 	const page = Number(req.query.page) - 1
 	const take = Number(req.query.take)
 	const skip = page * take

@@ -1,4 +1,4 @@
-import { prisma } from "@Prisma"
+import { prisma } from "@doggo/prisma"
 import { ResponseError } from "@Root/utils/errorHandlers"
 import { Request, Response, NextFunction } from "express"
 

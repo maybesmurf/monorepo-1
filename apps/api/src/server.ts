@@ -11,8 +11,7 @@ moduleAlias.addAliases({
 	"@Root": __dirname + "/",
 	"@Libs": __dirname + "/libs",
 	"@v1": __dirname + "/v1",
-	"@Utils": __dirname + "/utils",
-	"@Prisma": __dirname + "/libs/prisma/index"
+	"@Utils": __dirname + "/utils"
 })
 
 import { errorHandler, ResponseError } from "@Utils/errorHandlers"
@@ -20,7 +19,7 @@ import cors from "cors"
 import express from "express"
 import cookieParser from "cookie-parser"
 import v1 from "@v1/index"
-import { prisma } from "@Prisma"
+import { prisma } from "@doggo/prisma"
 
 const app = express()
 

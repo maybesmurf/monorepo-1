@@ -1,9 +1,9 @@
 import express from "express"
+import { prisma } from "@doggo/prisma"
 import clubs from "./routes/clubs"
 import dogs from "./routes/dogs"
 import trials from "./routes/trials"
 import users from "./routes/users"
-import { auth } from "./middlewares/auth"
 
 const router = express.Router()
 
@@ -19,9 +19,10 @@ router.get("/", async (req, res) => {
 	res.status(200).json({ message: "v1 of the API is up and running!" })
 })
 
-// eslint-disable-next-line arrow-body-style
-router.get("/auth", auth, async (req, res) => {
-	return res.status(200).json({ message: "Authenticated" })
+router.get("/test-new-prisma", async (req, res) => {
+	const result = await prisma.trial.findMany()
+
+	res.status(200).json(result)
 })
 
 export default router

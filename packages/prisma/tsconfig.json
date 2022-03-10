@@ -1,0 +1,12 @@
+{
+	"extends": "@doggo/config/tsconfig/base.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"isolatedModules": false,
+		"declaration": true,
+		"incremental": true,
+		"tsBuildInfoFile": "tsbuildinfo.json"
+	},
+	"include": ["index.ts"],
+	"exclude": ["dist"]
+}

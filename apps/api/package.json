@@ -19,14 +19,13 @@
 		"@Root": "dist/src",
 		"@Utils": "dist/src/utils",
 		"@Libs": "dist/src/libs",
-		"@v1": "dist/src/v1",
-		"@Prisma": "dist/src/libs/prisma/index"
+		"@v1": "dist/src/v1"
 	},
 	"dependencies": {
 		"@doggo/logger": "*",
+		"@doggo/prisma": "*",
 		"@doggo/ui": "*",
 		"@faker-js/faker": "5.5.3",
-		"@prisma/client": "3.9.2",
 		"@sentry/node": "6.17.3",
 		"@sentry/tracing": "6.16.1",
 		"@typescript-eslint/eslint-plugin": "5.12.1",

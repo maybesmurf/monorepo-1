@@ -1,5 +1,5 @@
 import faker from "@faker-js/faker"
-import { prisma } from "@Prisma"
+import { prisma } from "@doggo/prisma"
 import express from "express"
 
 const router = express.Router()

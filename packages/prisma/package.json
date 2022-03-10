@@ -1,8 +1,9 @@
 {
 	"name": "@doggo/prisma",
 	"version": "0.1.1",
-	"private": true,
 	"scripts": {
+		"tsup": "tsup index.ts --dts",
+		"dev": "tsup index.ts --watch --dts",
 		"clean": "rm -rf .turbo && rm -rf node_modules",
 		"db-deploy": "prisma migrate deploy",
 		"db-migrate": "prisma db push --accept-data-loss",
@@ -11,15 +12,20 @@
 		"seed": "prisma db push --force-reset && ts-node ./seed.ts"
 	},
 	"devDependencies": {
+		"@doggo/config": "*",
 		"prisma": "3.9.2",
 		"ts-node": "10.5.0",
-		"typescript": "4.5.5"
+		"typescript": "4.5.5",
+		"tsup": "5.12.0"
 	},
 	"dependencies": {
 		"@prisma/client": "3.9.2"
 	},
-	"main": "index.js",
-	"types": "index.d.ts",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist/index.js"
+	],
 	"prisma": {
 		"seed": "ts-node ./seed.ts"
 	}

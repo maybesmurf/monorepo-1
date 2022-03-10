@@ -1,4 +1,4 @@
-import { prisma } from "@Prisma"
+import { prisma } from "@doggo/prisma"
 import type { NextPage } from "next"
 import Home from "@Components/features/Home"
 

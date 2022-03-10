@@ -1,7 +1,8 @@
-import { prisma } from "@Prisma"
+import { prisma } from "@doggo/prisma"
 import DogController from "@v1/controllers/dog"
 
 import express from "express"
+
 const router = express.Router()
 
 // Things to do in a route:

@@ -10,7 +10,10 @@ describe("errorHandler", () => {
 		const nextFunction: NextFunction = jest.fn()
 
 		errorHandler(
-			new ResponseError("some test error", { statusCode: 500, info: "some testing info" }),
+			new ResponseError("some test error", {
+				statusCode: 500,
+				info: "some testing info"
+			}),
 			{} as Request,
 			mockResponse as Response,
 			{} as any
@@ -19,7 +22,7 @@ describe("errorHandler", () => {
 		expect(mockResponse.status).toHaveBeenCalledWith(500)
 		expect(mockResponse.json).toHaveBeenCalledWith({
 			error: "some test error",
-			errorInfo: "some testing info"
+			info: "some testing info"
 		})
 		expect(nextFunction).not.toHaveBeenCalled()
 	})
@@ -31,7 +34,12 @@ describe("errorHandler", () => {
 		}
 		const nextFunction: NextFunction = jest.fn()
 
-		errorHandler(new Error("some test error"), {} as Request, mockResponse as Response, nextFunction)
+		errorHandler(
+			new Error("some test error"),
+			{} as Request,
+			mockResponse as Response,
+			nextFunction
+		)
 
 		expect(mockResponse.status).toHaveBeenCalledWith(500)
 		expect(mockResponse.json).toHaveBeenCalledWith({ error: "some test error" })
